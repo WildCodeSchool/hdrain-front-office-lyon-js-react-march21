@@ -15,7 +15,7 @@ export default function NeuralNetwork() {
 
   return (
     <>
-      <h1>Neural Network</h1>
+      <h2>Neural Network</h2>
       <p>Select a location from the list</p>
       <select name="location" id="location" onChange={handleLocationSelection}>
         Location
