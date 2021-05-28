@@ -18,6 +18,9 @@ export default function MenuNav() {
       <NavLink exact to="/monitoring/virtualMachine">
         Virtual Engine
       </NavLink>
+      <NavLink exact to="/logIn">
+        Log In
+      </NavLink>
     </div>
   );
 }

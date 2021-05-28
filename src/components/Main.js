@@ -4,6 +4,7 @@ import HomePage from '../screens/HomePage';
 import MonitoringPage from '../screens/MonitoringPage';
 import NeuralNetwork from './NeuralNetwork';
 import VirtualMachine from './VirtualMachine';
+import LogInPage from '../screens/LogInPage';
 
 export default function Main() {
   return (
@@ -22,6 +23,7 @@ export default function Main() {
           path="/monitoring/virtualMachine"
           component={VirtualMachine}
         />
+        <Route exaxt path="/logIn" component={LogInPage} />
       </Switch>
     </main>
   );
