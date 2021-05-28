@@ -14,12 +14,12 @@ export default function Main() {
         <Route exact path="/history" component={HistoryPage} />
         <Route
           exact
-          path="/monitoring/neural_network"
+          path="/monitoring/neuralNetwork"
           component={NeuralNetwork}
         />
         <Route
           exact
-          path="/monitoring/virtual_machine"
+          path="/monitoring/virtualMachine"
           component={VirtualMachine}
         />
       </Switch>
