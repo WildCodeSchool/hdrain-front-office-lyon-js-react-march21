@@ -66,6 +66,7 @@ button:disabled {
 }
 
 a:not(.navLink) {
+  display: inline-block;
   background-color: red;
   box-shadow: 0 5px 0 darkred;
   color: white;

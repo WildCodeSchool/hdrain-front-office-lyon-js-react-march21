@@ -4,7 +4,7 @@ import { LocationContext } from '../contexts/LocationContext';
 
 export default function NeuralNetwork() {
   const { locationList, setSelectedLocation } = useContext(LocationContext);
-  const [pathToLog] = useState(null);
+  const [pathToLog] = useState('');
 
   const [isEnabled, setIsEnabled] = useState(true);
   const handleLocationSelection = (event) => {
