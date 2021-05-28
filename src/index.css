@@ -65,27 +65,29 @@ button:disabled {
   color: hsl(0, 0%, 35%);
 }
 
-/* a {
+a:not(.navLink) {
   background-color: red;
   box-shadow: 0 5px 0 darkred;
   color: white;
+
   padding: 1em 1.5em;
   position: relative;
   text-decoration: none;
   text-transform: uppercase;
 }
 
-a:hover {
+a:not(.navLink):hover {
   background-color: #ce0606;
   text-decoration: underline;
+  cursor: pointer;
 }
-a:active {
+a:not(.navLink):active {
   box-shadow: none;
   top: 5px;
 }
-a:visited {
+a:not(.navLink):visited {
   box-shadow: 0 5px 0 purple;
-} */
+}
 
 /* ================
 Typography
