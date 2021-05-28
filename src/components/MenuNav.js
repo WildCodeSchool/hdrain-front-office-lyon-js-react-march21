@@ -12,10 +12,10 @@ export default function MenuNav() {
       <NavLink exact to="/history">
         History
       </NavLink>
-      <NavLink exact to="/monitoring/neurons_network">
+      <NavLink exact to="/monitoring/neural_network">
         Neurons Network
       </NavLink>
-      <NavLink exact to="/monitoring/virtual_engine">
+      <NavLink exact to="/monitoring/virtual_machine">
         Virtual Engine
       </NavLink>
     </div>

@@ -2,8 +2,8 @@ import { Switch, Route } from 'react-router';
 import HistoryPage from '../screens/HistoryPage';
 import HomePage from '../screens/HomePage';
 import MonitoringPage from '../screens/MonitoringPage';
-import NeuronsNetwork from './NeuronsNetwork';
-import VirtualEngine from './VirtualEngine';
+import NeuralNetwork from './NeuralNetwork';
+import VirtualMachine from './VirtualMachine';
 
 export default function Main() {
   return (
@@ -14,13 +14,13 @@ export default function Main() {
         <Route exact path="/history" component={HistoryPage} />
         <Route
           exact
-          path="/monitoring/neurons_network"
-          component={NeuronsNetwork}
+          path="/monitoring/neural_network"
+          component={NeuralNetwork}
         />
         <Route
           exact
-          path="/monitoring/virtual_engine"
-          component={VirtualEngine}
+          path="/monitoring/virtual_machine"
+          component={VirtualMachine}
         />
       </Switch>
     </main>
