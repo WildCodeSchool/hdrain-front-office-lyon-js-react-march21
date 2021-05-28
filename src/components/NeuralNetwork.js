@@ -2,8 +2,7 @@ import { useContext, useState } from 'react';
 import { LocationContext } from '../contexts/LocationContext';
 
 export default function NeuralNetwork() {
-  const { locationList, selectedLocation, setSelectedLocation } =
-    useContext(LocationContext);
+  const { locationList, setSelectedLocation } = useContext(LocationContext);
   const [isEnabled, setIsEnabled] = useState(true);
 
   const handleLocationSelection = (event) => {
@@ -15,7 +14,7 @@ export default function NeuralNetwork() {
   return (
     <>
       <h1>Neural Network</h1>
-      <h2>{selectedLocation}</h2>
+      <p>Select a location from the list</p>
       <select name="location" id="location" onChange={handleLocationSelection}>
         Location
         <option key="None" value="None">
@@ -27,6 +26,7 @@ export default function NeuralNetwork() {
           </option>
         ))}
       </select>
+      <br />
       <button type="button" disabled={isEnabled}>
         Neural Network
       </button>
