@@ -1,10 +1,12 @@
 import { useContext, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { LocationContext } from '../contexts/LocationContext';
 
 export default function NeuralNetwork() {
   const { locationList, setSelectedLocation } = useContext(LocationContext);
-  const [isEnabled, setIsEnabled] = useState(true);
+  const [pathToLog] = useState(null);
 
+  const [isEnabled, setIsEnabled] = useState(true);
   const handleLocationSelection = (event) => {
     const locationValue = event.target.value;
     setSelectedLocation(locationValue);
@@ -33,6 +35,10 @@ export default function NeuralNetwork() {
       <button type="button" disabled={isEnabled}>
         Assimilation
       </button>
+      <br />
+      <Link to={pathToLog} target="_blank" download>
+        Download Logs
+      </Link>
     </>
   );
 }
