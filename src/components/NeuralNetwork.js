@@ -4,7 +4,7 @@ export default function NeuralNetwork() {
   return (
     <>
       <h1>Neural Network</h1>
-      <Map />
+      <Map style={{ width: '600', height: '400' }} />
     </>
   );
 }
