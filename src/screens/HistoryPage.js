@@ -11,7 +11,7 @@ export default function HistoryPage() {
   return (
     <>
       <h2>History</h2>
-      <div className="location">
+      <div className="selection">
         <p>Select a location</p>
         <select
           name="location"
@@ -29,9 +29,7 @@ export default function HistoryPage() {
           ))}
         </select>
       </div>
-      <div className="datepicker">
-        <p>Select a date</p>
-      </div>
+      <p>Select a date</p>
     </>
   );
 }

@@ -128,3 +128,7 @@ footer {
   background: #00000000;
   border: none;
 }
+.selection {
+  display: inline-block;
+  justify-content: space-between;
+}
