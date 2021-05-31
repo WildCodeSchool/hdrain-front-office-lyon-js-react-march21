@@ -1,4 +1,4 @@
-import { Switch, Route, BrowserRouter as Router } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 import { LocationContextProvider } from '../contexts/LocationContext';
 import HistoryPage from '../screens/HistoryPage';
 import HomePage from '../screens/HomePage';
@@ -10,23 +10,21 @@ export default function Main() {
   return (
     <main>
       <LocationContextProvider>
-        <Router>
-          <Switch>
-            <Route exact path="/" component={HomePage} />
-            <Route exact path="/monitoring" component={MonitoringPage} />
-            <Route exact path="/history" component={HistoryPage} />
-            <Route
-              exact
-              path="/monitoring/neuralNetwork"
-              component={NeuralNetwork}
-            />
-            <Route
-              exact
-              path="/monitoring/virtualMachine"
-              component={VirtualMachine}
-            />
-          </Switch>
-        </Router>
+        <Switch>
+          <Route exact path="/" component={HomePage} />
+          <Route exact path="/monitoring" component={MonitoringPage} />
+          <Route exact path="/history" component={HistoryPage} />
+          <Route
+            exact
+            path="/monitoring/neuralNetwork"
+            component={NeuralNetwork}
+          />
+          <Route
+            exact
+            path="/monitoring/virtualMachine"
+            component={VirtualMachine}
+          />
+        </Switch>
       </LocationContextProvider>
     </main>
   );
