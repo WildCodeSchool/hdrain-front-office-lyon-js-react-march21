@@ -1,3 +1,9 @@
 body {
   margin: 0;
 }
+
+footer {
+  background-color: #367e96;
+  text-align: center;
+  color: hsla(0, 0%, 100%, 0.7);
+}
