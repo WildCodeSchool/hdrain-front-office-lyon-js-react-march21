@@ -137,14 +137,13 @@ footer {
 h3 {
   display: flex;
   justify-content: center;
+  margin-top: 3rem;
 }
 
 .maps {
   display: flex;
   flex-direction: column;
-}
-
-.sensorMap {
-  width: '600';
-  height: '400';
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
 }
