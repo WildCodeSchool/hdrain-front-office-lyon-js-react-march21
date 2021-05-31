@@ -64,6 +64,7 @@ button:active {
 button:disabled {
   background: #dddddd;
   color: hsl(0, 0%, 35%);
+  cursor: not-allowed;
 }
 
 a:not(.navLink) {
