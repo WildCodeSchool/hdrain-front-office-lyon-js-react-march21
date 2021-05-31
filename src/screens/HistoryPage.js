@@ -56,7 +56,6 @@ export default function HistoryPage() {
         >
           Get Log GLOBAL
         </Link>
-
         <Link
           to={pathToLog}
           target="_blank"
