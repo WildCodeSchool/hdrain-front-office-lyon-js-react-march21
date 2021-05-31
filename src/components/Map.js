@@ -5,22 +5,6 @@ import redSensorPath from '../assets/sensor-red.png';
 import greenSensorPath from '../assets/sensor-green.png';
 import locationPath from '../assets/sensor.png';
 
-// OBSOLETE ?
-/**
- * @description This function convert one of three color's cname to a string to change the color of the default icon used in leaftlet
- * @date 31/05/2021
- * @param {*} color (string)
- * @return {*} a css string attribute
- */
-/* const convertColorToDeg = (color) => {
-  // In order to change the color of the pin (png) we use rotate it's hue
-  // green (240deg) = status OK & no rain, blue (0deg) = status OK & rain, red (140deg) = status NOK
-  if (color === 'red') return 'hue-rotate(140deg)';
-  if (color === 'green') return 'hue-rotate(240deg)';
-  if (color === 'blue') return 'hue-rotate(0deg)';
-  return 'grayscale(100%)';
-}; */
-
 const selectIcon = (type, color = 'none') => {
   let iconPath = '';
   if (type === 'location') {
@@ -40,12 +24,9 @@ const selectIcon = (type, color = 'none') => {
   return new L.Icon({
     iconUrl: iconPath,
     iconRetinaUrl: iconPath,
-    // iconAnchor: null,
-    // popupAnchor: null,
-    // shadowUrl: null,
-    // shadowSize: null,
-    // shadowAnchor: null,
-    iconSize: new L.Point(50, 65),
+    iconAnchor: [25, 65],
+    popupAnchor: [0, -65],
+    iconSize: [50, 65],
     className: 'leaflet-div-icon',
   });
 };
