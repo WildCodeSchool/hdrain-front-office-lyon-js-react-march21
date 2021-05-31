@@ -23,7 +23,7 @@ export default function HistoryPage() {
       <h2>History</h2>
       <div className="dateAndPlacePicker">
         <div className="placePicker">
-          <p>Select a location</p>
+          <p>Select a location to get data</p>
           <select
             name="location"
             id="location"
@@ -47,9 +47,9 @@ export default function HistoryPage() {
       </div>
       <div className="maps">
         <h3>Sensor map</h3>
-        <Map />
+        {!isEnabled && <Map />}
         <h3>Rain map</h3>
-        <img src={rainMMap} alt="rainMap" />
+        {!isEnabled && <img src={rainMMap} alt="rainMap" />}
       </div>
       <div className="link">
         <Link

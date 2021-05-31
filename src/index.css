@@ -147,3 +147,9 @@ h3 {
   align-items: center;
   padding: 2rem;
 }
+
+button:disabled {
+  background: #dddddd;
+  color: hsl(0, 0%, 35%);
+  cursor: not-allowed;
+}
