@@ -26,7 +26,7 @@ export default function MenuNav() {
         </li>
         <li className="navItem">
           <NavLink className="navLink" exact to="/monitoring/virtualMachine">
-            Virtual Engine
+            Virtual Machine
           </NavLink>
         </li>
       </ul>
