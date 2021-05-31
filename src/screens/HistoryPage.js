@@ -46,8 +46,8 @@ export default function HistoryPage() {
       <div className="map">
         <h3>Sensor map</h3>
         <h3>Rain map</h3>
-        <br />
-
+      </div>
+      <div className="link">
         <Link
           to={pathToLog}
           target="_blank"
