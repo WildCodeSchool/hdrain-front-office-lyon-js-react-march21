@@ -1,10 +1,11 @@
 import { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { LocationContext } from '../contexts/LocationContext';
+import asset from '../assets/sensor.png';
 
 export default function NeuralNetwork() {
   const { locationList, setSelectedLocation } = useContext(LocationContext);
-  const [pathToLog] = useState('');
+  const [pathToLog] = useState(asset);
 
   const [isEnabled, setIsEnabled] = useState(true);
   const handleLocationSelection = (event) => {
