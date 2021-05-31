@@ -5,11 +5,10 @@ import LocationDropdown from '../components/LocationDropDown';
 
 export default function HomePage() {
   return (
-    <div>
-      <div>
-        <h1>Home</h1>
-        <LocationDropdown />
-        {/*
+    <>
+      <h1>Home</h1>
+      <LocationDropdown />
+      {/*
         <h3>Détails du site choisi</h3>
         <button className="generic-btn" type="button">
           Réseau de Neurones
@@ -18,18 +17,18 @@ export default function HomePage() {
           Assimilation
         </button>
 */}
-        <NavLink to="/history">
-          <button className="history-btn" type="button">
-            Lien vers l'historique
-          </button>
-        </NavLink>
-      </div>
+      <NavLink to="/history">
+        <button className="history-btn" type="button">
+          Lien vers l'historique
+        </button>
+      </NavLink>
+
       <div>
         <img
           src="https://www.kindpng.com/picc/m/331-3317031_simple-silhouette-world-map-hd-png-download.png"
           alt="worldmap"
         />
       </div>
-    </div>
+    </>
   );
 }
