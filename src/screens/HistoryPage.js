@@ -1,5 +1,5 @@
 import { useContext, useState } from 'react';
-import DatePicker from 'react-date-picker';
+import DateTimePicker from 'react-datetime-picker';
 import { Link } from 'react-router-dom';
 import { LocationContext } from '../contexts/LocationContext';
 import asset from '../assets/sensor.png';
@@ -39,8 +39,8 @@ export default function HistoryPage() {
           </select>
         </div>
         <div className="datePicker">
-          <p>Select a date</p>
-          <DatePicker onChange={setDate} value={date} />
+          <p>Select a timestamp</p>
+          <DateTimePicker onChange={setDate} value={date} />
         </div>
       </div>
       <div className="map">
