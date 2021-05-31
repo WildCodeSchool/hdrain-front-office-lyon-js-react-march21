@@ -1,9 +1,13 @@
 import { useContext, useState } from 'react';
 import DatePicker from 'react-date-picker';
+import { Link } from 'react-router-dom';
 import { LocationContext } from '../contexts/LocationContext';
+import asset from '../assets/sensor.png';
 
 export default function HistoryPage() {
   const { locationList, setSelectedLocation } = useContext(LocationContext);
+  const [pathToLog] = useState(asset);
+
   const [date, setDate] = useState(new Date());
   const [isEnabled, setIsEnabled] = useState(true);
 
@@ -15,45 +19,76 @@ export default function HistoryPage() {
   return (
     <>
       <h2>History</h2>
-      <div className="selection">
-        <p>Select a location</p>
-        <select
-          name="location"
-          id="location"
-          onChange={handleLocationSelection}
-        >
-          Location
-          <option key="None" value="None">
-            None
-          </option>
-          {locationList.map((location) => (
-            <option key={location} value={location}>
-              {location}
+      <div className="dateAndPlacePicker">
+        <div className="placePicker">
+          <p>Select a location</p>
+          <select
+            name="location"
+            id="location"
+            onChange={handleLocationSelection}
+          >
+            Location
+            <option key="None" value="None">
+              None
             </option>
-          ))}
-        </select>
+            {locationList.map((location) => (
+              <option key={location} value={location}>
+                {location}
+              </option>
+            ))}
+          </select>
+        </div>
+        <div className="datePicker">
+          <p>Select a date</p>
+          <DatePicker onChange={setDate} value={date} />
+        </div>
       </div>
-      <p>Select a date</p>
-      <DatePicker onChange={setDate} value={date} />
       <div className="map">
         <h3>Sensor map</h3>
         <h3>Rain map</h3>
         <br />
-        <button type="button" disabled={isEnabled}>
+
+        <Link
+          to={pathToLog}
+          target="_blank"
+          download
+          style={isEnabled ? { pointerEvents: 'none' } : null}
+        >
           Get Log GLOBAL
-        </button>
-        <button type="button" disabled={isEnabled}>
+        </Link>
+
+        <Link
+          to={pathToLog}
+          target="_blank"
+          download
+          style={isEnabled ? { pointerEvents: 'none' } : null}
+        >
           Get Log Neural Network
-        </button>
-        <button type="button" disabled={isEnabled}>
+        </Link>
+        <Link
+          to={pathToLog}
+          target="_blank"
+          download
+          style={isEnabled ? { pointerEvents: 'none' } : null}
+        >
           Get Log Assimilation
-        </button>
-        <button type="button" disabled={isEnabled}>
-          Get parametres assimilation
-        </button>
-        <button type="button" disabled={isEnabled}>
+        </Link>
+        <Link
+          to={pathToLog}
+          target="_blank"
+          download
+          style={isEnabled ? { pointerEvents: 'none' } : null}
+        >
+          Get assimilation parameters
+        </Link>
+        <Link
+          to={pathToLog}
+          target="_blank"
+          download
+          style={isEnabled ? { pointerEvents: 'none' } : null}
+        >
           Get assimilation costs
-        </button>
+        </Link>
       </div>
     </>
   );

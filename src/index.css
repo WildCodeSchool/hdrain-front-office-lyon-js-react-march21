@@ -67,6 +67,12 @@ button:disabled {
   cursor: not-allowed;
 }
 
+.disableCursor:disabled {
+  background: #dddddd;
+  color: hsl(0, 0%, 35%);
+  cursor: not-allowed;
+}
+
 a:not(.navLink) {
   display: inline-block;
   background-color: red;
@@ -128,7 +134,14 @@ footer {
   background: #00000000;
   border: none;
 }
-.selection {
-  display: inline-block;
-  justify-content: space-between;
+.dateAndPlacePicker {
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
+}
+
+.placePicker {
+}
+
+.datePicker {
 }
