@@ -21,12 +21,15 @@ const selectIcon = (type, color = 'none') => {
     }
   }
 
+  const iconHeight = 50;
+  const iconWidth = 50;
+
   return new L.Icon({
     iconUrl: iconPath,
     iconRetinaUrl: iconPath,
-    iconAnchor: [25, 65],
-    popupAnchor: [0, -65],
-    iconSize: [50, 65],
+    iconAnchor: [iconWidth / 2, iconHeight],
+    popupAnchor: [0, -iconHeight],
+    iconSize: [iconWidth, iconHeight],
     className: 'leaflet-div-icon',
   });
 };
