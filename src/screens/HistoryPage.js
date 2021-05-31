@@ -1,9 +1,10 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
+import DatePicker from 'react-date-picker';
 import { LocationContext } from '../contexts/LocationContext';
 
 export default function HistoryPage() {
   const { locationList, setSelectedLocation } = useContext(LocationContext);
-
+  const [value, onChange] = useState(new Date());
   const handleLocationSelection = (event) => {
     const locationValue = event.target.value;
     setSelectedLocation(locationValue);
@@ -30,6 +31,7 @@ export default function HistoryPage() {
         </select>
       </div>
       <p>Select a date</p>
+      <DatePicker onChange={onChange} value={value} />
     </>
   );
 }
