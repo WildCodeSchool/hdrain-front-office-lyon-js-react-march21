@@ -3,6 +3,7 @@ import DateTimePicker from 'react-datetime-picker';
 import { Link } from 'react-router-dom';
 import { LocationContext } from '../contexts/LocationContext';
 import asset from '../assets/sensor.png';
+import Map from '../components/Map';
 
 export default function HistoryPage() {
   const { locationList, setSelectedLocation } = useContext(LocationContext);
@@ -43,8 +44,9 @@ export default function HistoryPage() {
           <DateTimePicker onChange={setDate} value={date} />
         </div>
       </div>
-      <div className="map">
+      <div className="maps">
         <h3>Sensor map</h3>
+        <Map className="sensorMap" />
         <h3>Rain map</h3>
       </div>
       <div className="link">

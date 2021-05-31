@@ -139,7 +139,12 @@ h3 {
   justify-content: center;
 }
 
-.map {
+.maps {
   display: flex;
   flex-direction: column;
+}
+
+.sensorMap {
+  width: '600';
+  height: '400';
 }
