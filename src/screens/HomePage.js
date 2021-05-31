@@ -1,27 +1,15 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
-import TestDropDown from '../components/Testdropdown';
-
-const items = [
-  {
-    id: 1,
-    value: 'Abidjan',
-  },
-
-  { id: 2, value: 'Antibes' },
-
-  { id: 3, value: 'Toulouse' },
-];
+import LocationDropdown from '../components/LocationDropDown';
 
 export default function HomePage() {
   return (
     <div>
       <div>
         <h1>Home</h1>
-        <div>Choix du Site</div>
-        <TestDropDown title="Select location" items={items} />
-
+        <LocationDropdown />
+        {/*
         <h3>Détails du site choisi</h3>
         <button className="generic-btn" type="button">
           Réseau de Neurones
@@ -29,8 +17,11 @@ export default function HomePage() {
         <button className="generic-btn" type="button">
           Assimilation
         </button>
+*/}
         <NavLink to="/history">
-          <button type="button">Lien vers l'historique</button>
+          <button className="history-btn" type="button">
+            Lien vers l'historique
+          </button>
         </NavLink>
       </div>
       <div>
