@@ -8,15 +8,6 @@ export default function HomePage() {
     <>
       <h1>Home</h1>
       <LocationDropdown />
-      {/*
-        <h3>Détails du site choisi</h3>
-        <button className="generic-btn" type="button">
-          Réseau de Neurones
-        </button>
-        <button className="generic-btn" type="button">
-          Assimilation
-        </button>
-*/}
       <NavLink to="/history">
         <button className="history-btn" type="button">
           Lien vers l'historique
