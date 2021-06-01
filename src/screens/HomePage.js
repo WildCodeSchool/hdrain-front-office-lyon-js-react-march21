@@ -2,12 +2,14 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 
 import LocationDropdown from '../components/LocationDropDown';
+import NeuralNetworkLink from '../components/NeuralNetworkLink';
 
 export default function HomePage() {
   return (
     <>
       <h1>Home</h1>
       <LocationDropdown />
+      <NeuralNetworkLink />
       <br />
       <NavLink to="/history">History Link</NavLink>
       <br />

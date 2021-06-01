@@ -1,15 +1,14 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import { LocationContext } from '../contexts/LocationContext';
 
 function DropDown() {
   const { locationList, setSelectedLocation } = useContext(LocationContext);
 
-  const [isEnabled, setIsEnabled] = useState(true);
   const handleLocationSelection = (event) => {
     const locationValue = event.target.value;
     setSelectedLocation(locationValue);
-    setIsEnabled(locationValue === 'None');
   };
+
   return (
     <>
       <p>Select a location from the list</p>
@@ -25,12 +24,6 @@ function DropDown() {
         ))}
       </select>
       <br />
-      <button type="button" disabled={isEnabled}>
-        Neural Network
-      </button>
-      <button type="button" disabled={isEnabled}>
-        Assimilation
-      </button>
     </>
   );
 }
