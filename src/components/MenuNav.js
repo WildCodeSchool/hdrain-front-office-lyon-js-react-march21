@@ -28,6 +28,8 @@ export default function MenuNav() {
           <NavLink className="navLink" exact to="/monitoring/virtualMachine">
             Virtual Machine
           </NavLink>
+        </li>
+        <li className="navItem">
           <NavLink exact to="/logIn">
             Log In
           </NavLink>
