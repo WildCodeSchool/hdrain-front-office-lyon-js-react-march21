@@ -26,6 +26,12 @@ body {
   font-family: 'Open Sans', sans-serif;
 }
 
+h3 {
+  display: flex;
+  justify-content: center;
+  margin-top: 3rem;
+}
+
 button {
   margin: 0;
   box-sizing: border-box;
@@ -69,6 +75,13 @@ button:disabled {
   cursor: not-allowed;
 }
 
+footer {
+  background-color: #367e96;
+  text-align: center;
+  color: hsla(0, 0%, 100%, 0.7);
+  padding: 1rem;
+}
+
 /* ================
 Typography
 ================*/
@@ -76,16 +89,17 @@ Typography
 /* ================
 Layout
 ================*/
-.navList {
-  list-style: none;
-  display: flex;
-  justify-content: space-evenly;
-}
 
 #root {
   height: 100%;
   display: grid;
   grid-template-rows: auto 1fr auto;
+}
+
+.navList {
+  list-style: none;
+  display: flex;
+  justify-content: space-evenly;
 }
 
 main {
@@ -94,27 +108,10 @@ main {
   align-items: center;
 }
 
-footer {
-  background-color: #367e96;
-  text-align: center;
-  color: hsla(0, 0%, 100%, 0.7);
-  padding: 1rem;
-}
-
-.leaflet-div-icon {
-  background: #00000000;
-  border: none;
-}
 .dateAndPlacePicker {
   display: flex;
   justify-content: space-evenly;
   width: 100%;
-}
-
-h3 {
-  display: flex;
-  justify-content: center;
-  margin-top: 3rem;
 }
 
 .maps {
@@ -125,11 +122,9 @@ h3 {
   padding: 2rem;
 }
 
-button:disabled {
-  background: #dddddd;
-  color: hsl(0, 0%, 35%);
-  cursor: not-allowed;
-}
+/* ================
+Components
+================*/
 
 .download {
   display: inline-block;
@@ -137,7 +132,6 @@ button:disabled {
   box-shadow: 0 5px 0 var(--btn-secondary-color);
   color: white;
   margin: 1rem;
-
   padding: 1em 1.5em;
   position: relative;
   text-decoration: none;
@@ -155,4 +149,9 @@ button:disabled {
 }
 .download:visited {
   box-shadow: 0 5px 0 purple;
+}
+
+.leaflet-div-icon {
+  background: #00000000;
+  border: none;
 }
