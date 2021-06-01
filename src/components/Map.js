@@ -28,6 +28,7 @@ export default function Map({
       scrollWheelZoom={false}
       style={{
         height: '400px',
+        width: '600px',
       }}
     >
       <TileLayer
