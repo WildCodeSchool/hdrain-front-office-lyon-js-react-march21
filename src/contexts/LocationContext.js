@@ -35,5 +35,3 @@ export const LocationContextProvider = ({ children }) => {
     </LocationContext.Provider>
   );
 };
-
-// const locations = useContext()
