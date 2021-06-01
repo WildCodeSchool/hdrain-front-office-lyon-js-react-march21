@@ -51,32 +51,36 @@ export default function HistoryPage() {
         <h3>Rain map</h3>
         {!isEnabled && <img src={rainMMap} alt="rainMap" />}
       </div>
-      <div className="link">
+      <div>
         <Link
+          className="download"
           to={pathToLog}
           target="_blank"
           download
           style={isEnabled ? { pointerEvents: 'none' } : null}
         >
-          Get Log GLOBAL
+          Get GLOBAL Log
         </Link>
         <Link
+          className="download"
           to={pathToLog}
           target="_blank"
           download
           style={isEnabled ? { pointerEvents: 'none' } : null}
         >
-          Get Log Neural Network
+          Get Neural Network Log
         </Link>
         <Link
+          className="download"
           to={pathToLog}
           target="_blank"
           download
           style={isEnabled ? { pointerEvents: 'none' } : null}
         >
-          Get Log Assimilation
+          Get Assimilation Log
         </Link>
         <Link
+          className="download"
           to={pathToLog}
           target="_blank"
           download
@@ -85,6 +89,7 @@ export default function HistoryPage() {
           Get assimilation parameters
         </Link>
         <Link
+          className="download"
           to={pathToLog}
           target="_blank"
           download

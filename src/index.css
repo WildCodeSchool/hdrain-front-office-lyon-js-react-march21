@@ -13,6 +13,8 @@
   --accent-color: hsla(335, 72%, 60%, 0.897);
   --text-primary: hsla(0, 0%, 5%, 0.95);
   --bg-secondary: hsla(0, 0%, 95%, 0.9);
+  --btn-color: hsla(0, 5%, 48%, 0.9);
+  --btn-secondary-color: hsla(0, 3%, 30%, 0.9);
 }
 
 /* ================
@@ -65,31 +67,6 @@ button:disabled {
   background: #dddddd;
   color: hsl(0, 0%, 35%);
   cursor: not-allowed;
-}
-
-a:not(.navLink) {
-  display: inline-block;
-  background-color: red;
-  box-shadow: 0 5px 0 darkred;
-  color: white;
-
-  padding: 1em 1.5em;
-  position: relative;
-  text-decoration: none;
-  text-transform: uppercase;
-}
-
-a:not(.navLink):hover {
-  background-color: #ce0606;
-  text-decoration: underline;
-  cursor: pointer;
-}
-a:not(.navLink):active {
-  box-shadow: none;
-  top: 5px;
-}
-a:not(.navLink):visited {
-  box-shadow: 0 5px 0 purple;
 }
 
 /* ================
@@ -152,4 +129,30 @@ button:disabled {
   background: #dddddd;
   color: hsl(0, 0%, 35%);
   cursor: not-allowed;
+}
+
+.download {
+  display: inline-block;
+  background-color: var(--btn-color);
+  box-shadow: 0 5px 0 var(--btn-secondary-color);
+  color: white;
+  margin: 1rem;
+
+  padding: 1em 1.5em;
+  position: relative;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.download:hover {
+  background-color: var(--btn-secondary-color);
+  text-decoration: underline;
+  cursor: pointer;
+}
+.download:active {
+  box-shadow: none;
+  top: 5px;
+}
+.download:visited {
+  box-shadow: 0 5px 0 purple;
 }
