@@ -11,7 +11,7 @@ export const LocationContextProvider = ({ children }) => {
     'More locations coming soon...',
   ]);
 
-  const [selectedLocation, setSelectedLocation] = useState('Abidjan');
+  const [selectedLocation, setSelectedLocation] = useState('None');
 
   const fetchLocation = () => {
     // Fetch from the db
