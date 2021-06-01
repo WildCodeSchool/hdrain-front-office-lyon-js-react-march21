@@ -25,6 +25,11 @@ export default function MenuNav() {
           </NavLink>
         </li>
         <li className="navItem">
+          <NavLink className="navLink" exact to="/monitoring/assimilation">
+            Data Assimilation
+          </NavLink>
+        </li>
+        <li className="navItem">
           <NavLink className="navLink" exact to="/monitoring/virtualMachine">
             Virtual Machine
           </NavLink>
