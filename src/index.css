@@ -13,6 +13,8 @@
   --accent-color: hsla(335, 72%, 60%, 0.897);
   --text-primary: hsla(0, 0%, 5%, 0.95);
   --bg-secondary: hsla(0, 0%, 95%, 0.9);
+  --btn-color: hsla(0, 5%, 48%, 0.9);
+  --btn-secondary-color: hsla(0, 3%, 30%, 0.9);
 }
 
 /* ================
@@ -22,6 +24,12 @@ body {
   margin: 0;
   height: 100vh;
   font-family: 'Open Sans', sans-serif;
+}
+
+h3 {
+  display: flex;
+  justify-content: center;
+  margin-top: 3rem;
 }
 
 button {
@@ -67,30 +75,11 @@ button:disabled {
   cursor: not-allowed;
 }
 
-a:not(.navLink) {
-  display: inline-block;
-  background-color: red;
-  box-shadow: 0 5px 0 darkred;
-  color: white;
-
-  padding: 1em 1.5em;
-  position: relative;
-  text-decoration: none;
-  text-transform: uppercase;
-  margin: 0.5em;
-}
-
-a:not(.navLink):hover {
-  background-color: #ce0606;
-  text-decoration: underline;
-  cursor: pointer;
-}
-a:not(.navLink):active {
-  box-shadow: none;
-  top: 5px;
-}
-a:not(.navLink):visited {
-  box-shadow: 0 5px 0 purple;
+footer {
+  background-color: #367e96;
+  text-align: center;
+  color: hsla(0, 0%, 100%, 0.7);
+  padding: 1rem;
 }
 
 /* ================
@@ -100,16 +89,17 @@ Typography
 /* ================
 Layout
 ================*/
-.navList {
-  list-style: none;
-  display: flex;
-  justify-content: space-evenly;
-}
 
 #root {
   height: 100%;
   display: grid;
   grid-template-rows: auto 1fr auto;
+}
+
+.navList {
+  list-style: none;
+  display: flex;
+  justify-content: space-evenly;
 }
 
 main {
@@ -118,11 +108,47 @@ main {
   align-items: center;
 }
 
-footer {
-  background-color: #367e96;
-  text-align: center;
-  color: hsla(0, 0%, 100%, 0.7);
-  padding: 1rem;
+.dateAndPlacePicker {
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
+}
+
+.maps {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+}
+
+/* ================
+Components
+================*/
+
+.download {
+  display: inline-block;
+  background-color: var(--btn-color);
+  box-shadow: 0 5px 0 var(--btn-secondary-color);
+  color: white;
+  margin: 1rem;
+  padding: 1em 1.5em;
+  position: relative;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.download:hover {
+  background-color: var(--btn-secondary-color);
+  text-decoration: underline;
+  cursor: pointer;
+}
+.download:active {
+  box-shadow: none;
+  top: 5px;
+}
+.download:visited {
+  box-shadow: 0 5px 0 purple;
 }
 
 .leaflet-div-icon {

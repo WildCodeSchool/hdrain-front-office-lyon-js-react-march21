@@ -37,7 +37,7 @@ export default function NeuralNetwork() {
         Assimilation
       </button>
       <br />
-      <Link to={pathToLog} target="_blank" download>
+      <Link className="download" to={pathToLog} target="_blank" download>
         Download Logs
       </Link>
     </>
