@@ -6,8 +6,8 @@ import asset from '../assets/sensor.png';
 export default function NeuralNetwork() {
   const { locationList, setSelectedLocation } = useContext(LocationContext);
   const [pathToLog] = useState(asset);
-
   const [isEnabled, setIsEnabled] = useState(true);
+
   const handleLocationSelection = (event) => {
     const locationValue = event.target.value;
     setSelectedLocation(locationValue);
