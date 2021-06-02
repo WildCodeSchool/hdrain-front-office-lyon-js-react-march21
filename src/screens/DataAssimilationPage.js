@@ -1,17 +1,19 @@
 /* eslint-disable no-undef */
 /* eslint-disable no-unused-vars */
-import { useContext, useState } from 'react';
+import { useContext, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { LocationContext } from '../contexts/LocationContext';
 import asset from '../assets/sensor.png';
 import LocationDropDown from '../components/LocationDropDown';
 import NeuralNetworkLink from '../components/NeuralNetworkLink';
+import AssimilationInfos from '../components/AssimilationInfos';
+import Map from '../components/Map';
 
 export default function DataAssimilationPage() {
   const { selectedLocation } = useContext(LocationContext);
   const [pathToLog] = useState(asset);
   const [showParams, setShowParams] = useState(false);
-  const [LocationParams, setLocationParams] = useState([]);
+  const [locationParams, setLocationParams] = useState([]);
 
   const assimilationParams = [
     {
@@ -34,26 +36,35 @@ export default function DataAssimilationPage() {
     },
   ];
 
-  const handleLocationSelection = (event) => {
-    const locationValue = event.target.value;
-    setSelectedLocation(locationValue);
-    setLocationParams(
-      assimilationParams.filter(({ location }) => location === locationValue)
-    );
-    // showData(locationValue);
-
-    if (locationValue === 'None') {
-      return setShowParams(false);
+  useEffect(() => {
+    if (selectedLocation === 'None') {
+      setShowParams(false);
+    } else {
+      setLocationParams(
+        assimilationParams.filter(
+          ({ location }) => location === selectedLocation
+        )
+      );
+      setShowParams(true);
     }
-    return setShowParams(true);
-  };
+  }, [selectedLocation]);
 
   return (
     <>
       <h2>Data Assimilation</h2>
       <LocationDropDown />
       <br />
-
+      {showParams ? (
+        <>
+          <AssimilationInfos
+            assimilationParams={locationParams}
+            show={showParams}
+          />
+          <Map />
+        </>
+      ) : (
+        ''
+      )}
       <br />
       <Link
         className="download"
