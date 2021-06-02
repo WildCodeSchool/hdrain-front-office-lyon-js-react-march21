@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import { LocationContext } from '../contexts/LocationContext';
 import asset from '../assets/sensor.png';
 import AssimilationInfos from './AssimilationInfos';
+import Map from './Map';
+import rainMMap from '../assets/rainmap.png';
 
 export default function DataAssimilation() {
   const { locationList, setSelectedLocation } = useContext(LocationContext);
@@ -41,8 +43,12 @@ export default function DataAssimilation() {
   const handleLocationSelection = (event) => {
     const locationValue = event.target.value;
     setSelectedLocation(locationValue);
-    setShowParams(true);
     showData(locationValue);
+
+    if (locationValue === 'None') {
+      return setShowParams(false);
+    }
+    return setShowParams(true);
   };
 
   return (
@@ -51,9 +57,6 @@ export default function DataAssimilation() {
       <p>Select a location from the list</p>
       <select name="location" id="location" onChange={handleLocationSelection}>
         Location
-        <option key="None" value="None">
-          None
-        </option>
         {locationList.map((location) => (
           <option key={location} value={location}>
             {location}
@@ -69,7 +72,18 @@ export default function DataAssimilation() {
         Assimilation Log
       </Link>
       {showParams ? (
-        <AssimilationInfos assimilationParams={LocationParams} />
+        <>
+          <AssimilationInfos
+            assimilationParams={LocationParams}
+            show={showParams}
+          />
+          <div className="maps">
+            <h3>Sensor map</h3>
+            <Map />
+            <h3>Rain map</h3>
+            <img src={rainMMap} alt="rainMap" />
+          </div>
+        </>
       ) : (
         ''
       )}

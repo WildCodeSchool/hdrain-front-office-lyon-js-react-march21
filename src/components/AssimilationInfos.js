@@ -1,4 +1,8 @@
-export default function AssimilationInfos({ assimilationParams }) {
+/* eslint-disable no-unused-vars */
+import rainMMap from '../assets/rainmap.png';
+import Map from './Map';
+
+export default function AssimilationInfos({ assimilationParams, show }) {
   return (
     <>
       {assimilationParams.map((params) => (
@@ -9,9 +13,14 @@ export default function AssimilationInfos({ assimilationParams }) {
           <li>theta: {params.theta}</li>
         </ul>
       ))}
-
-      <img src="../assets/graph-exemple.png" alt="graph" />
-      <img src="../assets/rainmap-exemple.png" alt="graph" />
+      {/* {!show && (
+        <div className="maps">
+          <h3>Sensor map</h3>
+          <Map />
+          <h3>Rain map</h3>
+          <img src={rainMMap} alt="rainMap" />
+        </div>
+      )} */}
     </>
   );
 }
