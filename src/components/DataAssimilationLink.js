@@ -11,7 +11,7 @@ function DataAssimilationLink() {
         to="/monitoring/assimilation"
         style={selectedLocation === 'None' ? { pointerEvents: 'none' } : null}
       >
-        Data Assimilation
+        Go to Data Assimilation Page
       </Link>
     </>
   );

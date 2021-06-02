@@ -11,7 +11,7 @@ function DropDown() {
 
   return (
     <>
-      <p>Select a location from the list</p>
+      <p>Select a location from the list : </p>
       <select name="location" id="location" onChange={handleLocationSelection}>
         Location
         <option key="None" value="None">

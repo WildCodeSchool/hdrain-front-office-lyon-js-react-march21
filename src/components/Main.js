@@ -3,8 +3,8 @@ import { LocationContextProvider } from '../contexts/LocationContext';
 import HistoryPage from '../screens/HistoryPage';
 import HomePage from '../screens/HomePage';
 import MonitoringPage from '../screens/MonitoringPage';
-import DataAssimilation from './DataAssimilation';
-import NeuralNetwork from './NeuralNetwork';
+import DataAssimilation from '../screens/DataAssimilationPage';
+import NeuralNetwork from '../screens/NeuralNetworkPage';
 import VirtualMachine from './VirtualMachine';
 
 export default function Main() {

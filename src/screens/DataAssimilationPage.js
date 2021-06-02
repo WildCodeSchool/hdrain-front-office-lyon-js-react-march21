@@ -2,21 +2,20 @@ import { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { LocationContext } from '../contexts/LocationContext';
 import asset from '../assets/sensor.png';
+import NeuralNetworkLink from '../components/NeuralNetworkLink';
 
-export default function NeuralNetwork() {
+export default function DataAssimilation() {
   const { locationList, setSelectedLocation } = useContext(LocationContext);
   const [pathToLog] = useState(asset);
 
-  const [isEnabled, setIsEnabled] = useState(true);
   const handleLocationSelection = (event) => {
     const locationValue = event.target.value;
     setSelectedLocation(locationValue);
-    setIsEnabled(locationValue === 'None');
   };
 
   return (
     <>
-      <h2>Neural Network</h2>
+      <h2>Data Assimilation</h2>
       <p>Select a location from the list</p>
       <select name="location" id="location" onChange={handleLocationSelection}>
         Location
@@ -30,16 +29,17 @@ export default function NeuralNetwork() {
         ))}
       </select>
       <br />
-      <button type="button" disabled={isEnabled}>
-        Neural Network
-      </button>
-      <button type="button" disabled={isEnabled}>
-        Assimilation
-      </button>
+
       <br />
-      <Link className="download" to={pathToLog} target="_blank" download>
-        Download Logs
+      <Link to={pathToLog} target="_blank" download>
+        Local Log
       </Link>
+      <Link to={pathToLog} target="_blank" download>
+        Assimilation Log
+      </Link>
+      <br />
+      <NeuralNetworkLink />
+      <br />
     </>
   );
 }
