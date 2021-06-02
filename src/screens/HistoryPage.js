@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import DateTimePicker from 'react-datetime-picker';
 import { Link } from 'react-router-dom';
 import { LocationContext } from '../contexts/LocationContext';
@@ -7,17 +7,20 @@ import rainMMap from '../assets/rainmap.png';
 import Map from '../components/Map';
 
 export default function HistoryPage() {
-  const { locationList, setSelectedLocation } = useContext(LocationContext);
+  const { locationList, selectedLocation, setSelectedLocation } =
+    useContext(LocationContext);
   const [pathToLog] = useState(asset);
+  const [date, setDate] = useState(null);
+  const [isEnabled, setIsEnabled] = useState(false);
 
-  const [date, setDate] = useState(new Date());
-  const [isEnabled, setIsEnabled] = useState(true);
+  useEffect(() => {
+    if (selectedLocation !== 'None' && date !== null) {
+      setIsEnabled(true);
+    } else {
+      setIsEnabled(false);
+    }
+  }, [date, selectedLocation]);
 
-  const handleLocationSelection = (event) => {
-    const locationValue = event.target.value;
-    setSelectedLocation(locationValue);
-    setIsEnabled(locationValue === 'None');
-  };
   return (
     <>
       <h2>History</h2>
@@ -27,7 +30,9 @@ export default function HistoryPage() {
           <select
             name="location"
             id="location"
-            onChange={handleLocationSelection}
+            onChange={(event) => {
+              setSelectedLocation(event.target.value);
+            }}
           >
             Location
             <option key="None" value="None">
@@ -47,9 +52,9 @@ export default function HistoryPage() {
       </div>
       <div className="maps">
         <h3>Sensor map</h3>
-        {!isEnabled && <Map />}
+        {isEnabled && <Map />}
         <h3>Rain map</h3>
-        {!isEnabled && <img src={rainMMap} alt="rainMap" />}
+        {isEnabled && <img src={rainMMap} alt="rainMap" />}
       </div>
       <div>
         <Link
@@ -57,7 +62,7 @@ export default function HistoryPage() {
           to={pathToLog}
           target="_blank"
           download
-          style={isEnabled ? { pointerEvents: 'none' } : null}
+          style={isEnabled ? null : { pointerEvents: 'none' }}
         >
           Get GLOBAL Log
         </Link>
@@ -66,7 +71,7 @@ export default function HistoryPage() {
           to={pathToLog}
           target="_blank"
           download
-          style={isEnabled ? { pointerEvents: 'none' } : null}
+          style={isEnabled ? null : { pointerEvents: 'none' }}
         >
           Get Neural Network Log
         </Link>
@@ -75,7 +80,7 @@ export default function HistoryPage() {
           to={pathToLog}
           target="_blank"
           download
-          style={isEnabled ? { pointerEvents: 'none' } : null}
+          style={isEnabled ? null : { pointerEvents: 'none' }}
         >
           Get Assimilation Log
         </Link>
@@ -84,7 +89,7 @@ export default function HistoryPage() {
           to={pathToLog}
           target="_blank"
           download
-          style={isEnabled ? { pointerEvents: 'none' } : null}
+          style={isEnabled ? null : { pointerEvents: 'none' }}
         >
           Get assimilation parameters
         </Link>
@@ -93,7 +98,7 @@ export default function HistoryPage() {
           to={pathToLog}
           target="_blank"
           download
-          style={isEnabled ? { pointerEvents: 'none' } : null}
+          style={isEnabled ? null : { pointerEvents: 'none' }}
         >
           Get assimilation costs
         </Link>

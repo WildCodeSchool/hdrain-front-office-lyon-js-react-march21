@@ -6,8 +6,8 @@ export const LocationContext = createContext();
 export const LocationContextProvider = ({ children }) => {
   const [locationList, setLocationList] = useState([
     'Abidjan',
-    'Antibe',
     'Toulouse',
+    'Antibes',
   ]);
 
   const [selectedLocation, setSelectedLocation] = useState('Abidjan');
