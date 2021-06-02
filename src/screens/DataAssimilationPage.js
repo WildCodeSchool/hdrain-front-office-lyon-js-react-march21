@@ -5,7 +5,7 @@ import asset from '../assets/sensor.png';
 import LocationDropDown from '../components/LocationDropDown';
 import NeuralNetworkLink from '../components/NeuralNetworkLink';
 
-export default function DataAssimilation() {
+export default function DataAssimilationPage() {
   const { selectedLocation } = useContext(LocationContext);
   const [pathToLog] = useState(asset);
 
