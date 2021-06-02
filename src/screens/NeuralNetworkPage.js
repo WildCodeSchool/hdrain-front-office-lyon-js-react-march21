@@ -30,7 +30,7 @@ export default function NeuralNetwork() {
         download
         style={selectedLocation === 'None' ? { pointerEvents: 'none' } : null}
       >
-        Download Neural Data Assimilation Logs
+        Download Neural Network Logs
       </Link>
       <DataAssimilationLink />
     </>

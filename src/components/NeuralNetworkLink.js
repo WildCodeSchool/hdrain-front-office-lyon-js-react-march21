@@ -11,7 +11,7 @@ function NeuralNetworkLink() {
         to="/monitoring/neuralNetwork"
         style={selectedLocation === 'None' ? { pointerEvents: 'none' } : null}
       >
-        Neural Network
+        Go to Neural Network Page
       </Link>
     </>
   );

@@ -5,40 +5,22 @@ import { LocationContext } from '../contexts/LocationContext';
 import asset from '../assets/sensor.png';
 import rainMMap from '../assets/rainmap.png';
 import Map from '../components/Map';
+import LocationDropDown from '../components/LocationDropDown';
 
 export default function HistoryPage() {
-  const { locationList, setSelectedLocation } = useContext(LocationContext);
+  const { selectedLocation } = useContext(LocationContext);
   const [pathToLog] = useState(asset);
 
   const [date, setDate] = useState(new Date());
+  // eslint-disable-next-line no-unused-vars
   const [isEnabled, setIsEnabled] = useState(true);
 
-  const handleLocationSelection = (event) => {
-    const locationValue = event.target.value;
-    setSelectedLocation(locationValue);
-    setIsEnabled(locationValue === 'None');
-  };
   return (
     <>
       <h2>History</h2>
       <div className="dateAndPlacePicker">
         <div className="placePicker">
-          <p>Select a location to get data</p>
-          <select
-            name="location"
-            id="location"
-            onChange={handleLocationSelection}
-          >
-            Location
-            <option key="None" value="None">
-              None
-            </option>
-            {locationList.map((location) => (
-              <option key={location} value={location}>
-                {location}
-              </option>
-            ))}
-          </select>
+          <LocationDropDown />
         </div>
         <div className="datePicker">
           <p>Select a timestamp</p>
@@ -47,9 +29,13 @@ export default function HistoryPage() {
       </div>
       <div className="maps">
         <h3>Sensor map</h3>
-        {!isEnabled && <Map />}
+        {selectedLocation === 'None' ? '' : <Map />}
         <h3>Rain map</h3>
-        {!isEnabled && <img src={rainMMap} alt="rainMap" />}
+        {selectedLocation === 'None' ? (
+          ''
+        ) : (
+          <img src={rainMMap} alt="rainMap" />
+        )}
       </div>
       <div>
         <Link
@@ -57,7 +43,7 @@ export default function HistoryPage() {
           to={pathToLog}
           target="_blank"
           download
-          style={isEnabled ? { pointerEvents: 'none' } : null}
+          style={selectedLocation === 'None' ? { pointerEvents: 'none' } : null}
         >
           Get GLOBAL Log
         </Link>
@@ -66,7 +52,7 @@ export default function HistoryPage() {
           to={pathToLog}
           target="_blank"
           download
-          style={isEnabled ? { pointerEvents: 'none' } : null}
+          style={selectedLocation === 'None' ? { pointerEvents: 'none' } : null}
         >
           Get Neural Network Log
         </Link>
@@ -75,7 +61,7 @@ export default function HistoryPage() {
           to={pathToLog}
           target="_blank"
           download
-          style={isEnabled ? { pointerEvents: 'none' } : null}
+          style={selectedLocation === 'None' ? { pointerEvents: 'none' } : null}
         >
           Get Assimilation Log
         </Link>
@@ -84,7 +70,7 @@ export default function HistoryPage() {
           to={pathToLog}
           target="_blank"
           download
-          style={isEnabled ? { pointerEvents: 'none' } : null}
+          style={selectedLocation === 'None' ? { pointerEvents: 'none' } : null}
         >
           Get assimilation parameters
         </Link>
@@ -93,7 +79,7 @@ export default function HistoryPage() {
           to={pathToLog}
           target="_blank"
           download
-          style={isEnabled ? { pointerEvents: 'none' } : null}
+          style={selectedLocation === 'None' ? { pointerEvents: 'none' } : null}
         >
           Get assimilation costs
         </Link>
