@@ -1,4 +1,4 @@
-import Form from '../components/Autentification/TextField';
+import Form from '../components/Autentification';
 
 export default function LogInPage() {
   return (
