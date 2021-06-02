@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { useContext, useEffect, useState } from 'react';
 import DateTimePicker from 'react-datetime-picker';
 import { Link } from 'react-router-dom';
@@ -5,6 +6,7 @@ import { LocationContext } from '../contexts/LocationContext';
 import asset from '../assets/sensor.png';
 import rainMMap from '../assets/rainmap.png';
 import Map from '../components/Map';
+import LocationDropDown from '../components/LocationDropDown';
 
 export default function HistoryPage() {
   const { locationList, selectedLocation, setSelectedLocation } =
@@ -26,24 +28,7 @@ export default function HistoryPage() {
       <h2>History</h2>
       <div className="dateAndPlacePicker">
         <div className="placePicker">
-          <p>Select a location to get data</p>
-          <select
-            name="location"
-            id="location"
-            onChange={(event) => {
-              setSelectedLocation(event.target.value);
-            }}
-          >
-            Location
-            <option key="None" value="None">
-              None
-            </option>
-            {locationList.map((location) => (
-              <option key={location} value={location}>
-                {location}
-              </option>
-            ))}
-          </select>
+          <LocationDropDown />
         </div>
         <div className="datePicker">
           <p>Select a timestamp</p>

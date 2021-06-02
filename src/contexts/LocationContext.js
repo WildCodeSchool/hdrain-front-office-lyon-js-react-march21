@@ -6,11 +6,12 @@ export const LocationContext = createContext();
 export const LocationContextProvider = ({ children }) => {
   const [locationList, setLocationList] = useState([
     'Abidjan',
-    'Toulouse',
     'Antibes',
+    'Toulouse',
+    'More locations coming soon...',
   ]);
 
-  const [selectedLocation, setSelectedLocation] = useState('Abidjan');
+  const [selectedLocation, setSelectedLocation] = useState('None');
 
   const fetchLocation = () => {
     // Fetch from the db
@@ -19,7 +20,7 @@ export const LocationContextProvider = ({ children }) => {
       // Add callback
     ) */
     // Set the list to the locationList
-    setLocationList(['Abidjan', 'Antibe', 'Toulouse']);
+    setLocationList(['Abidjan', 'Antibes', 'Toulouse']);
   };
 
   return (
