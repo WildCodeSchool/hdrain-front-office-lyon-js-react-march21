@@ -20,7 +20,7 @@ export const LocationContextProvider = ({ children }) => {
       // Add callback
     ) */
     // Set the list to the locationList
-    setLocationList(['Abidjan', 'Antibe', 'Toulouse']);
+    setLocationList(['Abidjan', 'Antibes', 'Toulouse']);
   };
 
   return (
