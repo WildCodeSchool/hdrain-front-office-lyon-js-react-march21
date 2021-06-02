@@ -66,7 +66,7 @@ export default function DataAssimilation() {
       <br />
       <br />
       <Link to={pathToLog} target="_blank" download>
-        Local Log
+        Global Log
       </Link>
       <Link to={pathToLog} target="_blank" download>
         Assimilation Log
