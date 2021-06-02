@@ -1,3 +1,5 @@
+/* eslint-disable no-undef */
+/* eslint-disable no-unused-vars */
 import { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { LocationContext } from '../contexts/LocationContext';
@@ -8,6 +10,43 @@ import NeuralNetworkLink from '../components/NeuralNetworkLink';
 export default function DataAssimilationPage() {
   const { selectedLocation } = useContext(LocationContext);
   const [pathToLog] = useState(asset);
+  const [showParams, setShowParams] = useState(false);
+  const [LocationParams, setLocationParams] = useState([]);
+
+  const assimilationParams = [
+    {
+      location: 'Abidjan',
+      NX: 120,
+      NY: 300,
+      theta: 0.9,
+    },
+    {
+      location: 'Antibes',
+      NX: 180,
+      NY: 192,
+      theta: 0.5,
+    },
+    {
+      location: 'Toulouse',
+      NX: 150,
+      NY: 250,
+      theta: 0.8,
+    },
+  ];
+
+  const handleLocationSelection = (event) => {
+    const locationValue = event.target.value;
+    setSelectedLocation(locationValue);
+    setLocationParams(
+      assimilationParams.filter(({ location }) => location === locationValue)
+    );
+    // showData(locationValue);
+
+    if (locationValue === 'None') {
+      return setShowParams(false);
+    }
+    return setShowParams(true);
+  };
 
   return (
     <>
