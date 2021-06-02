@@ -4,15 +4,16 @@ import { LocationContext } from '../contexts/LocationContext';
 function DropDown() {
   const { locationList, setSelectedLocation } = useContext(LocationContext);
 
-  const handleLocationSelection = (event) => {
-    const locationValue = event.target.value;
-    setSelectedLocation(locationValue);
-  };
-
   return (
     <>
       <p>Select a location from the list : </p>
-      <select name="location" id="location" onChange={handleLocationSelection}>
+      <select
+        name="location"
+        id="location"
+        onChange={(event) => {
+          setSelectedLocation(event.target.value);
+        }}
+      >
         Location
         <option key="None" value="None">
           None
