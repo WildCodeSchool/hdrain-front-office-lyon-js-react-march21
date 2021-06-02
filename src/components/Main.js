@@ -3,10 +3,10 @@ import { LocationContextProvider } from '../contexts/LocationContext';
 import HistoryPage from '../screens/HistoryPage';
 import HomePage from '../screens/HomePage';
 import MonitoringPage from '../screens/MonitoringPage';
-import DataAssimilation from './DataAssimilation';
-import NeuralNetwork from './NeuralNetwork';
-import VirtualMachine from './VirtualMachine';
-import LogInPage from '../screens/LogInPage';
+import DataAssimilationPage from '../screens/DataAssimilationPage';
+import NeuralNetworkPage from '../screens/NeuralNetworkPage';
+import VirtualMachinePage from '../screens/VirtualMachinePage';
+
 
 export default function Main() {
   return (
@@ -18,18 +18,18 @@ export default function Main() {
           <Route
             exact
             path="/monitoring/assimilation"
-            component={DataAssimilation}
+            component={DataAssimilationPage}
           />
           <Route exact path="/history" component={HistoryPage} />
           <Route
             exact
             path="/monitoring/neuralNetwork"
-            component={NeuralNetwork}
+            component={NeuralNetworkPage}
           />
           <Route
             exact
             path="/monitoring/virtualMachine"
-            component={VirtualMachine}
+            component={VirtualMachinePage}
           />
           <Route exaxt path="/logIn" component={LogInPage} />
         </Switch>
