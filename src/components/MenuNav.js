@@ -32,6 +32,11 @@ export default function MenuNav() {
             Log In
           </NavLink>
         </li>
+        <li className="navItem">
+          <NavLink exact to="/logIn">
+            Log In
+          </NavLink>
+        </li>
       </ul>
     </nav>
   );
