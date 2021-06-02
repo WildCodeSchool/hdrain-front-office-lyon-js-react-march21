@@ -9,7 +9,12 @@ function DataAssimilationLink() {
     <>
       <Link
         to="/monitoring/assimilation"
-        style={selectedLocation === 'None' ? { pointerEvents: 'none' } : null}
+        style={
+          selectedLocation === 'None' ||
+          selectedLocation === 'More locations coming soon...'
+            ? { pointerEvents: 'none' }
+            : null
+        }
       >
         Go to Data Assimilation Page
       </Link>

@@ -9,7 +9,12 @@ function NeuralNetworkLink() {
     <>
       <Link
         to="/monitoring/neuralNetwork"
-        style={selectedLocation === 'None' ? { pointerEvents: 'none' } : null}
+        style={
+          selectedLocation === 'None' ||
+          selectedLocation === 'More locations coming soon...'
+            ? { pointerEvents: 'none' }
+            : null
+        }
       >
         Go to Neural Network Page
       </Link>
