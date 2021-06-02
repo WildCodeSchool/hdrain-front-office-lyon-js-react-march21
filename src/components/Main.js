@@ -7,6 +7,7 @@ import DataAssimilationPage from '../screens/DataAssimilationPage';
 import NeuralNetworkPage from '../screens/NeuralNetworkPage';
 import VirtualMachinePage from '../screens/VirtualMachinePage';
 
+
 export default function Main() {
   return (
     <main>
@@ -30,6 +31,7 @@ export default function Main() {
             path="/monitoring/virtualMachine"
             component={VirtualMachinePage}
           />
+          <Route exaxt path="/logIn" component={LogInPage} />
         </Switch>
       </LocationContextProvider>
     </main>
