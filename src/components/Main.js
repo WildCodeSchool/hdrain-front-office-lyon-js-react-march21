@@ -6,7 +6,7 @@ import MonitoringPage from '../screens/MonitoringPage';
 import DataAssimilationPage from '../screens/DataAssimilationPage';
 import NeuralNetworkPage from '../screens/NeuralNetworkPage';
 import VirtualMachinePage from '../screens/VirtualMachinePage';
-
+import LogInPage from '../screens/LogInPage';
 
 export default function Main() {
   return (
