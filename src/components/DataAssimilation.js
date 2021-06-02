@@ -33,17 +33,13 @@ export default function DataAssimilation() {
     },
   ];
 
-  const showData = (location) => {
-    const dataToShow = assimilationParams.filter(
-      (params) => params.location === location
-    );
-    setLocationParams(dataToShow);
-  };
-
   const handleLocationSelection = (event) => {
     const locationValue = event.target.value;
     setSelectedLocation(locationValue);
-    showData(locationValue);
+    setLocationParams(
+      assimilationParams.filter(({ location }) => location === locationValue)
+    );
+    // showData(locationValue);
 
     if (locationValue === 'None') {
       return setShowParams(false);
