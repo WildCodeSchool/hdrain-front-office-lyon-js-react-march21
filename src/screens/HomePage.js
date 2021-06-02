@@ -14,7 +14,7 @@ export default function HomePage() {
       <br />
       <DataAssimilationLink />
       <br />
-      <NavLink to="/history">History Link</NavLink>
+      <NavLink to="/history">Go to History Page</NavLink>
       <br />
       <div>
         <img
