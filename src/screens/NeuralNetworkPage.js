@@ -6,7 +6,7 @@ import { LocationContext } from '../contexts/LocationContext';
 import LocationDropDown from '../components/LocationDropDown';
 import DataAssimilationLink from '../components/DataAssimilationLink';
 
-export default function NeuralNetwork() {
+export default function NeuralNetworkPage() {
   const { selectedLocation } = useContext(LocationContext);
   const [pathToLog] = useState(asset);
   return (

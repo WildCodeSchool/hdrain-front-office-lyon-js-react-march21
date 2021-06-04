@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { LocationContext } from '../contexts/LocationContext';
 
-function NeuralNetworkLink() {
+export default function NeuralNetworkLink() {
   const { selectedLocation } = useContext(LocationContext);
 
   return (
@@ -21,5 +21,3 @@ function NeuralNetworkLink() {
     </>
   );
 }
-
-export default NeuralNetworkLink;

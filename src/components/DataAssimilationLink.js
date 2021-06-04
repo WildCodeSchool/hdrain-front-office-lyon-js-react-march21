@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { LocationContext } from '../contexts/LocationContext';
 
-function DataAssimilationLink() {
+export default function DataAssimilationLink() {
   const { selectedLocation } = useContext(LocationContext);
 
   return (
@@ -21,5 +21,3 @@ function DataAssimilationLink() {
     </>
   );
 }
-
-export default DataAssimilationLink;
