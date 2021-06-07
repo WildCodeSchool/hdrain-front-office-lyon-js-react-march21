@@ -2,7 +2,8 @@ import React, { useContext } from 'react';
 import { LocationContext } from '../contexts/LocationContext';
 
 function DropDown() {
-  const { locationList, setSelectedLocation } = useContext(LocationContext);
+  // eslint-disable-next-line prettier/prettier
+  const { locationList, selectedLocation, setSelectedLocation } = useContext(LocationContext);
 
   return (
     <>
@@ -10,6 +11,7 @@ function DropDown() {
       <select
         name="location"
         id="location"
+        value={selectedLocation}
         onChange={(event) => {
           setSelectedLocation(event.target.value);
         }}

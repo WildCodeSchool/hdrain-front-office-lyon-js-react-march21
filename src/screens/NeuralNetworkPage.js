@@ -9,6 +9,7 @@ import DataAssimilationLink from '../components/DataAssimilationLink';
 export default function NeuralNetworkPage() {
   const { selectedLocation } = useContext(LocationContext);
   const [pathToLog] = useState(asset);
+
   return (
     <>
       <h2>Neural Network</h2>
