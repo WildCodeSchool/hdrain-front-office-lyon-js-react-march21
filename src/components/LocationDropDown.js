@@ -3,7 +3,8 @@ import { LocationContext } from '../contexts/LocationContext';
 
 function DropDown() {
   // eslint-disable-next-line prettier/prettier
-  const { locationList, selectedLocation, setSelectedLocation } = useContext(LocationContext);
+  const { locationList, selectedLocation, setSelectedLocation } =
+    useContext(LocationContext);
 
   return (
     <>
