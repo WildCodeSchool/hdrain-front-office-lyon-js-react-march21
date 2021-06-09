@@ -10,11 +10,6 @@ export default function MenuNav() {
           </NavLink>
         </li>
         <li className="navItem">
-          <NavLink className="navLink" exact to="/monitoring">
-            Monitoring
-          </NavLink>
-        </li>
-        <li className="navItem">
           <NavLink className="navLink" exact to="/history">
             History
           </NavLink>

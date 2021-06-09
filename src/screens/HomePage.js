@@ -1,7 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import DataAssimilationLink from '../components/DataAssimilationLink';
-
 import LocationDropdown from '../components/LocationDropDown';
 import NeuralNetworkLink from '../components/NeuralNetworkLink';
 
