@@ -6,11 +6,18 @@ export default function NeuralNetworkLink() {
   const { selectedLocation } = useContext(LocationContext);
 
   return (
-    <Link
-      to="/monitoring/neuralNetwork"
-      style={selectedLocation === 'None' ? { pointerEvents: 'none' } : null}
-    >
-      Go to Neural Network Page
-    </Link>
+    <>
+      <Link
+        to="/monitoring/neuralNetwork"
+        style={
+          selectedLocation === 'None' ||
+          selectedLocation === 'More locations coming soon...'
+            ? { pointerEvents: 'none' }
+            : null
+        }
+      >
+        Go to Neural Network Page
+      </Link>
+    </>
   );
 }
