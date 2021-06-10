@@ -13,7 +13,7 @@ export default function DataAssimilationPage() {
   const { selectedLocation } = useContext(LocationContext);
   const [pathToLog] = useState(asset);
   const [showParams, setShowParams] = useState(false);
-  const [locationParams, setLocationParams] = useState([]);
+  const [locationParams, setLocationParams] = useState(['None']);
 
   const assimilationParams = [
     {

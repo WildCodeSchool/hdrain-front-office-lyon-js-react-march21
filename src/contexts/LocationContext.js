@@ -11,7 +11,7 @@ export const LocationContextProvider = ({ children }) => {
     'More locations coming soon...',
   ]);
 
-  const [selectedLocation, setSelectedLocation] = useState();
+  const [selectedLocation, setSelectedLocation] = useState('None');
 
   const fetchLocation = () => {
     // Fetch from the db
@@ -20,7 +20,7 @@ export const LocationContextProvider = ({ children }) => {
       // Add callback
     ) */
     // Set the list to the locationList
-    setLocationList(['Abidjan', 'Antibes', 'Toulouse']);
+    setLocationList(['None', 'Abidjan', 'Antibes', 'Toulouse']);
   };
 
   return (

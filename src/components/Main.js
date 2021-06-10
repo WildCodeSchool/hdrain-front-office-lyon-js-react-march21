@@ -15,18 +15,23 @@ export default function Main() {
           <Route exact path="/" component={HomePage} />
           <Route
             exact
-            path="/monitoring/assimilation"
+            path="/locations/assimilation"
+            component={DataAssimilationPage}
+          />
+          <Route
+            exact
+            path="/locations/assimilation/:id"
             component={DataAssimilationPage}
           />
           <Route exact path="/history" component={HistoryPage} />
           <Route
             exact
-            path="/monitoring/neuralNetwork"
+            path="/locations/neuralNetwork"
             component={NeuralNetworkPage}
           />
           <Route
             exact
-            path="/monitoring/virtualMachine"
+            path="/locations/virtualMachine"
             component={VirtualMachinePage}
           />
           <Route exaxt path="/logIn" component={LogInPage} />

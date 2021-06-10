@@ -8,7 +8,7 @@ export default function DataAssimilationLink() {
   return (
     <>
       <Link
-        to="/monitoring/assimilation"
+        to="/locations/assimilation"
         style={
           selectedLocation === 'None' ||
           selectedLocation === 'More locations coming soon...'

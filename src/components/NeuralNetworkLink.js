@@ -8,7 +8,7 @@ export default function NeuralNetworkLink() {
   return (
     <>
       <Link
-        to="/monitoring/neuralNetwork"
+        to="/locations/neuralNetwork"
         style={
           selectedLocation === 'None' ||
           selectedLocation === 'More locations coming soon...'

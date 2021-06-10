@@ -7,6 +7,10 @@ export default function HomePage() {
   const { selectedLocation } = useContext(LocationContext);
   const locationList = [
     {
+      locationName: 'None',
+      locationId: 0,
+    },
+    {
       locationName: 'Abidjan',
       locationId: 1,
     },
@@ -27,10 +31,10 @@ export default function HomePage() {
     <>
       <h1>Home</h1>
       <LocationDropdown />
-      <Link to={`/location/neuralnetwork/${filteredLocation.locationId}`}>
+      <Link to={`/locations/neuralNetwork/${filteredLocation.locationId}`}>
         Go to Neural Network Page
       </Link>
-      <Link to={`/location/assimilation/${filteredLocation.locationId}`}>
+      <Link to={`/locations/assimilation/${filteredLocation.locationId}`}>
         Go to Assimilation Page
       </Link>
 
