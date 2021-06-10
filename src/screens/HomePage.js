@@ -5,35 +5,16 @@ import { LocationContext } from '../contexts/LocationContext';
 import LocationDropdown from '../components/LocationDropDown';
 
 export default function HomePage() {
-  const { selectedLocation } = useContext(LocationContext);
-  const locationList = [
-    {
-      locationName: 'None',
-      locationId: 0,
-    },
-    {
-      locationName: 'Abidjan',
-      locationId: 1,
-    },
-    {
-      locationName: 'Antibes',
-      locationId: 2,
-    },
-    {
-      locationName: 'Toulouse',
-      locationId: 3,
-    },
-  ];
-  const [filteredLocation] = locationList.filter(
-    (location) => location.locationName === selectedLocation
-  );
+  const { selectedLocation, filteredLocation } = useContext(LocationContext);
+
   console.log(filteredLocation);
+
   const history = useHistory();
 
   useEffect(() => {
     if (selectedLocation !== 'None') {
       history.push(`/${filteredLocation.locationId}`);
-    }
+    } else history.push('/');
   }, [selectedLocation]);
 
   return (

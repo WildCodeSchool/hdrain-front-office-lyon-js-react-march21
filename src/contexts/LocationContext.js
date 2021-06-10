@@ -5,14 +5,28 @@ export const LocationContext = createContext();
 
 export const LocationContextProvider = ({ children }) => {
   const [locationList, setLocationList] = useState([
-    'Abidjan',
-    'Antibes',
-    'Toulouse',
-    'More locations coming soon...',
+    {
+      locationName: 'None',
+      locationId: 0,
+    },
+    {
+      locationName: 'Abidjan',
+      locationId: 1,
+    },
+    {
+      locationName: 'Antibes',
+      locationId: 2,
+    },
+    {
+      locationName: 'Toulouse',
+      locationId: 3,
+    },
   ]);
 
   const [selectedLocation, setSelectedLocation] = useState('None');
-
+  const [filteredLocation] = locationList.filter(
+    (location) => location.locationName === selectedLocation
+  );
   const fetchLocation = () => {
     // Fetch from the db
     /* axios.get(
@@ -30,6 +44,7 @@ export const LocationContextProvider = ({ children }) => {
         fetchLocation,
         selectedLocation,
         setSelectedLocation,
+        filteredLocation,
       }}
     >
       {children}
