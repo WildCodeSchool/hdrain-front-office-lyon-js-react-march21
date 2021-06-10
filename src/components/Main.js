@@ -13,6 +13,7 @@ export default function Main() {
       <LocationContextProvider>
         <Switch>
           <Route exact path="/" component={HomePage} />
+          <Route exact path="/:id" component={HomePage} />
           <Route
             exact
             path="/locations/assimilation"

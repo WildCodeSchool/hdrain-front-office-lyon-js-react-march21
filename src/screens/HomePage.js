@@ -1,5 +1,6 @@
-import { useContext, React } from 'react';
-import { NavLink, Link } from 'react-router-dom';
+import { useContext, React, useEffect } from 'react';
+import { NavLink, Link, useHistory } from 'react-router-dom';
+// const { id } = useParams();
 import { LocationContext } from '../contexts/LocationContext';
 import LocationDropdown from '../components/LocationDropDown';
 
@@ -26,6 +27,14 @@ export default function HomePage() {
   const [filteredLocation] = locationList.filter(
     (location) => location.locationName === selectedLocation
   );
+  console.log(filteredLocation);
+  const history = useHistory();
+
+  useEffect(() => {
+    if (selectedLocation !== 'None') {
+      history.push(`/${filteredLocation.locationId}`);
+    }
+  }, [selectedLocation]);
 
   return (
     <>

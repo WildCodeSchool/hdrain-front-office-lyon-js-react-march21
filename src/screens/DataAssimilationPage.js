@@ -2,7 +2,7 @@
 /* eslint-disable no-unused-vars */
 import { useContext, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { useParams } from 'react-router';
+import { useParams, useHistory } from 'react-router';
 
 import { LocationContext } from '../contexts/LocationContext';
 import asset from '../assets/sensor.png';
@@ -17,6 +17,7 @@ export default function DataAssimilationPage() {
   const [showParams, setShowParams] = useState(false);
   const [locationParams, setLocationParams] = useState(['None']);
   const { id } = useParams();
+  const history = useHistory();
 
   const assimilationParams = [
     {
