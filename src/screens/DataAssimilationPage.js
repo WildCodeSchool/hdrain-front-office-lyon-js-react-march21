@@ -2,6 +2,8 @@
 /* eslint-disable no-unused-vars */
 import { useContext, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { useParams } from 'react-router';
+
 import { LocationContext } from '../contexts/LocationContext';
 import asset from '../assets/sensor.png';
 import LocationDropDown from '../components/LocationDropDown';
@@ -14,6 +16,7 @@ export default function DataAssimilationPage() {
   const [pathToLog] = useState(asset);
   const [showParams, setShowParams] = useState(false);
   const [locationParams, setLocationParams] = useState(['None']);
+  const { id } = useParams();
 
   const assimilationParams = [
     {
@@ -84,9 +87,9 @@ export default function DataAssimilationPage() {
       >
         Download Data Assimilation Logs
       </Link>
-      <br />
-      <NeuralNetworkLink />
-      <br />
+      <Link to={`/locations/neuralNetwork/${id}`}>
+        Go to Neural Network Page
+      </Link>
     </>
   );
 }

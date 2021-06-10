@@ -1,12 +1,13 @@
 import { useState, useContext } from 'react';
+import { useParams } from 'react-router';
 import { Link } from 'react-router-dom';
 import asset from '../assets/sensor.png';
 import { LocationContext } from '../contexts/LocationContext';
-
 import LocationDropDown from '../components/LocationDropDown';
-import DataAssimilationLink from '../components/DataAssimilationLink';
 
 export default function NeuralNetworkPage() {
+  const { id } = useParams();
+
   const { selectedLocation } = useContext(LocationContext);
   const [pathToLog] = useState(asset);
 
@@ -33,7 +34,7 @@ export default function NeuralNetworkPage() {
       >
         Download Neural Network Logs
       </Link>
-      <DataAssimilationLink />
+      <Link to={`/locations/assimilation/${id}`}>Go to Assimilation Page</Link>
     </>
   );
 }
