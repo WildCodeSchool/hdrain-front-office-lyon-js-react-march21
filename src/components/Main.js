@@ -31,6 +31,11 @@ export default function Main() {
           />
           <Route
             exact
+            path="/locations/neuralNetwork/:id"
+            component={NeuralNetworkPage}
+          />
+          <Route
+            exact
             path="/locations/virtualMachine"
             component={VirtualMachinePage}
           />
