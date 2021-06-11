@@ -1,11 +1,6 @@
-/* eslint-disable no-alert */
-/* eslint-disable no-unused-expressions */
-/* eslint-disable no-console */
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useForm, Controller } from 'react-hook-form';
-// import { useHistory } from 'react-router';
 import { useToasts } from 'react-toast-notifications';
-
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -13,16 +8,11 @@ import TextField from '@material-ui/core/TextField';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import Alert from '@material-ui/lab/Alert';
-
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-
-// import axios from 'axios';
 import API from '../APIClient';
-
-// require('dotenv').config();
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -67,7 +57,7 @@ export default function LoginForm() {
         addToast('Successfully logged in', { appearance: 'success' });
       })
       .catch((err) => {
-        console.log(err);
+        window.console.error(err);
         addToast('Wrong Credentials', { appearance: 'error' });
       });
     setLoginError(null);
@@ -88,11 +78,7 @@ export default function LoginForm() {
           noValidate
           onSubmit={handleSubmit(onSubmit)}
         >
-          {loginError && (
-            <div>
-              <Alert severity="error">{loginError}</Alert>
-            </div>
-          )}
+          {loginError && <Alert severity="error">{loginError}</Alert>}
           <Controller
             name="username"
             control={control}
