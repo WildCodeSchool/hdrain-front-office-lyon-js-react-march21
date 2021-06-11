@@ -2,7 +2,8 @@ import React, { useContext } from 'react';
 import { LocationContext } from '../contexts/LocationContext';
 
 function DropDown() {
-  const { locationList, setSelectedLocation } = useContext(LocationContext);
+  const { locationList, selectedLocationId, setLocationId } =
+    useContext(LocationContext);
 
   return (
     <>
@@ -10,8 +11,9 @@ function DropDown() {
       <select
         name="location"
         id="location"
+        value={selectedLocationId}
         onChange={(event) => {
-          setSelectedLocation(event.target.value);
+          setLocationId(event.target.value);
         }}
       >
         Location
@@ -19,8 +21,8 @@ function DropDown() {
           None
         </option>
         {locationList.map((location) => (
-          <option key={location} value={location}>
-            {location}
+          <option key={location.locationId} value={location.locationId}>
+            {location.locationName}
           </option>
         ))}
       </select>

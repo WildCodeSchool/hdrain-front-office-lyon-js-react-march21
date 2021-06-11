@@ -12,24 +12,24 @@ export default function Main() {
     <main>
       <LocationContextProvider>
         <Switch>
+          <Route exact path="/history" component={HistoryPage} />
+          <Route exact path="/logIn" component={LogInPage} />
           <Route exact path="/" component={HomePage} />
           <Route
             exact
-            path="/monitoring/assimilation"
-            component={DataAssimilationPage}
-          />
-          <Route exact path="/history" component={HistoryPage} />
-          <Route
-            exact
-            path="/monitoring/neuralNetwork"
+            path="/locations/neuralNetwork"
             component={NeuralNetworkPage}
           />
           <Route
             exact
-            path="/monitoring/virtualMachine"
+            path="/locations/assimilation"
+            component={DataAssimilationPage}
+          />
+          <Route
+            exact
+            path="/locations/virtualMachine"
             component={VirtualMachinePage}
           />
-          <Route exaxt path="/logIn" component={LogInPage} />
         </Switch>
       </LocationContextProvider>
     </main>
