@@ -12,19 +12,9 @@ export default function Main() {
     <main>
       <LocationContextProvider>
         <Switch>
-          <Route exact path="/" component={HomePage} />
-          <Route exact path="/:id" component={HomePage} />
-          <Route
-            exact
-            path="/locations/assimilation"
-            component={DataAssimilationPage}
-          />
-          <Route
-            exact
-            path="/locations/assimilation/:id"
-            component={DataAssimilationPage}
-          />
           <Route exact path="/history" component={HistoryPage} />
+          <Route exact path="/logIn" component={LogInPage} />
+          <Route exact path="/" component={HomePage} />
           <Route
             exact
             path="/locations/neuralNetwork"
@@ -32,15 +22,14 @@ export default function Main() {
           />
           <Route
             exact
-            path="/locations/neuralNetwork/:id"
-            component={NeuralNetworkPage}
+            path="/locations/assimilation"
+            component={DataAssimilationPage}
           />
           <Route
             exact
             path="/locations/virtualMachine"
             component={VirtualMachinePage}
           />
-          <Route exaxt path="/logIn" component={LogInPage} />
         </Switch>
       </LocationContextProvider>
     </main>

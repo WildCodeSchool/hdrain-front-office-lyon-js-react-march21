@@ -6,13 +6,8 @@ import { useLocation, useHistory } from 'react-router-dom';
 import { LocationContext } from '../contexts/LocationContext';
 
 function DropDown() {
-  const {
-    locationList,
-    selectedLocation,
-    setSelectedLocation,
-    // eslint-disable-next-line no-unused-vars
-    filteredLocation,
-  } = useContext(LocationContext);
+  const { locationList, selectedLocationId, setLocationId } =
+    useContext(LocationContext);
 
   // eslint-disable-next-line no-unused-vars
   const history = useHistory();
@@ -21,19 +16,15 @@ function DropDown() {
   // eslint-disable-next-line no-unused-vars
   const [, locationUrl, datatype, idUrl] = pathname.split('/');
 
-  const handleLocation = () =>
-    history.push(`/${locationUrl}/${datatype}/${filteredLocation.locationId}`);
-
   return (
     <>
       <p>Select a location from the list : </p>
       <select
         name="location"
         id="location"
-        value={selectedLocation}
+        value={selectedLocationId}
         onChange={(event) => {
-          setSelectedLocation(event.target.value);
-          handleLocation();
+          setLocationId(event.target.value);
         }}
       >
         Location
@@ -41,7 +32,7 @@ function DropDown() {
           None
         </option> */}
         {locationList.map((location) => (
-          <option key={location.locationId} value={location.locationName}>
+          <option key={location.locationId} value={location.locationId}>
             {location.locationName}
           </option>
         ))}

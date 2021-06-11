@@ -1,5 +1,8 @@
 // import axios from 'axios';
 import { createContext, useState } from 'react';
+import qs from 'query-string';
+import { useLocation } from 'react-router';
+import { useHistory } from 'react-router-dom';
 
 export const LocationContext = createContext();
 
@@ -22,11 +25,13 @@ export const LocationContextProvider = ({ children }) => {
       locationId: 3,
     },
   ]);
+  const location = useLocation();
+  const history = useHistory();
 
-  const [selectedLocation, setSelectedLocation] = useState('None');
-  const [filteredLocation] = locationList.filter(
-    (location) => location.locationName === selectedLocation
-  );
+  const queryParams = qs.parse(location.search);
+  const selectedLocationId = queryParams.locationId;
+  console.log(queryParams);
+
   const fetchLocation = () => {
     // Fetch from the db
     /* axios.get(
@@ -37,14 +42,17 @@ export const LocationContextProvider = ({ children }) => {
     setLocationList(['None', 'Abidjan', 'Antibes', 'Toulouse']);
   };
 
+  const setLocationId = (id) => {
+    history.push(`${location.pathname}?locationId=${id}`);
+  };
+
   return (
     <LocationContext.Provider
       value={{
         locationList,
         fetchLocation,
-        selectedLocation,
-        setSelectedLocation,
-        filteredLocation,
+        selectedLocationId,
+        setLocationId,
       }}
     >
       {children}
