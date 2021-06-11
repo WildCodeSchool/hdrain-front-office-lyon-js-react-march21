@@ -47,7 +47,6 @@ export default function DataAssimilationPage() {
       setShowParams(true);
     }
   }, [selectedLocation]);
-  console.log(selectedLocation);
 
   return (
     <>
@@ -72,7 +71,7 @@ export default function DataAssimilationPage() {
         target="_blank"
         download
         style={
-          selectedLocationId === 'undefined' || isParamsEmpty
+          selectedLocationId === 'None' || isParamsEmpty
             ? { pointerEvents: 'none' }
             : null
         }
@@ -85,7 +84,7 @@ export default function DataAssimilationPage() {
         target="_blank"
         download
         style={
-          selectedLocationId === 'undefined' || isParamsEmpty
+          selectedLocationId === 'None' || isParamsEmpty
             ? { pointerEvents: 'none' }
             : null
         }
@@ -95,7 +94,7 @@ export default function DataAssimilationPage() {
       <Link
         to={`/locations/neuralNetwork?locationId=${selectedLocationId}`}
         style={
-          selectedLocationId === 'undefined' || isParamsEmpty
+          selectedLocationId === 'None' || isParamsEmpty
             ? { pointerEvents: 'none' }
             : null
         }

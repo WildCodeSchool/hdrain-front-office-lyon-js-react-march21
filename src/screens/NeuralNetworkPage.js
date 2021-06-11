@@ -19,7 +19,7 @@ export default function NeuralNetworkPage() {
         target="_blank"
         download
         style={
-          selectedLocationId === 'undefined' || isParamsEmpty
+          selectedLocationId === 'None' || isParamsEmpty
             ? { pointerEvents: 'none' }
             : null
         }
@@ -33,7 +33,7 @@ export default function NeuralNetworkPage() {
         target="_blank"
         download
         style={
-          selectedLocationId === 'undefined' || isParamsEmpty
+          selectedLocationId === 'None' || isParamsEmpty
             ? { pointerEvents: 'none' }
             : null
         }
@@ -43,7 +43,7 @@ export default function NeuralNetworkPage() {
       <Link
         to={`/locations/assimilation?locationId=${selectedLocationId}`}
         style={
-          selectedLocationId === 'undefined' || isParamsEmpty
+          selectedLocationId === 'None' || isParamsEmpty
             ? { pointerEvents: 'none' }
             : null
         }

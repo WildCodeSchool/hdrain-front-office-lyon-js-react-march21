@@ -1,6 +1,5 @@
 import { React, useContext } from 'react';
 import { NavLink, Link } from 'react-router-dom';
-// const { id } = useParams();
 import { LocationContext } from '../contexts/LocationContext';
 import LocationDropdown from '../components/LocationDropDown';
 
@@ -13,7 +12,7 @@ export default function HomePage() {
       <Link
         to={`/locations/neuralNetwork?locationId=${selectedLocationId}`}
         style={
-          selectedLocationId === 'undefined' || isParamsEmpty
+          selectedLocationId === 'None' || isParamsEmpty
             ? { pointerEvents: 'none' }
             : null
         }
@@ -23,7 +22,7 @@ export default function HomePage() {
       <Link
         to={`/locations/assimilation?locationId=${selectedLocationId}`}
         style={
-          selectedLocationId === 'undefined' || isParamsEmpty
+          selectedLocationId === 'None' || isParamsEmpty
             ? { pointerEvents: 'none' }
             : null
         }
@@ -34,7 +33,7 @@ export default function HomePage() {
       <NavLink
         to={`/history?locationId=${selectedLocationId}`}
         style={
-          selectedLocationId === 'undefined' || isParamsEmpty
+          selectedLocationId === 'None' || isParamsEmpty
             ? { pointerEvents: 'none' }
             : null
         }
