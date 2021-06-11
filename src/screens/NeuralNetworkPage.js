@@ -1,12 +1,11 @@
-import { useState, useContext } from 'react';
-
+import React, { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import asset from '../assets/sensor.png';
 import { LocationContext } from '../contexts/LocationContext';
 import LocationDropDown from '../components/LocationDropDown';
 
 export default function NeuralNetworkPage() {
-  const { selectedLocation, selectedLocationId } = useContext(LocationContext);
+  const { selectedLocationId, isParamsEmpty } = useContext(LocationContext);
   const [pathToLog] = useState(asset);
 
   return (
@@ -19,20 +18,36 @@ export default function NeuralNetworkPage() {
         to={pathToLog}
         target="_blank"
         download
-        style={selectedLocation === 'None' ? { pointerEvents: 'none' } : null}
+        style={
+          selectedLocationId === 'undefined' || isParamsEmpty
+            ? { pointerEvents: 'none' }
+            : null
+        }
       >
         Download Neural Network Logs
       </Link>
+
       <Link
         className="download"
         to={pathToLog}
         target="_blank"
         download
-        style={selectedLocation === 'None' ? { pointerEvents: 'none' } : null}
+        style={
+          selectedLocationId === 'undefined' || isParamsEmpty
+            ? { pointerEvents: 'none' }
+            : null
+        }
       >
         Download Neural Network Logs
       </Link>
-      <Link to={`/locations/assimilation?locationId=${selectedLocationId}`}>
+      <Link
+        to={`/locations/assimilation?locationId=${selectedLocationId}`}
+        style={
+          selectedLocationId === 'undefined' || isParamsEmpty
+            ? { pointerEvents: 'none' }
+            : null
+        }
+      >
         Go to Assimilation Page
       </Link>
     </>

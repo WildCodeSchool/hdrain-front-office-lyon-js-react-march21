@@ -1,4 +1,3 @@
-// import axios from 'axios';
 import { createContext, useState } from 'react';
 import qs from 'query-string';
 import { useLocation } from 'react-router';
@@ -30,7 +29,7 @@ export const LocationContextProvider = ({ children }) => {
 
   const queryParams = qs.parse(location.search);
   const selectedLocationId = queryParams.locationId;
-  console.log(queryParams);
+  const isParamsEmpty = Object.keys(queryParams).length === 0;
 
   const fetchLocation = () => {
     // Fetch from the db
@@ -53,6 +52,7 @@ export const LocationContextProvider = ({ children }) => {
         fetchLocation,
         selectedLocationId,
         setLocationId,
+        isParamsEmpty,
       }}
     >
       {children}

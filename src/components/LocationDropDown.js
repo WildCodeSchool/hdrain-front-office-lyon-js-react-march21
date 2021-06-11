@@ -1,20 +1,9 @@
-/* eslint-disable no-undef */
-/* eslint-disable spaced-comment */
 import React, { useContext } from 'react';
-import { useLocation, useHistory } from 'react-router-dom';
-//import qs from 'query-string';
 import { LocationContext } from '../contexts/LocationContext';
 
 function DropDown() {
   const { locationList, selectedLocationId, setLocationId } =
     useContext(LocationContext);
-
-  // eslint-disable-next-line no-unused-vars
-  const history = useHistory();
-  const { pathname } = useLocation();
-
-  // eslint-disable-next-line no-unused-vars
-  const [, locationUrl, datatype, idUrl] = pathname.split('/');
 
   return (
     <>
@@ -28,9 +17,9 @@ function DropDown() {
         }}
       >
         Location
-        {/* <option key="None" value="None">
+        <option key="None" value="None">
           None
-        </option> */}
+        </option>
         {locationList.map((location) => (
           <option key={location.locationId} value={location.locationId}>
             {location.locationName}
