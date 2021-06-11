@@ -47,7 +47,6 @@ export default function DataAssimilationPage() {
       setShowParams(true);
     }
   }, [selectedLocation]);
-  console.log(selectedLocation);
 
   return (
     <>

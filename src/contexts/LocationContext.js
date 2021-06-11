@@ -28,12 +28,6 @@ export const LocationContextProvider = ({ children }) => {
   const isParamsEmpty = Object.keys(queryParams).length === 0;
 
   const fetchLocation = () => {
-    // Fetch from the db
-    /* axios.get(
-      // Add db endpoint
-      // Add callback
-    ) */
-    // Set the list to the locationList
     setLocationList(['None', 'Abidjan', 'Antibes', 'Toulouse']);
   };
 

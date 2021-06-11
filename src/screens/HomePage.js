@@ -1,6 +1,5 @@
 import { React, useContext } from 'react';
 import { NavLink, Link } from 'react-router-dom';
-// const { id } = useParams();
 import { LocationContext } from '../contexts/LocationContext';
 import LocationDropdown from '../components/LocationDropDown';
 
