@@ -8,10 +8,6 @@ export const LocationContext = createContext();
 export const LocationContextProvider = ({ children }) => {
   const [locationList, setLocationList] = useState([
     {
-      locationName: 'None',
-      locationId: 0,
-    },
-    {
       locationName: 'Abidjan',
       locationId: 1,
     },
