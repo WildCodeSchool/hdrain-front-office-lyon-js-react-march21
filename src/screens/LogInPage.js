@@ -1,9 +1,9 @@
-import Form from '../components/Autentification';
+import LoginForm from '../components/Autentification';
 
 export default function LogInPage() {
   return (
     <>
-      <Form />
+      <LoginForm />
     </>
   );
 }
