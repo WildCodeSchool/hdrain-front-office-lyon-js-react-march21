@@ -1,10 +1,28 @@
+/* eslint-disable no-undef */
+/* eslint-disable spaced-comment */
 import React, { useContext } from 'react';
+import { useLocation, useHistory } from 'react-router-dom';
+//import qs from 'query-string';
 import { LocationContext } from '../contexts/LocationContext';
 
 function DropDown() {
-  // eslint-disable-next-line prettier/prettier
-  const { locationList, selectedLocation, setSelectedLocation } =
-    useContext(LocationContext);
+  const {
+    locationList,
+    selectedLocation,
+    setSelectedLocation,
+    // eslint-disable-next-line no-unused-vars
+    filteredLocation,
+  } = useContext(LocationContext);
+
+  // eslint-disable-next-line no-unused-vars
+  const history = useHistory();
+  const { pathname } = useLocation();
+
+  // eslint-disable-next-line no-unused-vars
+  const [, locationUrl, datatype, idUrl] = pathname.split('/');
+
+  const handleLocation = () =>
+    history.push(`/${locationUrl}/${datatype}/${filteredLocation.locationId}`);
 
   return (
     <>
@@ -15,6 +33,7 @@ function DropDown() {
         value={selectedLocation}
         onChange={(event) => {
           setSelectedLocation(event.target.value);
+          handleLocation();
         }}
       >
         Location
