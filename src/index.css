@@ -126,6 +126,10 @@ main {
 Components
 ================*/
 
+.site-title {
+  text-align: center;
+}
+
 .download {
   display: inline-block;
   background-color: var(--btn-color);
