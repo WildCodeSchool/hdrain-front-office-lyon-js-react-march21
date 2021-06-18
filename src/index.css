@@ -11,8 +11,9 @@
   ================*/
 :root {
   --accent-color: hsla(335, 72%, 60%, 0.897);
+  --hdr-color: hsl(195, 47%, 40%);
   --text-primary: hsla(0, 0%, 5%, 0.95);
-  --bg-secondary: hsla(0, 0%, 95%, 0.9);
+  --text-secondary: hsla(0, 0%, 85%, 0.9);
   --btn-color: hsla(0, 5%, 48%, 0.9);
   --btn-secondary-color: hsla(0, 3%, 30%, 0.9);
 }
@@ -24,6 +25,11 @@ body {
   margin: 0;
   height: 100vh;
   font-family: 'Open Sans', sans-serif;
+}
+
+header {
+  background-color: var(--hdr-color);
+  color: var(--text-secondary);
 }
 
 h3 {
@@ -76,7 +82,7 @@ button:disabled {
 }
 
 footer {
-  background-color: #367e96;
+  background-color: var(--hdr-color);
   text-align: center;
   color: hsla(0, 0%, 100%, 0.7);
   padding: 1rem;
@@ -158,4 +164,27 @@ Components
 .leaflet-div-icon {
   background: #00000000;
   border: none;
+}
+
+.navList {
+  background-color: var(--text-secondary);
+  margin: 0;
+}
+
+.navItem {
+  padding: 1rem;
+}
+
+.navItem:hover {
+  background-color: var(--accent-color);
+}
+
+.navItem:hover > a {
+  color: var(--text-secondary);
+}
+
+.navLink {
+  text-decoration: none;
+  font-weight: 600;
+  color: var(--accent-color);
 }
