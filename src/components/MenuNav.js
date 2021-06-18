@@ -30,7 +30,7 @@ export default function MenuNav() {
           </NavLink>
         </li>
         <li className="navItem">
-          <NavLink exact to="/logIn">
+          <NavLink className="navLink" exact to="/logIn">
             Log In
           </NavLink>
         </li>
