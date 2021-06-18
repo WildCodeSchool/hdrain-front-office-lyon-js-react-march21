@@ -10,27 +10,22 @@ export default function MenuNav() {
           </NavLink>
         </li>
         <li className="navItem">
-          <NavLink className="navLink" exact to="/monitoring">
-            Monitoring
-          </NavLink>
-        </li>
-        <li className="navItem">
           <NavLink className="navLink" exact to="/history">
             History
           </NavLink>
         </li>
         <li className="navItem">
-          <NavLink className="navLink" exact to="/monitoring/neuralNetwork">
+          <NavLink className="navLink" exact to="/locations/neuralNetwork">
             Neural Network
           </NavLink>
         </li>
         <li className="navItem">
-          <NavLink className="navLink" exact to="/monitoring/assimilation">
+          <NavLink className="navLink" exact to="/locations/assimilation">
             Data Assimilation
           </NavLink>
         </li>
         <li className="navItem">
-          <NavLink className="navLink" exact to="/monitoring/virtualMachine">
+          <NavLink className="navLink" exact to="/locations/virtualMachine">
             Virtual Machine
           </NavLink>
         </li>

@@ -1,20 +1,45 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
-import DataAssimilationLink from '../components/DataAssimilationLink';
-
+import { React, useContext } from 'react';
+import { NavLink, Link } from 'react-router-dom';
+import { LocationContext } from '../contexts/LocationContext';
 import LocationDropdown from '../components/LocationDropDown';
-import NeuralNetworkLink from '../components/NeuralNetworkLink';
 
 export default function HomePage() {
+  const { selectedLocationId, isParamsEmpty } = useContext(LocationContext);
   return (
     <>
       <h1>Home</h1>
       <LocationDropdown />
-      <NeuralNetworkLink />
-      <br />
-      <DataAssimilationLink />
-      <br />
-      <NavLink to="/history">Go to History Page</NavLink>
+      <Link
+        to={`/locations/neuralNetwork?locationId=${selectedLocationId}`}
+        style={
+          selectedLocationId === 'None' || isParamsEmpty
+            ? { pointerEvents: 'none' }
+            : null
+        }
+      >
+        Go to Neural Network Page
+      </Link>
+      <Link
+        to={`/locations/assimilation?locationId=${selectedLocationId}`}
+        style={
+          selectedLocationId === 'None' || isParamsEmpty
+            ? { pointerEvents: 'none' }
+            : null
+        }
+      >
+        Go to Assimilation Page
+      </Link>
+
+      <NavLink
+        to={`/history?locationId=${selectedLocationId}`}
+        style={
+          selectedLocationId === 'None' || isParamsEmpty
+            ? { pointerEvents: 'none' }
+            : null
+        }
+      >
+        Go to History Page
+      </NavLink>
       <br />
       <div>
         <img
