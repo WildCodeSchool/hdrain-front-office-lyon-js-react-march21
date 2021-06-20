@@ -249,15 +249,16 @@ select {
   top: 0;
   right: 0;
   padding: 0 1em;
-  color: var(--hdr-color);
+  color: white;
   background: var(--btn-secondary-color);
   cursor: pointer;
   pointer-events: none;
   transition: 0.25s all ease;
 }
 /* Transition */
-.select::after:hover {
-  color: var(--accent-color);
+.select:hover::after {
+  color: var(--hdr-color);
+  background-color: var(--accent-color);
 }
 
 .react-datetime-picker {
@@ -267,7 +268,6 @@ select {
   line-height: 3;
   background: var(--btn-secondary-color);
   color: white;
-  /* overflow: hidden; */
   border-radius: 0.25em;
   margin-bottom: 2em;
 }
@@ -281,6 +281,9 @@ select {
 }
 
 .react-datetime-picker__wrapper {
+  border: none;
+  border-radius: 0.25em;
+  padding: 0 1em;
   align-items: center;
 }
 
