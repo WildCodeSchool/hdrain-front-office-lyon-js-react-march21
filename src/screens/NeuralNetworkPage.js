@@ -42,6 +42,7 @@ export default function NeuralNetworkPage() {
       </div>
       <Link
         to={`/locations/assimilation?locationId=${selectedLocationId}`}
+        className="link"
         style={
           selectedLocationId === 'None' || isParamsEmpty
             ? { pointerEvents: 'none' }

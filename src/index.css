@@ -293,3 +293,10 @@ select {
   flex-wrap: wrap;
   justify-content: space-evenly;
 }
+
+.link {
+  text-decoration: none;
+  font-weight: 600;
+  color: var(--accent-color);
+  margin-bottom: 1em;
+}
