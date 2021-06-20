@@ -50,7 +50,7 @@ select::-ms-expand {
 body {
   margin: 0;
   height: 100vh;
-  font-family: 'Open Sans', sans-serif;
+  background: hsla(40, 3%, 90%, 0.95);
 }
 
 header {
@@ -110,13 +110,22 @@ button:disabled {
 footer {
   background-color: var(--hdr-color);
   text-align: center;
-  color: hsla(0, 0%, 100%, 0.7);
+  color: var(--text-secondary);
   padding: 1rem;
 }
 
 /* ================
 Typography
 ================*/
+
+body {
+  font-family: 'Open Sans', sans-serif;
+}
+
+select {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 600;
+}
 
 /* ================
 Layout
@@ -249,4 +258,35 @@ select {
 /* Transition */
 .select::after:hover {
   color: var(--accent-color);
+}
+
+.react-datetime-picker {
+  display: flex;
+  width: max-content;
+  height: 3em;
+  line-height: 3;
+  background: var(--btn-secondary-color);
+  color: white;
+  /* overflow: hidden; */
+  border-radius: 0.25em;
+  margin-bottom: 2em;
+}
+
+.react-datetime-picker input {
+  color: white;
+}
+
+.react-datetime-picker svg {
+  stroke: white;
+}
+
+.react-datetime-picker__wrapper {
+  align-items: center;
+}
+
+.download-links {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
 }

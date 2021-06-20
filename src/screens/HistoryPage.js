@@ -41,7 +41,7 @@ export default function HistoryPage() {
         <h3>Rain map</h3>
         {isEnabled && <img src={rainMMap} alt="rainMap" />}
       </div>
-      <div>
+      <div className="download-links">
         <Link
           className="download"
           to={pathToLog}
