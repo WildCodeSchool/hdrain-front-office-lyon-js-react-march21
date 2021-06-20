@@ -52,7 +52,6 @@ export default function DataAssimilationPage() {
     <>
       <h2>Data Assimilation</h2>
       <LocationDropDown />
-      <br />
       {showParams ? (
         <>
           <AssimilationInfos
@@ -64,33 +63,34 @@ export default function DataAssimilationPage() {
       ) : (
         ''
       )}
-      <br />
-      <Link
-        className="download"
-        to={pathToLog}
-        target="_blank"
-        download
-        style={
-          selectedLocationId === 'None' || isParamsEmpty
-            ? { pointerEvents: 'none' }
-            : null
-        }
-      >
-        Download Global Log
-      </Link>
-      <Link
-        className="download"
-        to={pathToLog}
-        target="_blank"
-        download
-        style={
-          selectedLocationId === 'None' || isParamsEmpty
-            ? { pointerEvents: 'none' }
-            : null
-        }
-      >
-        Download Data Assimilation Logs
-      </Link>
+      <div className="download-links">
+        <Link
+          className="download"
+          to={pathToLog}
+          target="_blank"
+          download
+          style={
+            selectedLocationId === 'None' || isParamsEmpty
+              ? { pointerEvents: 'none' }
+              : null
+          }
+        >
+          Download Global Log
+        </Link>
+        <Link
+          className="download"
+          to={pathToLog}
+          target="_blank"
+          download
+          style={
+            selectedLocationId === 'None' || isParamsEmpty
+              ? { pointerEvents: 'none' }
+              : null
+          }
+        >
+          Download Data Assimilation Logs
+        </Link>
+      </div>
       <Link
         to={`/locations/neuralNetwork?locationId=${selectedLocationId}`}
         style={
@@ -99,7 +99,7 @@ export default function DataAssimilationPage() {
             : null
         }
       >
-        Go to Neural Network Page
+        Neural Network
       </Link>
     </>
   );
