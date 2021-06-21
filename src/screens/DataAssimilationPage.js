@@ -8,8 +8,7 @@ import AssimilationInfos from '../components/AssimilationInfos';
 import Map from '../components/Map';
 
 export default function DataAssimilationPage() {
-  const { selectedLocation, selectedLocationId, isParamsEmpty } =
-    useContext(LocationContext);
+  const { selectedLocation, selectedLocationId } = useContext(LocationContext);
   const [pathToLog] = useState(asset);
   const [showParams, setShowParams] = useState(false);
   const [locationParams, setLocationParams] = useState(['None']);
@@ -71,7 +70,7 @@ export default function DataAssimilationPage() {
         target="_blank"
         download
         style={
-          selectedLocationId === 'None' || isParamsEmpty
+          !selectedLocationId || selectedLocationId === 'None'
             ? { pointerEvents: 'none' }
             : null
         }
@@ -84,7 +83,7 @@ export default function DataAssimilationPage() {
         target="_blank"
         download
         style={
-          selectedLocationId === 'None' || isParamsEmpty
+          !selectedLocationId || selectedLocationId === 'None'
             ? { pointerEvents: 'none' }
             : null
         }
@@ -94,7 +93,7 @@ export default function DataAssimilationPage() {
       <Link
         to={`/locations/neuralNetwork?locationId=${selectedLocationId}`}
         style={
-          selectedLocationId === 'None' || isParamsEmpty
+          !selectedLocationId || selectedLocationId === 'None'
             ? { pointerEvents: 'none' }
             : null
         }

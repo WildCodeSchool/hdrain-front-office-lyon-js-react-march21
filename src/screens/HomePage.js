@@ -4,7 +4,7 @@ import { LocationContext } from '../contexts/LocationContext';
 import LocationDropdown from '../components/LocationDropDown';
 
 export default function HomePage() {
-  const { selectedLocationId, isParamsEmpty } = useContext(LocationContext);
+  const { selectedLocationId } = useContext(LocationContext);
   return (
     <>
       <h1>Home</h1>
@@ -12,7 +12,7 @@ export default function HomePage() {
       <Link
         to={`/locations/neuralNetwork?locationId=${selectedLocationId}`}
         style={
-          selectedLocationId === 'None' || isParamsEmpty
+          !selectedLocationId || selectedLocationId === 'None'
             ? { pointerEvents: 'none' }
             : null
         }
@@ -22,7 +22,7 @@ export default function HomePage() {
       <Link
         to={`/locations/assimilation?locationId=${selectedLocationId}`}
         style={
-          selectedLocationId === 'None' || isParamsEmpty
+          !selectedLocationId || selectedLocationId === 'None'
             ? { pointerEvents: 'none' }
             : null
         }
@@ -33,7 +33,7 @@ export default function HomePage() {
       <NavLink
         to={`/history?locationId=${selectedLocationId}`}
         style={
-          selectedLocationId === 'None' || isParamsEmpty
+          !selectedLocationId || selectedLocationId === 'None'
             ? { pointerEvents: 'none' }
             : null
         }

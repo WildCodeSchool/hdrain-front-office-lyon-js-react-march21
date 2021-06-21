@@ -5,7 +5,7 @@ import { LocationContext } from '../contexts/LocationContext';
 import LocationDropDown from '../components/LocationDropDown';
 
 export default function NeuralNetworkPage() {
-  const { selectedLocationId, isParamsEmpty } = useContext(LocationContext);
+  const { selectedLocationId } = useContext(LocationContext);
   const [pathToLog] = useState(asset);
 
   return (
@@ -19,7 +19,7 @@ export default function NeuralNetworkPage() {
         target="_blank"
         download
         style={
-          selectedLocationId === 'None' || isParamsEmpty
+          !selectedLocationId || selectedLocationId === 'None'
             ? { pointerEvents: 'none' }
             : null
         }
@@ -33,7 +33,7 @@ export default function NeuralNetworkPage() {
         target="_blank"
         download
         style={
-          selectedLocationId === 'None' || isParamsEmpty
+          !selectedLocationId || selectedLocationId === 'None'
             ? { pointerEvents: 'none' }
             : null
         }
@@ -43,7 +43,7 @@ export default function NeuralNetworkPage() {
       <Link
         to={`/locations/assimilation?locationId=${selectedLocationId}`}
         style={
-          selectedLocationId === 'None' || isParamsEmpty
+          !selectedLocationId || selectedLocationId === 'None'
             ? { pointerEvents: 'none' }
             : null
         }
