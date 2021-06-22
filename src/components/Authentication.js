@@ -7,7 +7,6 @@ export default function LoginForm() {
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
   } = useForm({
     defaultValues: {
@@ -17,11 +16,7 @@ export default function LoginForm() {
     },
   });
 
-  window.console.log(watch('username'));
-
-  const onSubmit = (data) => {
-    window.console.log(data);
-    const { username, password } = data;
+  const onSubmit = ({ username, password }) => {
     API.post(`/auth/login`, { username, password })
       .then(() => {
         addToast('Successfully logged in', {
