@@ -54,7 +54,6 @@ body {
 }
 
 header {
-  display: block;
   background-color: var(--hdr-color);
   color: var(--text-secondary);
 }
