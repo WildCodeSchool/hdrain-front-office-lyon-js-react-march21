@@ -21,7 +21,7 @@ export default function HistoryPage() {
   const hours = date.getHours();
   const rounded = new Date(Math.round(date.getTime() / coeff) * coeff);
   const roundedMinutes = rounded.getMinutes();
-  const formattedDate = `${year}-${month}-${day}T${hours}h${roundedMinutes}`;
+  const formattedDate = `${year}-${month}-${day} ${hours}:${roundedMinutes}`;
 
   console.log(formattedDate);
 
