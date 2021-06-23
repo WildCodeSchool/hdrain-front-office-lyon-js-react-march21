@@ -31,7 +31,7 @@ export default function HistoryPage() {
           <LocationDropDown />
         </div>
         <div className="datePicker">
-          <p>Select a timestamp</p>
+          <p>Select a timestamp :</p>
           <DateTimePicker onChange={setDate} value={date} />
         </div>
       </div>

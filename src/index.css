@@ -36,7 +36,7 @@ select::-ms-expand {
   Global variables
   ================*/
 :root {
-  --accent-color: hsla(335, 72%, 60%, 0.897);
+  --accent-color: hsl(207, 60%, 23%);
   --hdr-color: hsl(195, 47%, 40%);
   --text-primary: hsla(0, 0%, 5%, 0.95);
   --text-secondary: hsla(0, 0%, 85%, 0.9);
@@ -64,12 +64,14 @@ h1 {
 }
 
 h2 {
+  color: var(--btn-secondary-color);
   display: block;
   margin-left: auto;
   margin-right: auto;
 }
 
 h3 {
+  color: var(--btn-secondary-color);
   display: flex;
   justify-content: center;
   margin-top: 3rem;
@@ -242,6 +244,7 @@ Components
 }
 
 .navLink {
+  font-size: 1rem;
   text-decoration: none;
   font-weight: 600;
   color: var(--accent-color);
