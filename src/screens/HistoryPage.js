@@ -12,8 +12,18 @@ export default function HistoryPage() {
   const { locationList, selectedLocation, setSelectedLocation } =
     useContext(LocationContext);
   const [pathToLog] = useState(asset);
-  const [date, setDate] = useState(null);
+  const [date, setDate] = useState(new Date());
+  const coeff = 1000 * 60 * 5;
   const [isEnabled, setIsEnabled] = useState(false);
+  const year = date.getFullYear();
+  const month = `${date.getMonth() + 1}`.padStart(2, '0');
+  const day = `${date.getDate()}`.padStart(2, '0');
+  const hours = date.getHours();
+  const rounded = new Date(Math.round(date.getTime() / coeff) * coeff);
+  const roundedMinutes = rounded.getMinutes();
+  const formattedDate = `${year}-${month}-${day}T${hours}h${roundedMinutes}`;
+
+  console.log(formattedDate);
 
   useEffect(() => {
     if (selectedLocation !== 'None' && date !== null) {
