@@ -58,6 +58,11 @@ header {
   color: var(--text-secondary);
 }
 
+h1 {
+  display: block;
+  margin: auto;
+}
+
 h2 {
   display: block;
   margin-left: auto;
@@ -172,9 +177,17 @@ main {
 /* ================
 Components
 ================*/
+
+.upper-header {
+  display: flex;
+  flex-direction: row;
+}
+
 .nav-logo {
   height: 10rem;
   width: 10rem;
+  margin-bottom: 1em;
+  margin-left: 2em;
 }
 
 .site-title {
