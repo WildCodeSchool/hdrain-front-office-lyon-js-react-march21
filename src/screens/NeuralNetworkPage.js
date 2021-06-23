@@ -11,7 +11,7 @@ export default function NeuralNetworkPage() {
 
   return (
     <>
-      <RainGraph height={150} width={300} />
+      <RainGraph />
       <h2>Neural Network</h2>
       <LocationDropDown />
       <br />
