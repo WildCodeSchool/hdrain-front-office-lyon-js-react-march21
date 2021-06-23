@@ -5,7 +5,7 @@ import greenSensorPath from '../assets/sensor-green.png';
 import locationPath from '../assets/sensor.png';
 
 // Returns a different icon depending on the type of pin and its color value
-const selectIcon = (type, color = 'none') => {
+const selectIcon = (type = 'location', color = 'none') => {
   let iconPath = '';
   if (type === 'location') {
     iconPath = locationPath;
@@ -36,7 +36,7 @@ const selectIcon = (type, color = 'none') => {
 
 const findCenter = (pins) => {
   // Returns a default centering value if no pins are present
-  if (pins.length < 1) return [50, 0];
+  if (pins.length === 0) return [50, 0];
   // Returns the lat / lng of the first pin if only one pin
   if (pins.length === 1) return [pins[0].lat, pins[0].lng];
   // Else returns the barycenter of the n pins

@@ -1,11 +1,23 @@
-import { React, useContext } from 'react';
+import { React, useContext, useState, useEffect } from 'react';
 import { NavLink, Link } from 'react-router-dom';
 import { LocationContext } from '../contexts/LocationContext';
+import API from '../APIClient';
 import LocationDropdown from '../components/LocationDropDown';
 import Map from '../components/Map';
 
 export default function HomePage() {
+  const [locations, setLocations] = useState([]);
+
+  useEffect(() => {
+    API.get('http://localhost:5000/locations')
+      .then((response) => response.data)
+      .then((data) => {
+        setLocations(data);
+      });
+  }, []);
+
   const { selectedLocationId, isParamsEmpty } = useContext(LocationContext);
+
   return (
     <>
       <h1>Home</h1>
@@ -42,9 +54,7 @@ export default function HomePage() {
         Go to History Page
       </NavLink>
       <br />
-      <div>
-        <Map />
-      </div>
+      <div>{locations.length > 0 && <Map pins={locations} />}</div>
     </>
   );
 }

@@ -5,9 +5,20 @@ import { LocationContext } from '../contexts/LocationContext';
 import asset from '../assets/sensor.png';
 import LocationDropDown from '../components/LocationDropDown';
 import AssimilationInfos from '../components/AssimilationInfos';
+import API from '../APIClient';
 import Map from '../components/Map';
 
 export default function DataAssimilationPage() {
+  const [sensorsLocation, setSensorsLocation] = useState([]);
+
+  useEffect(() => {
+    API.get('http://localhost:5000/sensors')
+      .then((response) => response.data)
+      .then((data) => {
+        setSensorsLocation(data);
+      });
+  }, []);
+
   const { selectedLocation, selectedLocationId, isParamsEmpty } =
     useContext(LocationContext);
   const [pathToLog] = useState(asset);
@@ -59,7 +70,7 @@ export default function DataAssimilationPage() {
             assimilationParams={locationParams}
             show={showParams}
           />
-          <Map />
+          <Map pins={sensorsLocation} />
         </>
       ) : (
         ''
