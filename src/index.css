@@ -54,6 +54,7 @@ body {
 }
 
 header {
+  display: block;
   background-color: var(--hdr-color);
   color: var(--text-secondary);
 }
@@ -172,6 +173,10 @@ main {
 /* ================
 Components
 ================*/
+.nav-logo {
+  height: 10rem;
+  width: 10rem;
+}
 
 .site-title {
   text-align: center;
