@@ -155,3 +155,7 @@ Components
   background: #00000000;
   border: none;
 }
+
+.highcharts-credits {
+  display: none;
+}
