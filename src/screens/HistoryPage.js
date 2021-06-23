@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { LocationContext } from '../contexts/LocationContext';
 import asset from '../assets/sensor.png';
 import rainMMap from '../assets/rainmap.png';
+import API from '../APIClient';
 import Map from '../components/Map';
 import LocationDropDown from '../components/LocationDropDown';
 
@@ -14,6 +15,16 @@ export default function HistoryPage() {
   const [pathToLog] = useState(asset);
   const [date, setDate] = useState(null);
   const [isEnabled, setIsEnabled] = useState(false);
+
+  const [sensorsLocation, setSensorsLocation] = useState([]);
+
+  useEffect(() => {
+    API.get('http://localhost:5000/sensors')
+      .then((response) => response.data)
+      .then((data) => {
+        setSensorsLocation(data);
+      });
+  }, []);
 
   useEffect(() => {
     if (selectedLocation !== 'None' && date !== null) {
@@ -37,7 +48,7 @@ export default function HistoryPage() {
       </div>
       <div className="maps">
         <h3>Sensor map</h3>
-        {isEnabled && <Map />}
+        {isEnabled && <Map pins={sensorsLocation} />}
         <h3>Rain map</h3>
         {isEnabled && <img src={rainMMap} alt="rainMap" />}
       </div>

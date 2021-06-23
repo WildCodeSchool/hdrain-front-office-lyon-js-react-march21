@@ -4,6 +4,7 @@ import asset from '../assets/sensor.png';
 import { LocationContext } from '../contexts/LocationContext';
 import API from '../APIClient';
 import LocationDropDown from '../components/LocationDropDown';
+import Map from '../components/Map';
 
 export default function NeuralNetworkPage() {
   // eslint-disable-next-line no-unused-vars
@@ -24,6 +25,7 @@ export default function NeuralNetworkPage() {
       <h2>Neural Network</h2>
       <LocationDropDown />
       <br />
+      <Map pins={sensorsLocation} />
       <Link
         className="download"
         to={pathToLog}
