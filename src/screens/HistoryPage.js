@@ -2,32 +2,28 @@
 import { useContext, useEffect, useState } from 'react';
 import DateTimePicker from 'react-datetime-picker';
 import { Link } from 'react-router-dom';
+import { useParams } from 'react-router';
 import { LocationContext } from '../contexts/LocationContext';
 import asset from '../assets/sensor.png';
 import rainMMap from '../assets/rainmap.png';
 import Map from '../components/Map';
 import LocationDropDown from '../components/LocationDropDown';
+import API from '../APIClient';
 
 export default function HistoryPage() {
-  const { locationList, selectedLocation, setSelectedLocation } =
+  const { selectedLocationId, selectedLocation, setSelectedLocation } =
     useContext(LocationContext);
   const [pathToLog] = useState(asset);
   const [date, setDate] = useState(new Date());
-  const coeff = 1000 * 60 * 5;
   const [isEnabled, setIsEnabled] = useState(false);
-  const year = date.getFullYear();
-  const month = `${date.getMonth() + 1}`.padStart(2, '0');
-  const day = `${date.getDate()}`.padStart(2, '0');
-  const hours = date.getHours();
-  const rounded = new Date(Math.round(date.getTime() / coeff) * coeff);
-  const roundedMinutes = rounded.getMinutes();
-  const formattedDate = `${year}-${month}-${day} ${hours}:${roundedMinutes}`;
-
-  console.log(formattedDate);
+  const [parameters, setParameters] = useState();
 
   useEffect(() => {
     if (selectedLocation !== 'None' && date !== null) {
       setIsEnabled(true);
+      API.get(`/experiments/${selectedLocationId}`)
+        .then((res) => setParameters(res.data))
+        .catch((err) => console.log(err));
     } else {
       setIsEnabled(false);
     }
@@ -46,6 +42,8 @@ export default function HistoryPage() {
         </div>
       </div>
       <div className="maps">
+        <h3>Log</h3>
+        {parameters.neuralNetworkLog}
         <h3>Sensor map</h3>
         {isEnabled && <Map />}
         <h3>Rain map</h3>
