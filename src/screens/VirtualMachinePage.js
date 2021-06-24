@@ -1,3 +1,3 @@
 export default function VirtualMachinePage() {
-  return <div>Virtual Machine</div>;
+  return <h2>Virtual Machine</h2>;
 }
