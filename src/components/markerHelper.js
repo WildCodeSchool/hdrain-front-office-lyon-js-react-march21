@@ -47,11 +47,10 @@ const findCenter = (pins) => {
 };
 
 // const setZoom = (pins) => {
-//   if (pins.length <= 3) {
-//     zoom = 2;
-//   } else {
+//   let zoom = 1;
+//   if (pins.length >= 3) {
+//     // eslint-disable-next-line no-unused-vars
 //     zoom = 13;
 //   }
 // };
-
 export { selectIcon, findCenter };

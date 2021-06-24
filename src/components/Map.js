@@ -26,7 +26,7 @@ export default function Map({
     <MapContainer
       center={findCenter(pins)}
       // create function to default zoom and then set conditions in page
-      zoom={1}
+      zoom={1} // {setZoom}
       scrollWheelZoom={false}
       style={{
         height: '400px',
@@ -38,14 +38,16 @@ export default function Map({
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
       {pins.length &&
-        pins.map(({ name, color, lat, lng, type }) => (
+        pins.map(({ name, spotName, color, lat, lng, type }) => (
           <Marker
             key={name}
             icon={selectIcon(type, color)}
             position={[lat, lng]}
           >
             <Popup>
-              <h4>{name}</h4>
+              <h4>
+                {name} {spotName}
+              </h4>
               <p>{lat}</p>
               <p>{lng}</p>
             </Popup>
