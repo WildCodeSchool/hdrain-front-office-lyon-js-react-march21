@@ -25,8 +25,7 @@ export default function Map({
   return (
     <MapContainer
       center={findCenter(pins)}
-      // create function to default zoom and then set conditions in page
-      zoom={1} // {setZoom}
+      zoom={1} // {setZoom()}
       scrollWheelZoom={false}
       style={{
         height: '400px',

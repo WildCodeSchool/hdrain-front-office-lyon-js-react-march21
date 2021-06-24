@@ -49,7 +49,6 @@ const findCenter = (pins) => {
 // const setZoom = (pins) => {
 //   let zoom = 1;
 //   if (pins.length >= 3) {
-//     // eslint-disable-next-line no-unused-vars
 //     zoom = 13;
 //   }
 // };
