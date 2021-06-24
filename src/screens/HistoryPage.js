@@ -1,8 +1,9 @@
 /* eslint-disable no-unused-vars */
 import { useContext, useEffect, useState } from 'react';
+import qs from 'query-string';
 import DateTimePicker from 'react-datetime-picker';
-import { Link } from 'react-router-dom';
-import { useParams } from 'react-router';
+import { Link, useHistory } from 'react-router-dom';
+import { useParams, useLocation } from 'react-router';
 import { LocationContext } from '../contexts/LocationContext';
 import asset from '../assets/sensor.png';
 import rainMMap from '../assets/rainmap.png';
@@ -11,16 +12,22 @@ import LocationDropDown from '../components/LocationDropDown';
 import API from '../APIClient';
 
 export default function HistoryPage() {
-  const { selectedLocationId, selectedLocation, setSelectedLocation } =
+  const { selectedLocationId, selectedLocation, setLocationId } =
     useContext(LocationContext);
   const [pathToLog] = useState(asset);
   const [date, setDate] = useState(new Date());
   const [isEnabled, setIsEnabled] = useState(false);
-  const [parameters, setParameters] = useState();
+  const [parameters, setParameters] = useState('');
+  const formattedDate = date.toString();
+  const location = useLocation();
+  const history = useHistory();
 
   useEffect(() => {
     if (selectedLocation !== 'None' && date !== null) {
       setIsEnabled(true);
+      history.push(
+        `${location.pathname}?locationId=${selectedLocationId}&timestamp=${date}`
+      );
       API.get(`/experiments/${selectedLocationId}`)
         .then((res) => setParameters(res.data))
         .catch((err) => console.log(err));
