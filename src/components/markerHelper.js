@@ -34,12 +34,6 @@ const selectIcon = (type = 'location', color = 'none') => {
   });
 };
 
-// const setZoom = () => {
-//   {
-//     pins.length <= 1 ? 13 : 11;
-//   }
-// };
-
 const findCenter = (pins) => {
   // Returns a default centering value if no pins are present
   if (pins.length === 0) return [50, 0];
@@ -51,5 +45,13 @@ const findCenter = (pins) => {
     pins.reduce((acc, { lng }, _, array) => acc + lng / array.length, 0),
   ];
 };
+
+// const setZoom = (pins) => {
+//   if (pins.length <= 3) {
+//     zoom = 2;
+//   } else {
+//     zoom = 13;
+//   }
+// };
 
 export { selectIcon, findCenter };

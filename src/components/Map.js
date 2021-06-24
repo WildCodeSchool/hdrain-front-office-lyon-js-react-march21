@@ -9,15 +9,16 @@ export default function Map({
       name: 'Abidjan',
       description: 'The weather is nice this time of year',
       color: 'green',
-      type: 'sensor',
+      type: 'location',
     },
+
     {
       lng: -4.133333,
       lat: 5.216666,
       name: 'zef',
       description: 'ezf',
       color: 'blue',
-      type: 'location',
+      type: 'sensor',
     },
   ],
 }) {
@@ -37,7 +38,7 @@ export default function Map({
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
       {pins.length &&
-        pins.map(({ name, description, color, lat, lng, type }) => (
+        pins.map(({ name, color, lat, lng, type }) => (
           <Marker
             key={name}
             icon={selectIcon(type, color)}
@@ -45,7 +46,8 @@ export default function Map({
           >
             <Popup>
               <h4>{name}</h4>
-              <p>{description}</p>
+              <p>{lat}</p>
+              <p>{lng}</p>
             </Popup>
           </Marker>
         ))}
