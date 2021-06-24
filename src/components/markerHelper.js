@@ -34,6 +34,12 @@ const selectIcon = (type, color = 'none') => {
   });
 };
 
+// const setZoom = () => {
+//   {
+//     pins.length <= 1 ? 13 : 11;
+//   }
+// };
+
 const findCenter = (pins) => {
   // Returns a default centering value if no pins are present
   if (pins.length < 1) return [50, 0];
