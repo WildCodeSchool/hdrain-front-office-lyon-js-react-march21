@@ -18,15 +18,26 @@ export default function HistoryPage() {
   const [date, setDate] = useState(new Date());
   const [isEnabled, setIsEnabled] = useState(false);
   const [parameters, setParameters] = useState('');
-  const formattedDate = date.toString();
+  // const formattedDate = date.toString();
   const location = useLocation();
   const history = useHistory();
+
+  const coeff = 1000 * 60 * 5;
+  const year = date.getFullYear();
+  const month = `${date.getMonth() + 1}`.padStart(2, '0');
+  const day = `${date.getDate()}`.padStart(2, '0');
+  const hours = date.getHours();
+  const rounded = new Date(Math.round(date.getTime() / coeff) * coeff);
+  const roundedMinutes = rounded.getMinutes();
+  const formattedDate = `${year}-${month}-${day} ${hours}:${roundedMinutes}`;
+
+  console.log(formattedDate);
 
   useEffect(() => {
     if (selectedLocation !== 'None' && date !== null) {
       setIsEnabled(true);
       history.push(
-        `${location.pathname}?locationId=${selectedLocationId}&timestamp=${date}`
+        `${location.pathname}?locationId=${selectedLocationId}&timestamp=${formattedDate}`
       );
       API.get(`/experiments/${selectedLocationId}`)
         .then((res) => setParameters(res.data))
