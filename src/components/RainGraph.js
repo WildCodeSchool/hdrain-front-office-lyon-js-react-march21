@@ -29,24 +29,10 @@ export default function RainGraph({
       ],
       series: [
         {
-          name: 'Atténuation',
-          type: 'line',
-          yAxis: 0,
+          ...previousOptions.series[0],
           data: dampening,
-          tooltip: {
-            valueSuffix: ' dB',
-          },
         },
-        {
-          name: 'Critère de Pluie',
-          yAxis: 1,
-          type: 'line',
-          data: rain,
-          tooltip: {
-            valueSuffix: ' %',
-          },
-          color: Highcharts.getOptions().colors[5],
-        },
+        { ...previousOptions.series[1], data: rain },
       ],
     }));
 
