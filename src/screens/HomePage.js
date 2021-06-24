@@ -20,7 +20,7 @@ export default function HomePage() {
 
   return (
     <>
-      <h1>Home</h1>
+      <h2>Home</h2>
       <LocationDropdown />
       <Link
         to={`/locations/neuralNetwork?locationId=${selectedLocationId}`}

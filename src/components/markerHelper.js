@@ -35,7 +35,9 @@ const selectIcon = (type = 'location', color = 'none') => {
 };
 
 // const setZoom = () => {
-// pins.length <= 1 ? 13 : 10;
+//   {
+//     pins.length <= 1 ? 13 : 11;
+//   }
 // };
 
 const findCenter = (pins) => {

@@ -55,13 +55,14 @@ export default function NeuralNetworkPage() {
       </Link>
       <Link
         to={`/locations/assimilation?locationId=${selectedLocationId}`}
+        className="link"
         style={
           selectedLocationId === 'None' || isParamsEmpty
             ? { pointerEvents: 'none' }
             : null
         }
       >
-        Go to Assimilation Page
+        Data Assimilation
       </Link>
     </>
   );

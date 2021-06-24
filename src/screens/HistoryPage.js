@@ -42,7 +42,7 @@ export default function HistoryPage() {
           <LocationDropDown />
         </div>
         <div className="datePicker">
-          <p>Select a timestamp</p>
+          <p>Select a timestamp :</p>
           <DateTimePicker onChange={setDate} value={date} />
         </div>
       </div>
@@ -52,7 +52,7 @@ export default function HistoryPage() {
         <h3>Rain map</h3>
         {isEnabled && <img src={rainMMap} alt="rainMap" />}
       </div>
-      <div>
+      <div className="download-links">
         <Link
           className="download"
           to={pathToLog}
