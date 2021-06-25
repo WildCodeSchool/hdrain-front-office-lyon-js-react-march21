@@ -60,10 +60,10 @@ export default function HistoryPage() {
     if (selectedLocation !== 'None' && date !== null) {
       setIsEnabled(true);
       history.push(
-        `${location.pathname}?locationId=${selectedLocationId}&timestamps=${roundedDate}`
+        `${location.pathname}?locationId=${selectedLocationId}&timestamp=${roundedDate}`
       );
       API.get(
-        `/experiments?locationId=${selectedLocationId}&timestamps=${roundedDate}`
+        `/experiments?locationId=${selectedLocationId}&timestamp=${roundedDate}`
       )
         .then((res) => setParameters(res.data))
         .catch((err) => console.log(err));
