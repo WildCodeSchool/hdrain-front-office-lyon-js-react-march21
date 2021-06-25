@@ -15,43 +15,44 @@ export default function NeuralNetworkPage() {
       <RainGraph />
       <h2>Neural Network</h2>
       <LocationDropDown />
-      <br />
-      <Link
-        className="download"
-        to={pathToLog}
-        target="_blank"
-        download
-        style={
-          selectedLocationId === 'None' || isParamsEmpty
-            ? { pointerEvents: 'none' }
-            : null
-        }
-      >
-        Download Neural Network Logs
-      </Link>
-
-      <Link
-        className="download"
-        to={pathToLog}
-        target="_blank"
-        download
-        style={
-          selectedLocationId === 'None' || isParamsEmpty
-            ? { pointerEvents: 'none' }
-            : null
-        }
-      >
-        Download Neural Network Logs
-      </Link>
+      <div className="download-links">
+        <Link
+          className="download"
+          to={pathToLog}
+          target="_blank"
+          download
+          style={
+            selectedLocationId === 'None' || isParamsEmpty
+              ? { pointerEvents: 'none' }
+              : null
+          }
+        >
+          Download Neural Network Logs
+        </Link>
+        <Link
+          className="download"
+          to={pathToLog}
+          target="_blank"
+          download
+          style={
+            selectedLocationId === 'None' || isParamsEmpty
+              ? { pointerEvents: 'none' }
+              : null
+          }
+        >
+          Download Neural Network Logs
+        </Link>
+      </div>
       <Link
         to={`/locations/assimilation?locationId=${selectedLocationId}`}
+        className="link"
         style={
           selectedLocationId === 'None' || isParamsEmpty
             ? { pointerEvents: 'none' }
             : null
         }
       >
-        Go to Assimilation Page
+        Data Assimilation
       </Link>
     </>
   );
