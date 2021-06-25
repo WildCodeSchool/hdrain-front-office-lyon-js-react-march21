@@ -18,7 +18,6 @@ export default function HistoryPage() {
   const [date, setDate] = useState(new Date());
   const [isEnabled, setIsEnabled] = useState(false);
   const [parameters, setParameters] = useState('');
-  // const formattedDate = date.toString();
   const location = useLocation();
   const history = useHistory();
 
@@ -29,9 +28,11 @@ export default function HistoryPage() {
   const hours = date.getHours();
   const rounded = new Date(Math.round(date.getTime() / coeff) * coeff);
   const roundedMinutes = rounded.getMinutes();
-  const formattedDate = `${year}-${month}-${day} ${hours}:${roundedMinutes}`;
-
+  const formattedDate = `${year}-${month}-${day}T${hours}:${roundedMinutes}:00`;
   console.log(formattedDate);
+
+  const queryParams = qs.parse(location.search);
+  console.log(queryParams);
 
   useEffect(() => {
     if (selectedLocation !== 'None' && date !== null) {
@@ -39,7 +40,9 @@ export default function HistoryPage() {
       history.push(
         `${location.pathname}?locationId=${selectedLocationId}&timestamp=${formattedDate}`
       );
-      API.get(`/experiments/${selectedLocationId}`)
+      API.get(
+        `/experiments?locationId=${selectedLocationId}&timestamp=${formattedDate}`
+      )
         .then((res) => setParameters(res.data))
         .catch((err) => console.log(err));
     } else {
@@ -61,7 +64,7 @@ export default function HistoryPage() {
       </div>
       <div className="maps">
         <h3>Log</h3>
-        {parameters.neuralNetworkLog}
+
         <h3>Sensor map</h3>
         {isEnabled && <Map />}
         <h3>Rain map</h3>
