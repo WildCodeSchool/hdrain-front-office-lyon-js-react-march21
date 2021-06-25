@@ -12,9 +12,9 @@ export default function NeuralNetworkPage() {
   return (
     <>
       {/* Add props : inputDampening, inputRain, inputTime */}
-      <RainGraph />
       <h2>Neural Network</h2>
       <LocationDropDown />
+      <RainGraph />
       <div className="download-links">
         <Link
           className="download"
