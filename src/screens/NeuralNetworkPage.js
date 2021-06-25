@@ -11,7 +11,7 @@ export default function NeuralNetworkPage() {
   const [sensorsLocation, setSensorsLocation] = useState([]);
 
   useEffect(() => {
-    API.get('http://localhost:5000/sensors')
+    API.get('http://localhost:5000/locations/locationId/sensors')
       .then((response) => response.data)
       .then((data) => {
         setSensorsLocation(data);
