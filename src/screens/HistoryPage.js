@@ -22,14 +22,36 @@ export default function HistoryPage() {
   const history = useHistory();
 
   const coeff = 1000 * 60 * 5;
-  const year = date.getFullYear();
-  const month = `${date.getMonth() + 1}`.padStart(2, '0');
-  const day = `${date.getDate()}`.padStart(2, '0');
-  const hours = date.getHours();
-  const rounded = new Date(Math.round(date.getTime() / coeff) * coeff);
-  const roundedMinutes = rounded.getMinutes();
-  const formattedDate = `${year}-${month}-${day}T${hours}:${roundedMinutes}:00`;
-  console.log(formattedDate);
+  // const year = date.getFullYear();
+  // const month = `${date.getMonth() + 1}`.padStart(2, '0');
+  // const day = `${date.getDate()}`.padStart(2, '0');
+  // const hours = date.getHours();
+  // const rounded = new Date(Math.round(date.getTime() / coeff) * coeff);
+  // const roundedMinutes = rounded.getMinutes();
+  // const formattedDate = `${year}-${month}-${day}T${hours}:${roundedMinutes}:00`;
+  // const datetest = new Date(2021, 6, 22, 15, 0).toString();
+  // const datetest2 = new Date().toString();
+
+  const roundedDate = new Date(
+    date.getTime() + coeff - (date.getTime() % coeff)
+  ).toString();
+
+  // console.log(roundedtest);
+  // console.log(datetest === date.toString());
+  // console.log(datetest2 === date.toString());
+  // const formattedDate2 = new Date(
+  //   year,
+  //   month,
+  //   day,
+  //   hours,
+  //   roundedMinutes,
+  //   0
+  // ).toString();
+  // console.log(formattedDate);
+  // console.log(formattedDate2);
+  // console.log(datetest);
+  // console.log(datetest2);
+  // console.log(date);
 
   const queryParams = qs.parse(location.search);
   console.log(queryParams);
@@ -38,10 +60,10 @@ export default function HistoryPage() {
     if (selectedLocation !== 'None' && date !== null) {
       setIsEnabled(true);
       history.push(
-        `${location.pathname}?locationId=${selectedLocationId}&timestamp=${formattedDate}`
+        `${location.pathname}?locationId=${selectedLocationId}&timestamps=${roundedDate}`
       );
       API.get(
-        `/experiments?locationId=${selectedLocationId}&timestamp=${formattedDate}`
+        `/experiments?locationId=${selectedLocationId}&timestamps=${roundedDate}`
       )
         .then((res) => setParameters(res.data))
         .catch((err) => console.log(err));
