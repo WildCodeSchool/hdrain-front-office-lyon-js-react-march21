@@ -64,10 +64,18 @@ export default function HistoryPage() {
       </div>
       <div className="maps">
         <h3>Log</h3>
-        {parameters.map((parameter) => {
-          return <p>{parameter.assimilationLog}</p>;
-        })}
-        ;<h3>Sensor map</h3>
+        <>
+          {parameters.map((parameter) => (
+            <ul>
+              <li>assimilation: {parameter.assimilationLog}</li>
+              <li>neuralNetwork: {parameter.neuralNetworkLog}</li>
+              <li>parameters: {parameter.parameters}</li>
+              <li>raingraph: {parameter.rainGraph}</li>
+              <li>costGraph: {parameter.rainGraph}</li>
+            </ul>
+          ))}
+        </>
+        <h3>Sensor map</h3>
         {isEnabled && <Map />}
         <h3>Rain map</h3>
         {isEnabled && <img src={rainMMap} alt="rainMap" />}
