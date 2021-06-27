@@ -51,7 +51,6 @@ export default function DataAssimilationPage() {
     <>
       <h2>Data Assimilation</h2>
       <LocationDropDown />
-      <br />
       {showParams ? (
         <>
           <AssimilationInfos
@@ -92,13 +91,14 @@ export default function DataAssimilationPage() {
       </Link>
       <Link
         to={`/locations/neuralNetwork?locationId=${selectedLocationId}`}
+        className="link"
         style={
           !selectedLocationId || selectedLocationId === 'None'
             ? { pointerEvents: 'none' }
             : null
         }
       >
-        Go to Neural Network Page
+        Neural Network
       </Link>
     </>
   );

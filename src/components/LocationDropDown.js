@@ -8,25 +8,26 @@ function DropDown() {
   return (
     <>
       <p>Select a location from the list : </p>
-      <select
-        name="location"
-        id="location"
-        value={selectedLocationId}
-        onChange={(event) => {
-          setLocationId(event.target.value);
-        }}
-      >
-        Location
-        <option key="None" value="None">
-          None
-        </option>
-        {locationList.map((location) => (
-          <option key={location.locationId} value={location.locationId}>
-            {location.locationName}
+      <div className="select">
+        <select
+          name="location"
+          id="location"
+          value={selectedLocationId}
+          onChange={(event) => {
+            setLocationId(event.target.value);
+          }}
+        >
+          Location
+          <option key="None" value="None">
+            None
           </option>
-        ))}
-      </select>
-      <br />
+          {locationList.map((location) => (
+            <option key={location.locationId} value={location.locationId}>
+              {location.locationName}
+            </option>
+          ))}
+        </select>
+      </div>
     </>
   );
 }
