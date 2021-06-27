@@ -1,9 +1,7 @@
-/* eslint-disable no-unused-vars */
 import { useContext, useEffect, useState } from 'react';
-import qs from 'query-string';
 import DateTimePicker from 'react-datetime-picker';
 import { Link, useHistory } from 'react-router-dom';
-import { useParams, useLocation } from 'react-router';
+import { useLocation } from 'react-router';
 import { LocationContext } from '../contexts/LocationContext';
 import asset from '../assets/sensor.png';
 import rainMMap from '../assets/rainmap.png';
@@ -12,12 +10,11 @@ import LocationDropDown from '../components/LocationDropDown';
 import API from '../APIClient';
 
 export default function HistoryPage() {
-  const { selectedLocationId, selectedLocation, setLocationId } =
-    useContext(LocationContext);
+  const { selectedLocationId, selectedLocation } = useContext(LocationContext);
   const [pathToLog] = useState(asset);
   const [date, setDate] = useState(new Date());
   const [isEnabled, setIsEnabled] = useState(false);
-  const [parameters, setParameters] = useState('');
+  const [parameters, setParameters] = useState([]);
   const location = useLocation();
   const history = useHistory();
 
@@ -40,8 +37,6 @@ export default function HistoryPage() {
         `/experiments?locationId=${selectedLocationId}&timestamp=${formattedDate}`
       )
         .then((res) => {
-          console.log('Result :');
-          console.log(res.data);
           setParameters(res.data);
         })
         .catch((err) => console.log(err));
@@ -58,7 +53,7 @@ export default function HistoryPage() {
           <LocationDropDown />
         </div>
         <div className="datePicker">
-          <p>Select a timestamp :</p>
+          <p>Select a timestamp</p>
           <DateTimePicker onChange={setDate} value={date} />
         </div>
       </div>
