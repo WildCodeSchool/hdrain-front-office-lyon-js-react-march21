@@ -47,8 +47,8 @@ export default function Map({
               <h4>
                 {name} {spotName}
               </h4>
-              <p>{lat}</p>
-              <p>{lng}</p>
+              <p>Latitude : {lat}</p>
+              <p>Longitude : {lng}</p>
             </Popup>
           </Marker>
         ))}
