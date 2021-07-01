@@ -34,7 +34,7 @@ export default function HistoryPage() {
         `${location.pathname}?locationId=${selectedLocationId}&timestamp=${formattedDate}`
       );
       API.get(
-        `/experiments?locationId=${selectedLocationId}&timestamp=${formattedDate}`
+        `/locations/${selectedLocationId}/experiments/?timestamp=${formattedDate}`
       )
         .then((res) => {
           setParameters(res.data);
