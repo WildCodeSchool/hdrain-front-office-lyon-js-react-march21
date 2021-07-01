@@ -26,7 +26,6 @@ export default function HistoryPage() {
   const rounded = new Date(Math.round(date.getTime() / coeff) * coeff);
   const roundedMinutes = `0${rounded.getMinutes()}`.slice(-2);
   const formattedDate = `${year}-${month}-${day}T${hours}:${roundedMinutes}:00`;
-
   useEffect(() => {
     if (selectedLocation !== 'None' && date !== null) {
       setIsEnabled(true);
@@ -60,15 +59,16 @@ export default function HistoryPage() {
       <div className="maps">
         <h3>Log</h3>
         <>
-          {parameters.map((parameter) => (
-            <ul>
-              <li>assimilation: {parameter.assimilationLog}</li>
-              <li>neuralNetwork: {parameter.neuralNetworkLog}</li>
-              <li>parameters: {parameter.parameters}</li>
-              <li>raingraph: {parameter.rainGraph}</li>
-              <li>costGraph: {parameter.rainGraph}</li>
-            </ul>
-          ))}
+          {!!parameters.length &&
+            parameters.map((parameter) => (
+              <ul>
+                <li>assimilation: {parameter.assimilationLog}</li>
+                <li>neuralNetwork: {parameter.neuralNetworkLog}</li>
+                <li>parameters: {parameter.parameters}</li>
+                <li>raingraph: {parameter.rainGraph}</li>
+                <li>costGraph: {parameter.rainGraph}</li>
+              </ul>
+            ))}
         </>
         <h3>Sensor map</h3>
         {isEnabled && <Map />}
