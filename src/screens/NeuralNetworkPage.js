@@ -7,17 +7,17 @@ import LocationDropDown from '../components/LocationDropDown';
 import Map from '../components/Map';
 
 export default function NeuralNetworkPage() {
-  // eslint-disable-next-line no-unused-vars
   const [sensorsLocation, setSensorsLocation] = useState([]);
 
   useEffect(() => {
-    API.get('http://localhost:5000/locations/locationId/sensors')
+    API.get('/locations/locationId/sensors')
       .then((response) => response.data)
       .then((data) => {
+        console.log(data);
         setSensorsLocation(data);
       });
   }, []);
-  const { selectedLocationId, isParamsEmpty } = useContext(LocationContext);
+  const { selectedLocationId } = useContext(LocationContext);
   const [pathToLog] = useState(asset);
 
   return (
@@ -32,7 +32,7 @@ export default function NeuralNetworkPage() {
         target="_blank"
         download
         style={
-          selectedLocationId === 'None' || isParamsEmpty
+          !selectedLocationId || selectedLocationId === 'None'
             ? { pointerEvents: 'none' }
             : null
         }
@@ -46,7 +46,7 @@ export default function NeuralNetworkPage() {
         target="_blank"
         download
         style={
-          selectedLocationId === 'None' || isParamsEmpty
+          !selectedLocationId || selectedLocationId === 'None'
             ? { pointerEvents: 'none' }
             : null
         }
@@ -57,7 +57,7 @@ export default function NeuralNetworkPage() {
         to={`/locations/assimilation?locationId=${selectedLocationId}`}
         className="link"
         style={
-          selectedLocationId === 'None' || isParamsEmpty
+          !selectedLocationId || selectedLocationId === 'None'
             ? { pointerEvents: 'none' }
             : null
         }

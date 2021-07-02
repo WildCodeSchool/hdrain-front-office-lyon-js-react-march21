@@ -9,15 +9,14 @@ export default function HomePage() {
   const [locations, setLocations] = useState([]);
 
   useEffect(() => {
-    API.get('http://localhost:5000/locations')
+    API.get('/locations')
       .then((response) => response.data)
       .then((data) => {
         setLocations(data);
       });
   }, []);
 
-  const { selectedLocationId, isParamsEmpty } = useContext(LocationContext);
-
+  const { selectedLocationId } = useContext(LocationContext);
   return (
     <>
       <h2>Home</h2>
@@ -25,7 +24,7 @@ export default function HomePage() {
       <Link
         to={`/locations/neuralNetwork?locationId=${selectedLocationId}`}
         style={
-          selectedLocationId === 'None' || isParamsEmpty
+          !selectedLocationId || selectedLocationId === 'None'
             ? { pointerEvents: 'none' }
             : null
         }
@@ -35,7 +34,7 @@ export default function HomePage() {
       <Link
         to={`/locations/assimilation?locationId=${selectedLocationId}`}
         style={
-          selectedLocationId === 'None' || isParamsEmpty
+          !selectedLocationId || selectedLocationId === 'None'
             ? { pointerEvents: 'none' }
             : null
         }
@@ -46,7 +45,7 @@ export default function HomePage() {
       <NavLink
         to={`/history?locationId=${selectedLocationId}`}
         style={
-          selectedLocationId === 'None' || isParamsEmpty
+          !selectedLocationId || selectedLocationId === 'None'
             ? { pointerEvents: 'none' }
             : null
         }
