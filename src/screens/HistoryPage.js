@@ -21,11 +21,14 @@ export default function HistoryPage() {
   const coeff = 1000 * 60 * 5;
   const year = date.getFullYear();
   const month = `${date.getMonth() + 1}`.padStart(2, '0');
-  const day = `${date.getDate()}`.padStart(2, '0').slice(-2);
-  const hours = date.getHours().slice(-2);
+  // const day = `${date.getDate()}`.padStart(2, '0');
+  const day = `0${date.getDate()}`.slice(-2);
+  // const hours = date.getHours();
+  const formattedHours = `0${date.getHours()}`.slice(-2);
   const rounded = new Date(Math.round(date.getTime() / coeff) * coeff);
   const roundedMinutes = `0${rounded.getMinutes()}`.slice(-2);
-  const formattedDate = `${year}-${month}-${day}T${hours}:${roundedMinutes}:00`;
+  const formattedDate = `${year}-${month}-${day}T${formattedHours}:${roundedMinutes}:00`;
+  console.log(day, formattedHours);
   useEffect(() => {
     if (selectedLocation !== 'None' && date !== null) {
       setIsEnabled(true);
