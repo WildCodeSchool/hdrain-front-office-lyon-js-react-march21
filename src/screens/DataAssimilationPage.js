@@ -10,16 +10,16 @@ import Map from '../components/Map';
 
 export default function DataAssimilationPage() {
   const [sensorsLocation, setSensorsLocation] = useState([]);
+  const { selectedLocation, selectedLocationId } = useContext(LocationContext);
 
   useEffect(() => {
-    API.get('/locations/locationId/sensors')
+    API.get(`locations/${selectedLocationId}/sensors`)
       .then((response) => response.data)
       .then((data) => {
         setSensorsLocation(data);
       });
-  }, []);
+  }, [selectedLocationId]);
 
-  const { selectedLocation, selectedLocationId } = useContext(LocationContext);
   const [pathToLog] = useState(asset);
   const [showParams, setShowParams] = useState(false);
   const [locationParams, setLocationParams] = useState(['None']);

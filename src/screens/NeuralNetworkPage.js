@@ -8,16 +8,16 @@ import Map from '../components/Map';
 
 export default function NeuralNetworkPage() {
   const [sensorsLocation, setSensorsLocation] = useState([]);
+  const { selectedLocationId } = useContext(LocationContext);
 
   useEffect(() => {
-    API.get('/locations/locationId/sensors')
+    API.get(`locations/${selectedLocationId}/sensors`)
       .then((response) => response.data)
       .then((data) => {
-        console.log(data);
         setSensorsLocation(data);
       });
-  }, []);
-  const { selectedLocationId } = useContext(LocationContext);
+  }, [selectedLocationId]);
+
   const [pathToLog] = useState(asset);
 
   return (
