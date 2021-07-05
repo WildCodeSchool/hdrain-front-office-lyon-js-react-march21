@@ -4,7 +4,7 @@ import { Link, useHistory } from 'react-router-dom';
 import { useLocation } from 'react-router';
 import { LocationContext } from '../contexts/LocationContext';
 import asset from '../assets/sensor.png';
-import rainMMap from '../assets/rainmap.png';
+// import rainMMap from '../assets/rainmap.png';
 import Map from '../components/Map';
 import LocationDropDown from '../components/LocationDropDown';
 import API from '../APIClient';
@@ -27,6 +27,7 @@ export default function HistoryPage() {
   const roundedMinutes = `0${rounded.getMinutes()}`.slice(-2);
   const formattedDate = `${year}-${month}-${day}T${formattedHours}:${roundedMinutes}:00`;
   console.log(day, formattedHours);
+
   useEffect(() => {
     if (selectedLocation !== 'None' && date !== null) {
       setIsEnabled(true);
@@ -67,14 +68,21 @@ export default function HistoryPage() {
                 <li>neuralNetwork: {parameter.neuralNetworkLog}</li>
                 <li>parameters: {parameter.parameters}</li>
                 <li>raingraph: {parameter.rainGraph}</li>
-                <li>costGraph: {parameter.rainGraph}</li>
+                <li>costGraph: {parameter.costGraph}</li>
               </ul>
             ))}
         </>
         <h3>Sensor map</h3>
         {isEnabled && <Map />}
         <h3>Rain map</h3>
-        {isEnabled && <img src={rainMMap} alt="rainMap" />}
+        {isEnabled && (
+          <img
+            src="http://localhost:5000/upload/images/rain2.jpg"
+            alt="rainMap"
+            width="200"
+            height="200"
+          />
+        )}
       </div>
       <div className="download-links">
         <Link
