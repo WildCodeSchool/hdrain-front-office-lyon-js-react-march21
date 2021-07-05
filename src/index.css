@@ -226,6 +226,10 @@ Components
   border: none;
 }
 
+.highcharts-credits {
+  display: none;
+}
+
 .navList {
   background-color: var(--text-secondary);
   margin: 0;
@@ -327,7 +331,7 @@ select {
   margin-bottom: 1em;
 }
 
-/** Form */
+/* Form */
 .form {
   display: flex;
   flex-direction: column;
