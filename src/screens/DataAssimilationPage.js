@@ -8,8 +8,7 @@ import AssimilationInfos from '../components/AssimilationInfos';
 import Map from '../components/Map';
 
 export default function DataAssimilationPage() {
-  const { selectedLocation, selectedLocationId, isParamsEmpty } =
-    useContext(LocationContext);
+  const { selectedLocation, selectedLocationId } = useContext(LocationContext);
   const [pathToLog] = useState(asset);
   const [showParams, setShowParams] = useState(false);
   const [locationParams, setLocationParams] = useState(['None']);
@@ -63,39 +62,38 @@ export default function DataAssimilationPage() {
       ) : (
         ''
       )}
-      <div className="download-links">
-        <Link
-          className="download"
-          to={pathToLog}
-          target="_blank"
-          download
-          style={
-            selectedLocationId === 'None' || isParamsEmpty
-              ? { pointerEvents: 'none' }
-              : null
-          }
-        >
-          Download Global Log
-        </Link>
-        <Link
-          className="download"
-          to={pathToLog}
-          target="_blank"
-          download
-          style={
-            selectedLocationId === 'None' || isParamsEmpty
-              ? { pointerEvents: 'none' }
-              : null
-          }
-        >
-          Download Data Assimilation Logs
-        </Link>
-      </div>
+      <br />
+      <Link
+        className="download"
+        to={pathToLog}
+        target="_blank"
+        download
+        style={
+          !selectedLocationId || selectedLocationId === 'None'
+            ? { pointerEvents: 'none' }
+            : null
+        }
+      >
+        Download Global Log
+      </Link>
+      <Link
+        className="download"
+        to={pathToLog}
+        target="_blank"
+        download
+        style={
+          !selectedLocationId || selectedLocationId === 'None'
+            ? { pointerEvents: 'none' }
+            : null
+        }
+      >
+        Download Data Assimilation Logs
+      </Link>
       <Link
         to={`/locations/neuralNetwork?locationId=${selectedLocationId}`}
         className="link"
         style={
-          selectedLocationId === 'None' || isParamsEmpty
+          !selectedLocationId || selectedLocationId === 'None'
             ? { pointerEvents: 'none' }
             : null
         }

@@ -6,7 +6,7 @@ import LocationDropDown from '../components/LocationDropDown';
 import RainGraph from '../components/RainGraph';
 
 export default function NeuralNetworkPage() {
-  const { selectedLocationId, isParamsEmpty } = useContext(LocationContext);
+  const { selectedLocationId } = useContext(LocationContext);
   const [pathToLog] = useState(asset);
 
   return (
@@ -15,39 +15,24 @@ export default function NeuralNetworkPage() {
       <h2>Neural Network</h2>
       <LocationDropDown />
       <RainGraph />
-      <div className="download-links">
-        <Link
-          className="download"
-          to={pathToLog}
-          target="_blank"
-          download
-          style={
-            selectedLocationId === 'None' || isParamsEmpty
-              ? { pointerEvents: 'none' }
-              : null
-          }
-        >
-          Download Neural Network Logs
-        </Link>
-        <Link
-          className="download"
-          to={pathToLog}
-          target="_blank"
-          download
-          style={
-            selectedLocationId === 'None' || isParamsEmpty
-              ? { pointerEvents: 'none' }
-              : null
-          }
-        >
-          Download Neural Network Logs
-        </Link>
-      </div>
+      <Link
+        className="download"
+        to={pathToLog}
+        target="_blank"
+        download
+        style={
+          !selectedLocationId || selectedLocationId === 'None'
+            ? { pointerEvents: 'none' }
+            : null
+        }
+      >
+        Download Neural Network Logs
+      </Link>
       <Link
         to={`/locations/assimilation?locationId=${selectedLocationId}`}
         className="link"
         style={
-          selectedLocationId === 'None' || isParamsEmpty
+          !selectedLocationId || selectedLocationId === 'None'
             ? { pointerEvents: 'none' }
             : null
         }
