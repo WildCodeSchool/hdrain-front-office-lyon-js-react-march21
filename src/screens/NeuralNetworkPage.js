@@ -26,22 +26,7 @@ export default function NeuralNetworkPage() {
       {/* Add props : inputDampening, inputRain, inputTime */}
       <h2>Neural Network</h2>
       <LocationDropDown />
-      <br />
       <Map pins={sensorsLocation} />
-      <Link
-        className="download"
-        to={pathToLog}
-        target="_blank"
-        download
-        style={
-          !selectedLocationId || selectedLocationId === 'None'
-            ? { pointerEvents: 'none' }
-            : null
-        }
-      >
-        Download Neural Network Logs
-      </Link>
-
       <RainGraph />
       <Link
         className="download"
