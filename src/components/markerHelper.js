@@ -5,18 +5,18 @@ import greenSensorPath from '../assets/sensor-green.png';
 import locationPath from '../assets/sensor.png';
 
 // Returns a different icon depending on the type of pin and its color value
-const selectIcon = (type = 'location', color = 'none') => {
+const selectIcon = (type = 'location', code) => {
   let iconPath = '';
   if (type === 'location') {
     iconPath = locationPath;
   } else {
-    if (color === 'red') {
+    if (code === 0) {
       iconPath = redSensorPath;
     }
-    if (color === 'green') {
+    if (code === 1) {
       iconPath = greenSensorPath;
     }
-    if (color === 'blue') {
+    if (code === 2) {
       iconPath = blueSensorPath;
     }
   }

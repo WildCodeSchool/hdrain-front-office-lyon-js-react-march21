@@ -17,7 +17,7 @@ export default function HistoryPage() {
   const [parameters, setParameters] = useState([]);
   const location = useLocation();
   const history = useHistory();
-  const [sensorsLocation] = useState([]);
+  const [sensorsLocation, setSensorsLocation] = useState([]);
   const coeff = 1000 * 60 * 5;
   const year = date.getFullYear();
   const month = `${date.getMonth() + 1}`.padStart(2, '0');
@@ -26,7 +26,6 @@ export default function HistoryPage() {
   const rounded = new Date(Math.round(date.getTime() / coeff) * coeff);
   const roundedMinutes = `0${rounded.getMinutes()}`.slice(-2);
   const formattedDate = `${year}-${month}-${day}T${formattedHours}:${roundedMinutes}:00`;
-  console.log(day, formattedHours);
 
   useEffect(() => {
     if (selectedLocation !== 'None' && date !== null) {
@@ -39,10 +38,19 @@ export default function HistoryPage() {
         `/locations/${selectedLocationId}/experiments/?timestamp=${formattedDate}`
       )
         .then((res) => {
+          console.log(res);
           setParameters(res.data);
+          console.log(res.data);
         })
-
         .catch((err) => console.log(err));
+      API.get(
+        `locations/${selectedLocationId}/sensors/status/?experimentId=${[0].id}`
+      )
+        .then((response) => response.data)
+        .then((data) => {
+          console.log(data);
+          setSensorsLocation(data);
+        });
     } else {
       setIsEnabled(false);
     }
@@ -65,7 +73,7 @@ export default function HistoryPage() {
         <>
           {!!parameters.length &&
             parameters.map((parameter) => (
-              <ul>
+              <ul key={parameter.id}>
                 <li>assimilation: {parameter.assimilationLog}</li>
                 <li>neuralNetwork: {parameter.neuralNetworkLog}</li>
                 <li>parameters: {parameter.parameters}</li>

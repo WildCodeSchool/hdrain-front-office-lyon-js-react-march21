@@ -8,7 +8,6 @@ export default function Map({
       lat: 5.316666,
       name: 'Abidjan',
       description: 'The weather is nice this time of year',
-      color: 'green',
       type: 'location',
     },
 
@@ -17,7 +16,7 @@ export default function Map({
       lat: 5.216666,
       name: 'zef',
       description: 'ezf',
-      color: 'blue',
+      code: 2,
       type: 'sensor',
     },
   ],
@@ -37,18 +36,17 @@ export default function Map({
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
       {pins.length &&
-        pins.map(({ name, spotName, color, lat, lng, type }) => (
-          <Marker
-            key={name}
-            icon={selectIcon(type, color)}
-            position={[lat, lng]}
-          >
+        pins.map(({ id, name, sensorNumber, spotName, code, lat, lng }) => (
+          <Marker key={name} icon={selectIcon(code)} position={[lat, lng]}>
             <Popup>
               <h4>
                 {name} {spotName}
               </h4>
+              <p>Sensor id : {id} </p>
+              <p>Sensor # {sensorNumber}</p>
               <p>Latitude : {lat}</p>
               <p>Longitude : {lng}</p>
+              <p>status : {code}</p>
             </Popup>
           </Marker>
         ))}
