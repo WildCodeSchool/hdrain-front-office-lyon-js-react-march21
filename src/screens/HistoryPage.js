@@ -6,15 +6,17 @@ import { LocationContext } from '../contexts/LocationContext';
 import asset from '../assets/sensor.png';
 // import rainMMap from '../assets/rainmap.png';
 import Map from '../components/Map';
+import RainMap from '../components/RainMap';
+
 import LocationDropDown from '../components/LocationDropDown';
 import API from '../APIClient';
 
 export default function HistoryPage() {
-  const { selectedLocationId, selectedLocation } = useContext(LocationContext);
+  const { selectedLocationId, selectedLocation, experiment, setExperiment } =
+    useContext(LocationContext);
   const [pathToLog] = useState(asset);
   const [date, setDate] = useState(new Date());
   const [isEnabled, setIsEnabled] = useState(false);
-  const [experiment, setExperiment] = useState({});
   const location = useLocation();
   const history = useHistory();
 
@@ -26,7 +28,6 @@ export default function HistoryPage() {
   const rounded = new Date(Math.round(date.getTime() / coeff) * coeff);
   const roundedMinutes = `0${rounded.getMinutes()}`.slice(-2);
   const formattedDate = `${year}-${month}-${day}T${formattedHours}:${roundedMinutes}:00`;
-  // console.log(day, formattedHours);
 
   useEffect(() => {
     if (selectedLocation !== 'None' && date !== null) {
@@ -66,25 +67,13 @@ export default function HistoryPage() {
               <li>assimilation: {experiment.assimilationLog}</li>
               <li>neuralNetwork: {experiment.neuralNetworkLog}</li>
               <li>parameters: {experiment.parameters}</li>
-              <li>raingraph: {experiment.rainGraph}</li>
-              <li>costGraph: {experiment.costGraph}</li>
             </ul>
           )}
         </>
         <h3>Sensor map</h3>
         {isEnabled && <Map />}
         <h3>Rain map</h3>
-        {isEnabled && (
-          <img
-            src={
-              experiment?.rainGraph ||
-              'https://via.placeholder.com/300/300/?Text=RainMap'
-            }
-            alt="rainMap"
-            width="200"
-            height="200"
-          />
-        )}
+        {isEnabled && <RainMap />}
       </div>
       <div className="download-links">
         <Link
