@@ -5,14 +5,14 @@ import HomePage from '../screens/HomePage';
 import DataAssimilationPage from '../screens/DataAssimilationPage';
 import NeuralNetworkPage from '../screens/NeuralNetworkPage';
 import VirtualMachinePage from '../screens/VirtualMachinePage';
-import LogInPage from '../screens/LogInPage';
+// import LogInPage from '../screens/LogInPage';
 
 export default function Main() {
   return (
     <main>
       <LocationContextProvider>
         <Switch>
-          <Route exact path="/" component={LogInPage} />
+          {/* <Route exact path="/" component={LogInPage} /> */}
           <Route exact path="/home" component={HomePage} />
           <Route exact path="/history" component={HistoryPage} />
           <Route
