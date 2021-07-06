@@ -226,6 +226,10 @@ Components
   border: none;
 }
 
+.highcharts-credits {
+  display: none;
+}
+
 .navList {
   background-color: var(--text-secondary);
   margin: 0;

@@ -5,6 +5,7 @@ import { LocationContext } from '../contexts/LocationContext';
 import API from '../APIClient';
 import LocationDropDown from '../components/LocationDropDown';
 import Map from '../components/Map';
+import RainGraph from '../components/RainGraph';
 
 export default function NeuralNetworkPage() {
   const [sensorsLocation, setSensorsLocation] = useState([]);
@@ -22,6 +23,7 @@ export default function NeuralNetworkPage() {
 
   return (
     <>
+      {/* Add props : inputDampening, inputRain, inputTime */}
       <h2>Neural Network</h2>
       <LocationDropDown />
       <br />
@@ -40,6 +42,7 @@ export default function NeuralNetworkPage() {
         Download Neural Network Logs
       </Link>
 
+      <RainGraph />
       <Link
         className="download"
         to={pathToLog}
