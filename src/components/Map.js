@@ -1,5 +1,5 @@
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
-import { selectIcon, findCenter } from './markerHelper';
+import { selectIcon, findCenter, setZoom } from './markerHelper';
 
 export default function Map({
   pins = [
@@ -24,7 +24,7 @@ export default function Map({
   return (
     <MapContainer
       center={findCenter(pins)}
-      zoom={pins.length <= 1 ? 1 : 14} // {setZoom()}
+      zoom={setZoom(pins)} //
       scrollWheelZoom={false}
       style={{
         height: '400px',
