@@ -1,9 +1,8 @@
 import { useContext } from 'react';
 import { LocationContext } from '../contexts/LocationContext';
 
-const RainMap = ({ rainGraph, size = 200, borderColor = '' }) => {
+const RainMap = ({ size = 200, borderColor = '' }) => {
   const { experiment } = useContext(LocationContext);
-  console.log(rainGraph);
   return (
     <img
       style={{

@@ -59,22 +59,18 @@ export default function HistoryPage() {
           <DateTimePicker onChange={setDate} value={date} />
         </div>
       </div>
-      <div className="maps">
-        <h3>Log</h3>
-        <>
-          {!!Object.entries(experiment).length && (
-            <ul>
-              <li>assimilation: {experiment.assimilationLog}</li>
-              <li>neuralNetwork: {experiment.neuralNetworkLog}</li>
-              <li>parameters: {experiment.parameters}</li>
-            </ul>
-          )}
-        </>
-        <h3>Sensor map</h3>
-        {isEnabled && <Map />}
-        <h3>Rain map</h3>
-        {isEnabled && <RainMap />}
-      </div>
+      `
+      {!isEnabled ? (
+        <p>Please select one localisation and one timestamp</p>
+      ) : (
+        <div className="maps">
+          <>{!!Object.entries(experiment).length && <p>test</p>}</>
+          <h3>Sensors map</h3>
+          {isEnabled && <Map />}
+          <h3>Rain map</h3>
+          {isEnabled && <RainMap />}
+        </div>
+      )}
       <div className="download-links">
         <Link
           className="download"
