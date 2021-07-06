@@ -12,7 +12,7 @@ import LocationDropDown from '../components/LocationDropDown';
 import API from '../APIClient';
 
 export default function HistoryPage() {
-  const { selectedLocationId, selectedLocation, experiment, setExperiment } =
+  const { selectedLocationId, experiment, setExperiment } =
     useContext(LocationContext);
   const [pathToLog] = useState(asset);
   const [date, setDate] = useState(new Date());
@@ -30,7 +30,7 @@ export default function HistoryPage() {
   const formattedDate = `${year}-${month}-${day}T${formattedHours}:${roundedMinutes}:00`;
 
   useEffect(() => {
-    if (selectedLocation !== 'None' && date !== null) {
+    if (selectedLocationId !== 'None' || selectedLocationId !== 'undefined') {
       setIsEnabled(true);
       history.push(
         `${location.pathname}?locationId=${selectedLocationId}&timestamp=${formattedDate}`
@@ -45,7 +45,7 @@ export default function HistoryPage() {
     } else {
       setIsEnabled(false);
     }
-  }, [date, selectedLocation]);
+  }, [formattedDate, selectedLocationId]);
 
   return (
     <>
@@ -59,65 +59,66 @@ export default function HistoryPage() {
           <DateTimePicker onChange={setDate} value={date} />
         </div>
       </div>
-      `
-      {!isEnabled ? (
-        <p>Please select one localisation and one timestamp</p>
+      {selectedLocationId !== 'undefined' ? (
+        <>
+          <div className="maps">
+            <>{!!Object.entries(experiment).length && <p>call works</p>}</>
+            <h3>Sensors map</h3>
+            {isEnabled && <Map />}
+            <h3>Rain map</h3>
+            {isEnabled && <RainMap />}
+          </div>
+          <div className="download-links">
+            <Link
+              className="download"
+              to={pathToLog}
+              target="_blank"
+              download
+              style={isEnabled ? null : { pointerEvents: 'none' }}
+            >
+              Get GLOBAL Log
+            </Link>
+            <Link
+              className="download"
+              to={pathToLog}
+              target="_blank"
+              download
+              style={isEnabled ? null : { pointerEvents: 'none' }}
+            >
+              Get Neural Network Log
+            </Link>
+            <Link
+              className="download"
+              to={pathToLog}
+              target="_blank"
+              download
+              style={isEnabled ? null : { pointerEvents: 'none' }}
+            >
+              Get Assimilation Log
+            </Link>
+            <Link
+              className="download"
+              to={pathToLog}
+              target="_blank"
+              download
+              style={isEnabled ? null : { pointerEvents: 'none' }}
+            >
+              Get assimilation parameters
+            </Link>
+            <Link
+              className="download"
+              to={pathToLog}
+              target="_blank"
+              download
+              style={isEnabled ? null : { pointerEvents: 'none' }}
+            >
+              Get assimilation costs
+            </Link>
+          </div>
+        </>
       ) : (
-        <div className="maps">
-          <>{!!Object.entries(experiment).length && <p>test</p>}</>
-          <h3>Sensors map</h3>
-          {isEnabled && <Map />}
-          <h3>Rain map</h3>
-          {isEnabled && <RainMap />}
-        </div>
+        <p>Please select one localisation</p>
       )}
-      <div className="download-links">
-        <Link
-          className="download"
-          to={pathToLog}
-          target="_blank"
-          download
-          style={isEnabled ? null : { pointerEvents: 'none' }}
-        >
-          Get GLOBAL Log
-        </Link>
-        <Link
-          className="download"
-          to={pathToLog}
-          target="_blank"
-          download
-          style={isEnabled ? null : { pointerEvents: 'none' }}
-        >
-          Get Neural Network Log
-        </Link>
-        <Link
-          className="download"
-          to={pathToLog}
-          target="_blank"
-          download
-          style={isEnabled ? null : { pointerEvents: 'none' }}
-        >
-          Get Assimilation Log
-        </Link>
-        <Link
-          className="download"
-          to={pathToLog}
-          target="_blank"
-          download
-          style={isEnabled ? null : { pointerEvents: 'none' }}
-        >
-          Get assimilation parameters
-        </Link>
-        <Link
-          className="download"
-          to={pathToLog}
-          target="_blank"
-          download
-          style={isEnabled ? null : { pointerEvents: 'none' }}
-        >
-          Get assimilation costs
-        </Link>
-      </div>
     </>
   );
 }

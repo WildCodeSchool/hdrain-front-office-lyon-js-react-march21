@@ -31,7 +31,7 @@ export default function HomePage() {
       </Link>
 
       <NavLink
-        to={`/history?locationId=${selectedLocationId}`}
+        to={`/history?locationId=${selectedLocationId}&timestamp=`}
         style={
           !selectedLocationId || selectedLocationId === 'None'
             ? { pointerEvents: 'none' }
