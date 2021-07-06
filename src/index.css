@@ -329,6 +329,7 @@ select {
   font-weight: 600;
   color: var(--accent-color);
   margin-bottom: 1em;
+  font-size: 1rem;
 }
 
 /** Map Component */

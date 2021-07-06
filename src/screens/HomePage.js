@@ -22,6 +22,7 @@ export default function HomePage() {
       <h2>Home</h2>
       <LocationDropdown />
       <Link
+        className="link"
         to={`/locations/neuralNetwork?locationId=${selectedLocationId}`}
         style={
           !selectedLocationId || selectedLocationId === 'None'
@@ -32,6 +33,7 @@ export default function HomePage() {
         Go to Neural Network Page
       </Link>
       <Link
+        className="link"
         to={`/locations/assimilation?locationId=${selectedLocationId}`}
         style={
           !selectedLocationId || selectedLocationId === 'None'
@@ -43,6 +45,7 @@ export default function HomePage() {
       </Link>
 
       <NavLink
+        className="link"
         to={`/history?locationId=${selectedLocationId}`}
         style={
           !selectedLocationId || selectedLocationId === 'None'
