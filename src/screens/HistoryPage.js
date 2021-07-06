@@ -14,7 +14,7 @@ export default function HistoryPage() {
   const [pathToLog] = useState(asset);
   const [date, setDate] = useState(new Date());
   const [isEnabled, setIsEnabled] = useState(false);
-  const [parameters, setParameters] = useState([]);
+  const [experiment, setExperiment] = useState({});
   const location = useLocation();
   const history = useHistory();
 
@@ -26,7 +26,7 @@ export default function HistoryPage() {
   const rounded = new Date(Math.round(date.getTime() / coeff) * coeff);
   const roundedMinutes = `0${rounded.getMinutes()}`.slice(-2);
   const formattedDate = `${year}-${month}-${day}T${formattedHours}:${roundedMinutes}:00`;
-  console.log(day, formattedHours);
+  // console.log(day, formattedHours);
 
   useEffect(() => {
     if (selectedLocation !== 'None' && date !== null) {
@@ -38,9 +38,9 @@ export default function HistoryPage() {
         `/locations/${selectedLocationId}/experiments/?timestamp=${formattedDate}`
       )
         .then((res) => {
-          setParameters(res.data);
+          setExperiment(res.data);
         })
-        .catch((err) => console.log(err));
+        .catch(window.console.error);
     } else {
       setIsEnabled(false);
     }
@@ -61,23 +61,25 @@ export default function HistoryPage() {
       <div className="maps">
         <h3>Log</h3>
         <>
-          {!!parameters.length &&
-            parameters.map((parameter) => (
-              <ul>
-                <li>assimilation: {parameter.assimilationLog}</li>
-                <li>neuralNetwork: {parameter.neuralNetworkLog}</li>
-                <li>parameters: {parameter.parameters}</li>
-                <li>raingraph: {parameter.rainGraph}</li>
-                <li>costGraph: {parameter.costGraph}</li>
-              </ul>
-            ))}
+          {!!Object.entries(experiment).length && (
+            <ul>
+              <li>assimilation: {experiment.assimilationLog}</li>
+              <li>neuralNetwork: {experiment.neuralNetworkLog}</li>
+              <li>parameters: {experiment.parameters}</li>
+              <li>raingraph: {experiment.rainGraph}</li>
+              <li>costGraph: {experiment.costGraph}</li>
+            </ul>
+          )}
         </>
         <h3>Sensor map</h3>
         {isEnabled && <Map />}
         <h3>Rain map</h3>
         {isEnabled && (
           <img
-            src="http://localhost:5000/upload/images/rain2.jpg"
+            src={
+              experiment?.rainGraph ||
+              'https://via.placeholder.com/300/300/?Text=RainMap'
+            }
             alt="rainMap"
             width="200"
             height="200"
