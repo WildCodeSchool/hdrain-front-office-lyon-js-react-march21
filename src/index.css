@@ -329,9 +329,28 @@ select {
   font-weight: 600;
   color: var(--accent-color);
   margin-bottom: 1em;
+  font-size: 1rem;
 }
 
-/* Form */
+/** Map Component */
+
+.leaflet-popup-content h4 {
+  font-weight: bold;
+
+  color: var(--accent-color);
+  margin-bottom: 0;
+}
+
+.leaflet-popup-content p {
+  margin: 2px;
+}
+
+.leaflet-popup-content {
+  height: fit-content;
+  width: fit-content;
+}
+
+/** Form */
 .form {
   display: flex;
   flex-direction: column;

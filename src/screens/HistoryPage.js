@@ -4,10 +4,10 @@ import { Link, useHistory } from 'react-router-dom';
 import { useLocation } from 'react-router';
 import { LocationContext } from '../contexts/LocationContext';
 import asset from '../assets/sensor.png';
-import rainMMap from '../assets/rainmap.png';
+import rainMap from '../assets/rainmap.png';
+import API from '../APIClient';
 import Map from '../components/Map';
 import LocationDropDown from '../components/LocationDropDown';
-import API from '../APIClient';
 
 export default function HistoryPage() {
   const { selectedLocationId, selectedLocation } = useContext(LocationContext);
@@ -17,7 +17,7 @@ export default function HistoryPage() {
   const [parameters, setParameters] = useState([]);
   const location = useLocation();
   const history = useHistory();
-
+  const [sensorsLocation, setSensorsLocation] = useState([]);
   const coeff = 1000 * 60 * 5;
   const year = date.getFullYear();
   const month = `${date.getMonth() + 1}`.padStart(2, '0');
@@ -26,13 +26,14 @@ export default function HistoryPage() {
   const rounded = new Date(Math.round(date.getTime() / coeff) * coeff);
   const roundedMinutes = `0${rounded.getMinutes()}`.slice(-2);
   const formattedDate = `${year}-${month}-${day}T${formattedHours}:${roundedMinutes}:00`;
-  console.log(day, formattedHours);
+
   useEffect(() => {
     if (selectedLocation !== 'None' && date !== null) {
       setIsEnabled(true);
       history.push(
         `${location.pathname}?locationId=${selectedLocationId}&timestamp=${formattedDate}`
       );
+
       API.get(
         `/locations/${selectedLocationId}/experiments/?timestamp=${formattedDate}`
       )
@@ -40,6 +41,14 @@ export default function HistoryPage() {
           setParameters(res.data);
         })
         .catch((err) => console.log(err));
+      API.get(
+        `locations/${selectedLocationId}/sensors/?timestamp=${formattedDate}`
+      )
+        .then((response) => response.data)
+        .then((data) => {
+          console.log(data);
+          setSensorsLocation(data);
+        });
     } else {
       setIsEnabled(false);
     }
@@ -62,7 +71,7 @@ export default function HistoryPage() {
         <>
           {!!parameters.length &&
             parameters.map((parameter) => (
-              <ul>
+              <ul key={parameter.id}>
                 <li>assimilation: {parameter.assimilationLog}</li>
                 <li>neuralNetwork: {parameter.neuralNetworkLog}</li>
                 <li>parameters: {parameter.parameters}</li>
@@ -72,9 +81,9 @@ export default function HistoryPage() {
             ))}
         </>
         <h3>Sensor map</h3>
-        {isEnabled && <Map />}
+        {isEnabled && <Map pins={sensorsLocation} />}
         <h3>Rain map</h3>
-        {isEnabled && <img src={rainMMap} alt="rainMap" />}
+        {isEnabled && <img src={rainMap} alt="rainMap" />}
       </div>
       <div className="download-links">
         <Link
