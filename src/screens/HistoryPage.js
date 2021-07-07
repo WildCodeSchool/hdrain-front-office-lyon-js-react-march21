@@ -38,13 +38,11 @@ export default function HistoryPage() {
         `/locations/${selectedLocationId}/experiments/?timestamp=${formattedDate}`
       )
         .then((res) => {
-          console.log(res);
           setParameters(res.data);
-          console.log(res.data);
         })
         .catch((err) => console.log(err));
       API.get(
-        `locations/${selectedLocationId}/sensors/status/?experimentId=${[0].id}`
+        `locations/${selectedLocationId}/sensors/?timestamp=${formattedDate}`
       )
         .then((response) => response.data)
         .then((data) => {

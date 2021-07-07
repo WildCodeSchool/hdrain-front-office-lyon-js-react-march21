@@ -5,18 +5,21 @@ import greenSensorPath from '../assets/sensor-green.png';
 import locationPath from '../assets/sensor.png';
 
 // Returns a different icon depending on the type of pin and its color value
-const selectIcon = (type = 'location', status) => {
+const selectIcon = (type = 'location', status = '0') => {
   let iconPath = '';
   if (type === 'location') {
     iconPath = locationPath;
   } else {
-    if (status === 0) {
+    // SENSOR IS BROKEN OR OFFLINE
+    if (status === '0') {
       iconPath = redSensorPath;
     }
-    if (status === 1) {
+    // SENSOR IS WORKING ☀️
+    if (status === '1') {
       iconPath = greenSensorPath;
     }
-    if (status === 2) {
+    // SENSOR IS WORKING IT'S 🌧
+    if (status === '2') {
       iconPath = blueSensorPath;
     }
   }
@@ -25,7 +28,7 @@ const selectIcon = (type = 'location', status) => {
   const iconWidth = 50;
 
   return new L.Icon({
-    iconUrl: iconPath,
+    iconUrl: { iconPath },
     iconRetinaUrl: iconPath,
     iconAnchor: [iconWidth / 2, iconHeight],
     popupAnchor: [0, -iconHeight],
