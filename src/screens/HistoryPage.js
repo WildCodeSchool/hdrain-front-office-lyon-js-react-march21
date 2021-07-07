@@ -31,10 +31,10 @@ export default function HistoryPage() {
 
   useEffect(() => {
     if (selectedLocationId !== 'None' || selectedLocationId !== 'undefined') {
-      setIsEnabled(true);
       history.push(
         `${location.pathname}?locationId=${selectedLocationId}&timestamp=${formattedDate}`
       );
+
       API.get(
         `/locations/${selectedLocationId}/experiments/?timestamp=${formattedDate}`
       )
@@ -42,6 +42,7 @@ export default function HistoryPage() {
           setExperiment(res.data);
         })
         .catch(window.console.error);
+      setIsEnabled(true);
     } else {
       setIsEnabled(false);
     }
@@ -59,66 +60,66 @@ export default function HistoryPage() {
           <DateTimePicker onChange={setDate} value={date} />
         </div>
       </div>
-      {selectedLocationId !== 'undefined' ? (
+      {selectedLocationId !== 'undefined' && selectedLocationId !== 'None' ? (
         <>
           <div className="maps">
             <>{!!Object.entries(experiment).length && <p>call works</p>}</>
             <h3>Sensors map</h3>
-            {isEnabled && <Map />}
+            <Map />
             <h3>Rain map</h3>
-            {isEnabled && <RainMap />}
-          </div>
-          <div className="download-links">
-            <Link
-              className="download"
-              to={pathToLog}
-              target="_blank"
-              download
-              style={isEnabled ? null : { pointerEvents: 'none' }}
-            >
-              Get GLOBAL Log
-            </Link>
-            <Link
-              className="download"
-              to={pathToLog}
-              target="_blank"
-              download
-              style={isEnabled ? null : { pointerEvents: 'none' }}
-            >
-              Get Neural Network Log
-            </Link>
-            <Link
-              className="download"
-              to={pathToLog}
-              target="_blank"
-              download
-              style={isEnabled ? null : { pointerEvents: 'none' }}
-            >
-              Get Assimilation Log
-            </Link>
-            <Link
-              className="download"
-              to={pathToLog}
-              target="_blank"
-              download
-              style={isEnabled ? null : { pointerEvents: 'none' }}
-            >
-              Get assimilation parameters
-            </Link>
-            <Link
-              className="download"
-              to={pathToLog}
-              target="_blank"
-              download
-              style={isEnabled ? null : { pointerEvents: 'none' }}
-            >
-              Get assimilation costs
-            </Link>
+            <RainMap />
           </div>
         </>
       ) : (
-        <p>Please select one localisation</p>
+        <p>Please select one location</p>
       )}
+      <div className="download-links">
+        <Link
+          className="download"
+          to={pathToLog}
+          target="_blank"
+          download
+          style={isEnabled ? null : { pointerEvents: 'none' }}
+        >
+          Get GLOBAL Log
+        </Link>
+        <Link
+          className="download"
+          to={pathToLog}
+          target="_blank"
+          download
+          style={isEnabled ? null : { pointerEvents: 'none' }}
+        >
+          Get Neural Network Log
+        </Link>
+        <Link
+          className="download"
+          to={pathToLog}
+          target="_blank"
+          download
+          style={isEnabled ? null : { pointerEvents: 'none' }}
+        >
+          Get Assimilation Log
+        </Link>
+        <Link
+          className="download"
+          to={pathToLog}
+          target="_blank"
+          download
+          style={isEnabled ? null : { pointerEvents: 'none' }}
+        >
+          Get assimilation parameters
+        </Link>
+        <Link
+          className="download"
+          to={pathToLog}
+          target="_blank"
+          download
+          style={isEnabled ? null : { pointerEvents: 'none' }}
+        >
+          Get assimilation costs
+        </Link>
+      </div>
     </>
   );
 }
