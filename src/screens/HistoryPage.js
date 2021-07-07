@@ -30,7 +30,10 @@ export default function HistoryPage() {
   const formattedDate = `${year}-${month}-${day}T${formattedHours}:${roundedMinutes}:00`;
 
   useEffect(() => {
-    if (selectedLocationId !== 'None' || selectedLocationId !== 'undefined') {
+    if (
+      parseInt(selectedLocationId, 10) !== 0 &&
+      selectedLocationId !== undefined
+    ) {
       history.push(
         `${location.pathname}?locationId=${selectedLocationId}&timestamp=${formattedDate}`
       );
@@ -41,13 +44,13 @@ export default function HistoryPage() {
         .then((res) => {
           setExperiment(res.data);
         })
-        .catch(window.console.error);
-      setIsEnabled(true);
+        .catch(window.console.error)
+        .finally(setIsEnabled(true));
     } else {
       setIsEnabled(false);
     }
   }, [formattedDate, selectedLocationId]);
-
+  console.log(isEnabled);
   return (
     <>
       <h2>History</h2>
@@ -60,7 +63,7 @@ export default function HistoryPage() {
           <DateTimePicker onChange={setDate} value={date} />
         </div>
       </div>
-      {selectedLocationId !== 'undefined' && selectedLocationId !== 'None' ? (
+      {isEnabled ? (
         <>
           <div className="maps">
             <>{!!Object.entries(experiment).length && <p>call works</p>}</>
