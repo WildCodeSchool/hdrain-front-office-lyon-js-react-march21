@@ -4,7 +4,6 @@ import { Link, useHistory } from 'react-router-dom';
 import { useLocation } from 'react-router';
 import { LocationContext } from '../contexts/LocationContext';
 import asset from '../assets/sensor.png';
-// import rainMMap from '../assets/rainmap.png';
 import Map from '../components/Map';
 import RainMap from '../components/RainMap';
 
