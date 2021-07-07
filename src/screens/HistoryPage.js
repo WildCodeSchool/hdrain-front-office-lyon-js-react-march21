@@ -50,7 +50,7 @@ export default function HistoryPage() {
       setIsEnabled(false);
     }
   }, [formattedDate, selectedLocationId]);
-  console.log(isEnabled);
+
   return (
     <>
       <h2>History</h2>
@@ -72,57 +72,55 @@ export default function HistoryPage() {
             <h3>Rain map</h3>
             <RainMap />
           </div>
+          <div className="download-links">
+            <Link
+              className="download"
+              to={pathToLog}
+              target="_blank"
+              download
+              style={isEnabled ? null : { pointerEvents: 'none' }}
+            >
+              Get GLOBAL Log
+            </Link>
+            <Link
+              className="download"
+              to={pathToLog}
+              target="_blank"
+              download
+              style={isEnabled ? null : { pointerEvents: 'none' }}
+            >
+              Get Neural Network Log
+            </Link>
+            <Link
+              className="download"
+              to={pathToLog}
+              target="_blank"
+              download
+              style={isEnabled ? null : { pointerEvents: 'none' }}
+            >
+              Get Assimilation Log
+            </Link>
+            <Link
+              className="download"
+              to={pathToLog}
+              target="_blank"
+              download
+              style={isEnabled ? null : { pointerEvents: 'none' }}
+            >
+              Get assimilation parameters
+            </Link>
+            <Link
+              className="download"
+              to={pathToLog}
+              target="_blank"
+              download
+              style={isEnabled ? null : { pointerEvents: 'none' }}
+            >
+              Get assimilation costs
+            </Link>
+          </div>
         </>
-      ) : (
-        <p>Please select one location</p>
-      )}
-      <div className="download-links">
-        <Link
-          className="download"
-          to={pathToLog}
-          target="_blank"
-          download
-          style={isEnabled ? null : { pointerEvents: 'none' }}
-        >
-          Get GLOBAL Log
-        </Link>
-        <Link
-          className="download"
-          to={pathToLog}
-          target="_blank"
-          download
-          style={isEnabled ? null : { pointerEvents: 'none' }}
-        >
-          Get Neural Network Log
-        </Link>
-        <Link
-          className="download"
-          to={pathToLog}
-          target="_blank"
-          download
-          style={isEnabled ? null : { pointerEvents: 'none' }}
-        >
-          Get Assimilation Log
-        </Link>
-        <Link
-          className="download"
-          to={pathToLog}
-          target="_blank"
-          download
-          style={isEnabled ? null : { pointerEvents: 'none' }}
-        >
-          Get assimilation parameters
-        </Link>
-        <Link
-          className="download"
-          to={pathToLog}
-          target="_blank"
-          download
-          style={isEnabled ? null : { pointerEvents: 'none' }}
-        >
-          Get assimilation costs
-        </Link>
-      </div>
+      ) : null}
     </>
   );
 }
