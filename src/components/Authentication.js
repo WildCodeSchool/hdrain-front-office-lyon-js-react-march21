@@ -1,6 +1,8 @@
+import { useContext } from 'react';
 import { useToasts } from 'react-toast-notifications';
 import { useForm } from 'react-hook-form';
 import API from '../APIClient';
+import CurrentUserContext from '../contexts/currentUserContext';
 
 export default function LoginForm() {
   const { addToast } = useToasts();
@@ -23,6 +25,7 @@ export default function LoginForm() {
           appearance: 'success',
           autoDismiss: true,
         });
+        useContext(CurrentUserContext).value = true;
       })
       .catch((err) => {
         window.console.error(err);
