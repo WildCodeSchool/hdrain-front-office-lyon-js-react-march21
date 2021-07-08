@@ -51,7 +51,6 @@ export default function HistoryPage() {
       )
         .then((response) => response.data)
         .then((data) => {
-          console.log(data);
           setSensorsLocation(data);
         });
     } else {
