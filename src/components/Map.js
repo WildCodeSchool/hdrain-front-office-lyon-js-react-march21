@@ -1,5 +1,5 @@
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
-import { selectIcon, findCenter } from './markerHelper';
+import { selectIcon, findCenter, setZoom } from './markerHelper';
 
 export default function Map({
   pins = [
@@ -8,23 +8,23 @@ export default function Map({
       lat: 5.316666,
       name: 'Abidjan',
       description: 'The weather is nice this time of year',
-      color: 'green',
-      type: 'sensor',
+      type: 'location',
     },
+
     {
       lng: -4.133333,
       lat: 5.216666,
       name: 'zef',
       description: 'ezf',
-      color: 'blue',
-      type: 'location',
+      code: 2,
+      type: 'sensor',
     },
   ],
 }) {
   return (
     <MapContainer
       center={findCenter(pins)}
-      zoom={pins.length <= 1 ? 13 : 11}
+      zoom={setZoom(pins)} //
       scrollWheelZoom={false}
       style={{
         height: '400px',
@@ -36,15 +36,17 @@ export default function Map({
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
       {pins.length &&
-        pins.map(({ name, description, color, lat, lng, type }) => (
-          <Marker
-            key={name}
-            icon={selectIcon(type, color)}
-            position={[lat, lng]}
-          >
+        pins.map(({ id, name, sensorNumber, spotName, status, lat, lng }) => (
+          <Marker key={name} icon={selectIcon(status)} position={[lat, lng]}>
             <Popup>
-              <h4>{name}</h4>
-              <p>{description}</p>
+              <h4>
+                {name} {spotName}
+              </h4>
+              <p>Sensor id : {id} </p>
+              <p>Sensor # {sensorNumber}</p>
+              <p>Latitude : {lat}</p>
+              <p>Longitude : {lng}</p>
+              <p>status : {status}</p>
             </Popup>
           </Marker>
         ))}

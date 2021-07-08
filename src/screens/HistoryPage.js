@@ -4,11 +4,11 @@ import { Link, useHistory } from 'react-router-dom';
 import { useLocation } from 'react-router';
 import { LocationContext } from '../contexts/LocationContext';
 import asset from '../assets/sensor.png';
+import API from '../APIClient';
 import Map from '../components/Map';
 import RainMap from '../components/RainMap';
 
 import LocationDropDown from '../components/LocationDropDown';
-import API from '../APIClient';
 
 export default function HistoryPage() {
   const { selectedLocationId, experiment, setExperiment } =
@@ -18,7 +18,7 @@ export default function HistoryPage() {
   const [isEnabled, setIsEnabled] = useState(false);
   const location = useLocation();
   const history = useHistory();
-
+  const [sensorsLocation, setSensorsLocation] = useState([]);
   const coeff = 1000 * 60 * 5;
   const year = date.getFullYear();
   const month = `${date.getMonth() + 1}`.padStart(2, '0');
@@ -45,6 +45,15 @@ export default function HistoryPage() {
         })
         .catch(window.console.error)
         .finally(setIsEnabled(true));
+
+      API.get(
+        `locations/${selectedLocationId}/sensors/?timestamp=${formattedDate}`
+      )
+        .then((response) => response.data)
+        .then((data) => {
+          console.log(data);
+          setSensorsLocation(data);
+        });
     } else {
       setIsEnabled(false);
     }
@@ -67,7 +76,7 @@ export default function HistoryPage() {
           <div className="maps">
             <>{!!Object.entries(experiment).length && <p>call works</p>}</>
             <h3>Sensors map</h3>
-            <Map />
+            <Map pins={sensorsLocation} />
             <h3>Rain map</h3>
             <RainMap />
           </div>
