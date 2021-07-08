@@ -226,6 +226,10 @@ Components
   border: none;
 }
 
+.highcharts-credits {
+  display: none;
+}
+
 .navList {
   background-color: var(--text-secondary);
   margin: 0;
@@ -325,6 +329,25 @@ select {
   font-weight: 600;
   color: var(--accent-color);
   margin-bottom: 1em;
+  font-size: 1rem;
+}
+
+/** Map Component */
+
+.leaflet-popup-content h4 {
+  font-weight: bold;
+
+  color: var(--accent-color);
+  margin-bottom: 0;
+}
+
+.leaflet-popup-content p {
+  margin: 2px;
+}
+
+.leaflet-popup-content {
+  height: fit-content;
+  width: fit-content;
 }
 
 /** Form */

@@ -6,6 +6,7 @@ import { useHistory } from 'react-router-dom';
 export const LocationContext = createContext();
 
 export const LocationContextProvider = ({ children }) => {
+  const [experiment, setExperiment] = useState({});
   const [locationList, setLocationList] = useState([
     {
       locationName: 'Abidjan',
@@ -25,7 +26,6 @@ export const LocationContextProvider = ({ children }) => {
 
   const queryParams = qs.parse(location.search);
   const selectedLocationId = queryParams.locationId;
-  const isParamsEmpty = Object.keys(queryParams).length === 0;
 
   const fetchLocation = () => {
     setLocationList(['None', 'Abidjan', 'Antibes', 'Toulouse']);
@@ -42,7 +42,8 @@ export const LocationContextProvider = ({ children }) => {
         fetchLocation,
         selectedLocationId,
         setLocationId,
-        isParamsEmpty,
+        experiment,
+        setExperiment,
       }}
     >
       {children}
