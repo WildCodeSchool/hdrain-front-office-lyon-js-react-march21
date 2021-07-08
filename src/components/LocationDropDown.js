@@ -18,7 +18,7 @@ function DropDown() {
           }}
         >
           Location
-          <option key="None" value="None">
+          <option key="None" value={0}>
             None
           </option>
           {locationList.map((location) => (

@@ -6,6 +6,7 @@ import { useHistory } from 'react-router-dom';
 export const LocationContext = createContext();
 
 export const LocationContextProvider = ({ children }) => {
+  const [experiment, setExperiment] = useState({});
   const [locationList, setLocationList] = useState([
     {
       locationName: 'Abidjan',
@@ -41,6 +42,8 @@ export const LocationContextProvider = ({ children }) => {
         fetchLocation,
         selectedLocationId,
         setLocationId,
+        experiment,
+        setExperiment,
       }}
     >
       {children}

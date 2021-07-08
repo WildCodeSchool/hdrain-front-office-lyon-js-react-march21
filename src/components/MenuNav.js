@@ -25,11 +25,6 @@ export default function MenuNav() {
           </NavLink>
         </li>
         <li className="navItem">
-          <NavLink className="navLink" exact to="/locations/virtualMachine">
-            Virtual Machine
-          </NavLink>
-        </li>
-        <li className="navItem">
           <NavLink className="navLink" exact to="/logIn">
             Log In
           </NavLink>
