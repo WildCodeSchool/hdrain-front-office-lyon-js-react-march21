@@ -47,7 +47,7 @@ export default function LoginForm() {
       <input
         {...register('username', { required: true })}
         autoComplete="username"
-        placeholder="Enter your email"
+        placeholder="Enter your username"
         type="text"
       />
       {errors.username && (
