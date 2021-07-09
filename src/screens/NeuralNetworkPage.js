@@ -12,11 +12,13 @@ export default function NeuralNetworkPage() {
   const { selectedLocationId } = useContext(LocationContext);
 
   useEffect(() => {
-    API.get(`locations/${selectedLocationId}/sensors/`)
-      .then((response) => response.data)
-      .then((data) => {
-        setSensorsLocation(data);
-      });
+    if (selectedLocationId && !!selectedLocationId) {
+      API.get(`locations/${selectedLocationId}/sensors/`)
+        .then((response) => response.data)
+        .then((data) => {
+          setSensorsLocation(data);
+        });
+    }
   }, [selectedLocationId]);
 
   const [pathToLog] = useState(asset);

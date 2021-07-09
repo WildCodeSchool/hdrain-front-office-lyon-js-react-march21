@@ -29,10 +29,7 @@ export default function HistoryPage() {
   const formattedDate = `${year}-${month}-${day}T${formattedHours}:${roundedMinutes}:00`;
 
   useEffect(() => {
-    if (
-      parseInt(selectedLocationId, 10) !== 0 &&
-      selectedLocationId !== undefined
-    ) {
+    if (selectedLocationId && !!selectedLocationId) {
       history.push(
         `${location.pathname}?locationId=${selectedLocationId}&timestamp=${formattedDate}`
       );
