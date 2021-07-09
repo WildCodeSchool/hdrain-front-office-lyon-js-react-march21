@@ -5,10 +5,10 @@ import { LocationContext } from '../contexts/LocationContext';
 import asset from '../assets/sensor.png';
 import LocationDropDown from '../components/LocationDropDown';
 import AssimilationInfos from '../components/AssimilationInfos';
-import Map from '../components/Map';
 
 export default function DataAssimilationPage() {
   const { selectedLocation, selectedLocationId } = useContext(LocationContext);
+
   const [pathToLog] = useState(asset);
   const [showParams, setShowParams] = useState(false);
   const [locationParams, setLocationParams] = useState(['None']);
@@ -57,7 +57,6 @@ export default function DataAssimilationPage() {
             assimilationParams={locationParams}
             show={showParams}
           />
-          <Map />
         </>
       ) : (
         ''

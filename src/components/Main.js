@@ -4,8 +4,6 @@ import HistoryPage from '../screens/HistoryPage';
 import HomePage from '../screens/HomePage';
 import DataAssimilationPage from '../screens/DataAssimilationPage';
 import NeuralNetworkPage from '../screens/NeuralNetworkPage';
-import VirtualMachinePage from '../screens/VirtualMachinePage';
-// import LogInPage from '../screens/LogInPage';
 
 export default function Main() {
   return (
@@ -24,11 +22,6 @@ export default function Main() {
             exact
             path="/locations/assimilation"
             component={DataAssimilationPage}
-          />
-          <Route
-            exact
-            path="/locations/virtualMachine"
-            component={VirtualMachinePage}
           />
         </Switch>
       </LocationContextProvider>

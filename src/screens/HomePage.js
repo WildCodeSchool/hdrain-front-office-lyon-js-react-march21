@@ -1,15 +1,28 @@
-import { React, useContext } from 'react';
+import { React, useContext, useState, useEffect } from 'react';
 import { NavLink, Link } from 'react-router-dom';
 import { LocationContext } from '../contexts/LocationContext';
+import API from '../APIClient';
 import LocationDropdown from '../components/LocationDropDown';
+import Map from '../components/Map';
 
 export default function HomePage() {
+  const [locations, setLocations] = useState([]);
+
+  useEffect(() => {
+    API.get('/locations')
+      .then((response) => response.data)
+      .then((data) => {
+        setLocations(data);
+      });
+  }, []);
+
   const { selectedLocationId } = useContext(LocationContext);
   return (
     <>
       <h2>Home</h2>
       <LocationDropdown />
       <Link
+        className="link"
         to={`/locations/neuralNetwork?locationId=${selectedLocationId}`}
         style={
           !selectedLocationId || selectedLocationId === 'None'
@@ -20,6 +33,7 @@ export default function HomePage() {
         Go to Neural Network Page
       </Link>
       <Link
+        className="link"
         to={`/locations/assimilation?locationId=${selectedLocationId}`}
         style={
           !selectedLocationId || selectedLocationId === 'None'
@@ -31,7 +45,8 @@ export default function HomePage() {
       </Link>
 
       <NavLink
-        to={`/history?locationId=${selectedLocationId}`}
+        className="link"
+        to={`/history?locationId=${selectedLocationId}&timestamp=`}
         style={
           !selectedLocationId || selectedLocationId === 'None'
             ? { pointerEvents: 'none' }
@@ -41,12 +56,7 @@ export default function HomePage() {
         Go to History Page
       </NavLink>
       <br />
-      <div>
-        <img
-          src="https://www.kindpng.com/picc/m/331-3317031_simple-silhouette-world-map-hd-png-download.png"
-          alt="worldmap"
-        />
-      </div>
+      <div>{locations.length > 0 && <Map pins={locations} />}</div>
     </>
   );
 }

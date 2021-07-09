@@ -71,15 +71,6 @@ export default function Header() {
                 <NavLink
                   className="navLink"
                   exact
-                  to="/locations/virtualMachine"
-                >
-                  Virtual Machine
-                </NavLink>
-              </li>
-              <li className="navItem">
-                <NavLink
-                  className="navLink"
-                  exact
                   to="/"
                   onClick={() => {
                     logout();

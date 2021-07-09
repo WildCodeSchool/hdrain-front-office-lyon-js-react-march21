@@ -42,11 +42,6 @@ export default function MenuNav({ auth = true }) {
             </NavLink>
           </li>
           <li className="navItem">
-            <NavLink className="navLink" exact to="/locations/virtualMachine">
-              Virtual Machine
-            </NavLink>
-          </li>
-          <li className="navItem">
             <NavLink
               className="navLink"
               exact
