@@ -31,7 +31,6 @@ export default function Header() {
         appearance: 'success',
         autoDismiss: true,
       });
-      setAuth(false);
       history.push('/');
     });
   };
@@ -39,13 +38,12 @@ export default function Header() {
 
   return (
     <CurrentUser.Provider value={auth}>
-      <header>
-        <div className="upper-header">
-          <img className="nav-logo" src={logo} alt="HD RAIN" />
-
-          <h1 className="site-title">HD Rain Monitoring Tool</h1>
-        </div>
-        {auth ? (
+      {auth ? (
+        <header>
+          <div className="upper-header">
+            <img className="nav-logo" src={logo} alt="HD RAIN" />
+            <h1 className="site-title">HD Rain Monitoring Tool</h1>
+          </div>
           <nav className="navBar">
             <ul className="navList">
               <li className="navItem">
@@ -87,8 +85,8 @@ export default function Header() {
                   exact
                   to="/"
                   onClick={() => {
-                    setAuth(false);
                     logout();
+                    setAuth(false);
                   }}
                 >
                   Log out
@@ -96,10 +94,18 @@ export default function Header() {
               </li>
             </ul>
           </nav>
-        ) : (
+        </header>
+      ) : (
+        <>
+          <header>
+            <div className="upper-header">
+              <img className="nav-logo" src={logo} alt="HD RAIN" />
+              <h1 className="site-title">HD Rain Monitoring Tool</h1>
+            </div>
+          </header>
           <Authentification />
-        )}
-      </header>
+        </>
+      )}
     </CurrentUser.Provider>
   );
 }
