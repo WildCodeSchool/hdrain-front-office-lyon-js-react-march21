@@ -19,7 +19,7 @@ export default function Header() {
       if (!res.data.username) return setAuth(false);
       return setAuth(true);
     } catch (err) {
-      return console.error(err);
+      return console.log('The user is not connected');
     }
   }, []);
 

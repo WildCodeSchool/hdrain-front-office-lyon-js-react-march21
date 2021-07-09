@@ -1,5 +1,3 @@
-/* eslint-disable no-unused-vars */
-import { useContext, useState } from 'react';
 import { useToasts } from 'react-toast-notifications';
 import { useForm } from 'react-hook-form';
 import { useHistory } from 'react-router';
@@ -9,7 +7,6 @@ import API from '../APIClient';
 export default function LoginForm() {
   const { addToast } = useToasts();
 
-  const [loginError, setLoginError] = useState(null);
   const history = useHistory();
   const {
     register,
@@ -24,7 +21,6 @@ export default function LoginForm() {
   });
 
   const onSubmit = ({ username, password, stayConnected }) => {
-    setLoginError(null);
     API.post(`/auth/login`, { username, password, stayConnected })
       .then(() => {
         const { redirectUrl } = qs.parse(window.location.search);
