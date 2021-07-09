@@ -17,8 +17,6 @@ export default function Header() {
     try {
       const res = await API.get('/currentUser');
       if (!res.data.username) return setAuth(false);
-      console.log(`1 ${auth}`);
-      console.log(res.data.username);
       return setAuth(true);
     } catch (err) {
       return console.error(err);
@@ -34,7 +32,6 @@ export default function Header() {
       history.push('/');
     });
   };
-  console.log(`2 ${auth}`);
 
   return (
     <CurrentUser.Provider value={auth}>
