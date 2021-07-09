@@ -23,7 +23,6 @@ export default function NeuralNetworkPage() {
 
   return (
     <>
-      {/* Add props : inputDampening, inputRain, inputTime */}
       <h2>Neural Network</h2>
       <LocationDropDown />
       <Map pins={sensorsLocation} />
