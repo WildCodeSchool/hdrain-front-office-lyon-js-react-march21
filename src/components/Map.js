@@ -35,7 +35,7 @@ export default function Map({
         attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
-      {pins.length &&
+      {!!pins.length &&
         pins.map(({ id, name, sensorNumber, spotName, status, lat, lng }) => (
           <Marker key={name} icon={selectIcon(status)} position={[lat, lng]}>
             <Popup>
