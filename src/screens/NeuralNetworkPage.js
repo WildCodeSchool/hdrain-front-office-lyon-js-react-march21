@@ -5,6 +5,7 @@ import API from '../APIClient';
 import LocationDropDown from '../components/LocationDropDown';
 import Map from '../components/Map';
 import RainGraph from '../components/RainGraph';
+import displayRelativeTimeFromNow from '../components/dateHelper';
 
 export default function NeuralNetworkPage() {
   const [sensorsLocation, setSensorsLocation] = useState([]);
@@ -22,15 +23,19 @@ export default function NeuralNetworkPage() {
     API.get(`/locations/${selectedLocationId}/experiments/`)
       .then((res) => {
         setExperiment(res.data);
+        console.log(res.data);
       })
       .catch(window.console.error);
   }, [selectedLocationId]);
 
   return (
     <>
-      {/* Add props : inputDampening, inputRain, inputTime */}
       <h2>Neural Network</h2>
       <LocationDropDown />
+      <p>
+        Last experiment:{' '}
+        {displayRelativeTimeFromNow(new Date(experiment.timestamp))}
+      </p>
       <Map pins={sensorsLocation} />
       <RainGraph />
       <Link
