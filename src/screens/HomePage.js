@@ -10,10 +10,8 @@ export default function HomePage() {
 
   useEffect(() => {
     API.get('/locations')
-      .then((response) => response.data)
-      .then((data) => {
-        setLocations(data);
-      });
+      .then((response) => setLocations(response.data))
+      .catch(window.console.error);
   }, []);
 
   const { selectedLocationId } = useContext(LocationContext);
