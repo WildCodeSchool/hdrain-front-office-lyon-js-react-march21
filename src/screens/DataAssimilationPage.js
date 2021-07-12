@@ -1,10 +1,10 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-
 import { LocationContext } from '../contexts/LocationContext';
 import asset from '../assets/sensor.png';
 import LocationDropDown from '../components/LocationDropDown';
 import AssimilationInfos from '../components/AssimilationInfos';
+import displayRelativeTimeFromNow from '../components/dateHelper';
 
 export default function DataAssimilationPage() {
   const { selectedLocation, selectedLocationId } = useContext(LocationContext);
@@ -51,6 +51,10 @@ export default function DataAssimilationPage() {
     <>
       <h2>Data Assimilation</h2>
       <LocationDropDown />
+      <p>
+        Last experiment:{' '}
+        {displayRelativeTimeFromNow(new Date(experiment.timestamp))}
+      </p>
       {showParams ? (
         <>
           <AssimilationInfos
@@ -58,23 +62,8 @@ export default function DataAssimilationPage() {
             show={showParams}
           />
         </>
-      ) : (
-        ''
-      )}
+      ) : null}
       <br />
-      <Link
-        className="download"
-        to={pathToLog}
-        target="_blank"
-        download
-        style={
-          !selectedLocationId || selectedLocationId === 'None'
-            ? { pointerEvents: 'none' }
-            : null
-        }
-      >
-        Download Global Log
-      </Link>
       <Link
         className="download"
         to={pathToLog}

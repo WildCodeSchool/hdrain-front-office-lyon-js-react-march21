@@ -7,6 +7,7 @@ import API from '../APIClient';
 import Map from '../components/Map';
 import RainMap from '../components/RainMap';
 import LocationDropDown from '../components/LocationDropDown';
+import displayRelativeTimeFromNow from '../components/dateHelper';
 
 export default function HistoryPage() {
   const { selectedLocationId, experiment, setExperiment } =
@@ -67,6 +68,10 @@ export default function HistoryPage() {
       </div>
       {isEnabled ? (
         <>
+          <p>
+            Selected experiment was:{' '}
+            {displayRelativeTimeFromNow(new Date(experiment.timestamp))}
+          </p>
           <div className="maps">
             <>{!!Object.entries(experiment).length && <p>call works</p>}</>
             <h3>Sensors map</h3>

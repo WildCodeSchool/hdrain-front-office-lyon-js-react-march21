@@ -52,7 +52,6 @@ export default function HomePage() {
       >
         Go to History Page
       </NavLink>
-      <br />
       <div>{locations.length > 0 && <Map pins={locations} />}</div>
     </>
   );
