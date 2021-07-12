@@ -15,20 +15,22 @@ export default function NeuralNetworkPage() {
   const { experiment, setExperiment } = useContext(LocationContext);
 
   useEffect(() => {
-    API.get(`locations/${selectedLocationId}/sensors/`)
-      .then((response) => setSensorsLocation(response.data))
-      .catch(window.console.error);
+    if (selectedLocationId) {
+      API.get(`locations/${selectedLocationId}/sensors/`)
+        .then((response) => setSensorsLocation(response.data))
+        .catch(window.console.error);
 
-    API.get(`/locations/${selectedLocationId}/experiments/`)
-      .then((res) => setExperiment(res.data))
-      .then(() => {
-        if (experiment.timestamp) {
-          setRelativeDate(
-            displayRelativeTimeFromNow(new Date(experiment?.timestamp))
-          );
-        }
-      })
-      .catch(window.console.error);
+      API.get(`/locations/${selectedLocationId}/experiments/`)
+        .then((res) => setExperiment(res.data))
+        .then(() => {
+          if (experiment.timestamp) {
+            setRelativeDate(
+              displayRelativeTimeFromNow(new Date(experiment?.timestamp))
+            );
+          }
+        })
+        .catch(window.console.error);
+    }
   }, [selectedLocationId]);
 
   return (

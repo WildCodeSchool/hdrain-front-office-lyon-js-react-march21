@@ -40,16 +40,18 @@ export default function DataAssimilationPage() {
   }, [selectedLocation]);
 
   useEffect(() => {
-    API.get(`/locations/${selectedLocationId}/experiments/`)
-      .then((res) => setExperiment(res.data))
-      .then(() => {
-        if (experiment.timestamp) {
-          setRelativeDate(
-            displayRelativeTimeFromNow(new Date(experiment?.timestamp))
-          );
-        }
-      })
-      .catch(window.console.error);
+    if (selectedLocationId) {
+      API.get(`/locations/${selectedLocationId}/experiments/`)
+        .then((res) => setExperiment(res.data))
+        .then(() => {
+          if (experiment.timestamp) {
+            setRelativeDate(
+              displayRelativeTimeFromNow(new Date(experiment?.timestamp))
+            );
+          }
+        })
+        .catch(window.console.error);
+    }
   }, [selectedLocationId]);
 
   return (
