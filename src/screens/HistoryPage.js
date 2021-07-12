@@ -9,6 +9,12 @@ import RainMap from '../components/RainMap';
 import LocationDropDown from '../components/LocationDropDown';
 import displayRelativeTimeFromNow from '../components/dateHelper';
 
+const formatDate = (date) => {
+  // Round to 5 minutes
+  const coeff = 1000 * 60 * 5;
+  return new Date(Math.round(date.getTime() / coeff) * coeff).toISOString();
+};
+
 export default function HistoryPage() {
   const { selectedLocationId, experiment, setExperiment } =
     useContext(LocationContext);
@@ -17,14 +23,8 @@ export default function HistoryPage() {
   const location = useLocation();
   const history = useHistory();
   const [sensorsLocation, setSensorsLocation] = useState([]);
-  const coeff = 1000 * 60 * 5;
-  const year = date.getFullYear();
-  const month = `${date.getMonth() + 1}`.padStart(2, '0');
-  const day = `0${date.getDate()}`.slice(-2);
-  const formattedHours = `0${date.getHours()}`.slice(-2);
-  const rounded = new Date(Math.round(date.getTime() / coeff) * coeff);
-  const roundedMinutes = `0${rounded.getMinutes()}`.slice(-2);
-  const formattedDate = `${year}-${month}-${day}T${formattedHours}:${roundedMinutes}:00`;
+
+  const formattedDate = formatDate(date);
 
   useEffect(() => {
     if (!selectedLocationId) {
