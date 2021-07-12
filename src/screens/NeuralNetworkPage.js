@@ -42,7 +42,7 @@ export default function NeuralNetworkPage() {
       <RainGraph />
       <Link
         className="download"
-        to={experiment?.neuralNetworkLog}
+        to={experiment?.neuralNetworkLog || ''}
         target="_blank"
         download
         style={!selectedLocationId ? { pointerEvents: 'none' } : null}

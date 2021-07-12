@@ -69,7 +69,7 @@ export default function DataAssimilationPage() {
       ) : null}
       <Link
         className="download"
-        to={experiment?.assimilationLog}
+        to={experiment?.assimilationLog || ''}
         target="_blank"
         download
         style={!selectedLocationId ? { pointerEvents: 'none' } : null}
