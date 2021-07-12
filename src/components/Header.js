@@ -6,7 +6,6 @@ export default function Header() {
     <header>
       <div className="upper-header">
         <img className="nav-logo" src={logo} alt="HD RAIN" />
-
         <h1 className="site-title">HD Rain Monitoring Tool</h1>
       </div>
       <MenuNav />
