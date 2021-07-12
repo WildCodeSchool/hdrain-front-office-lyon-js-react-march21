@@ -10,6 +10,7 @@ import displayRelativeTimeFromNow from '../components/dateHelper';
 export default function NeuralNetworkPage() {
   const [sensorsLocation, setSensorsLocation] = useState([]);
   const { selectedLocationId } = useContext(LocationContext);
+  const [relativeDate, setRelativeDate] = useState('');
 
   const { experiment, setExperiment } = useContext(LocationContext);
 
@@ -20,6 +21,13 @@ export default function NeuralNetworkPage() {
 
     API.get(`/locations/${selectedLocationId}/experiments/`)
       .then((res) => setExperiment(res.data))
+      .then(() => {
+        if (experiment.timestamp) {
+          setRelativeDate(
+            displayRelativeTimeFromNow(new Date(experiment?.timestamp))
+          );
+        }
+      })
       .catch(window.console.error);
   }, [selectedLocationId]);
 
@@ -27,10 +35,7 @@ export default function NeuralNetworkPage() {
     <>
       <h2>Neural Network</h2>
       <LocationDropDown />
-      <p>
-        Last experiment:{' '}
-        {displayRelativeTimeFromNow(new Date(experiment.timestamp))}
-      </p>
+      <p>Last experiment: {relativeDate}</p>
       <Map pins={sensorsLocation} />
       <RainGraph />
       <Link

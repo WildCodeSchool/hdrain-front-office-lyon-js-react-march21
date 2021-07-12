@@ -23,11 +23,12 @@ export default function HistoryPage() {
   const location = useLocation();
   const history = useHistory();
   const [sensorsLocation, setSensorsLocation] = useState([]);
+  const [relativeDate, setRelativeDate] = useState('');
 
   const formattedDate = formatDate(date);
 
   useEffect(() => {
-    if (!selectedLocationId) {
+    if (selectedLocationId) {
       history.push(
         `${location.pathname}?locationId=${selectedLocationId}&timestamp=${formattedDate}`
       );
@@ -36,6 +37,13 @@ export default function HistoryPage() {
         `/locations/${selectedLocationId}/experiments/?timestamp=${formattedDate}`
       )
         .then((res) => setExperiment(res.data))
+        .then(() => {
+          if (experiment.timestamp) {
+            setRelativeDate(
+              displayRelativeTimeFromNow(new Date(experiment?.timestamp))
+            );
+          }
+        })
         .catch(window.console.error)
         .finally(setIsEnabled(true));
 
@@ -61,14 +69,10 @@ export default function HistoryPage() {
           <DateTimePicker onChange={setDate} value={date} />
         </div>
       </div>
-      {isEnabled ? (
+      {Object.entries(experiment).length ? (
         <>
-          <p>
-            Selected experiment was:{' '}
-            {displayRelativeTimeFromNow(new Date(experiment.timestamp))}
-          </p>
+          <p>Selected experiment was: {relativeDate}</p>
           <div className="maps">
-            <>{!!Object.entries(experiment).length && <p>call works</p>}</>
             <h3>Sensors map</h3>
             <Map pins={sensorsLocation} />
             <h3>Rain map</h3>

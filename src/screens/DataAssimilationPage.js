@@ -12,6 +12,7 @@ export default function DataAssimilationPage() {
 
   const [showParams, setShowParams] = useState(false);
   const [locationParams, setLocationParams] = useState(['None']);
+  const [relativeDate, setRelativeDate] = useState('');
 
   const assimilationParams = [
     {
@@ -41,6 +42,13 @@ export default function DataAssimilationPage() {
   useEffect(() => {
     API.get(`/locations/${selectedLocationId}/experiments/`)
       .then((res) => setExperiment(res.data))
+      .then(() => {
+        if (experiment.timestamp) {
+          setRelativeDate(
+            displayRelativeTimeFromNow(new Date(experiment?.timestamp))
+          );
+        }
+      })
       .catch(window.console.error);
   }, [selectedLocationId]);
 
@@ -48,10 +56,7 @@ export default function DataAssimilationPage() {
     <>
       <h2>Data Assimilation</h2>
       <LocationDropDown />
-      <p>
-        Last experiment:{' '}
-        {displayRelativeTimeFromNow(new Date(experiment?.timestamp))}
-      </p>
+      <p>Last experiment: {relativeDate}</p>
       {showParams ? (
         <>
           <AssimilationInfos
