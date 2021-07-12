@@ -1,3 +1,9 @@
+const isValidDate = (date) =>
+  date &&
+  Object.prototype.toString.call(date) === '[object Date]' &&
+  !Number.isNaN(date) &&
+  date === 'Invalid Date';
+
 const displayRelativeTime = (
   interval,
   unit = 'day',
@@ -10,6 +16,9 @@ const displayRelativeTime = (
   }).format(interval, unit);
 
 const displayRelativeTimeFromNow = (date1, date2 = new Date()) => {
+  if (!isValidDate(date1) || !isValidDate(date2)) {
+    return 'Oups, wrong date format 📅';
+  }
   // Date difference converted to seconds
   let timeInterval = (date1.getTime() - date2.getTime()) / 1000;
   let unit = 'second';
