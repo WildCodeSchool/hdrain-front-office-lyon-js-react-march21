@@ -29,6 +29,7 @@ export default function LoginForm() {
           appearance: 'success',
           autoDismiss: true,
         });
+        history.push('/home');
         window.location.reload();
       })
       .catch((err) => {
