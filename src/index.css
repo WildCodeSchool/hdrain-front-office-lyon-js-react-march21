@@ -303,6 +303,10 @@ select {
   background-color: var(--accent-color);
 }
 
+.datePicker {
+  z-index: 500;
+}
+
 .react-datetime-picker {
   display: flex;
   width: max-content;
