@@ -46,10 +46,8 @@ export default function HistoryPage() {
       API.get(
         `locations/${selectedLocationId}/sensors/?timestamp=${formattedDate}`
       )
-        .then((response) => response.data)
-        .then((data) => {
-          setSensorsLocation(data);
-        });
+        .then((response) => setSensorsLocation(response.data))
+        .catch(window.console.error);
     } else {
       setIsEnabled(false);
     }
