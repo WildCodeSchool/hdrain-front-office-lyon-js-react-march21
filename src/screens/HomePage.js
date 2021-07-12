@@ -41,7 +41,6 @@ export default function HomePage() {
       >
         Go to Assimilation Page
       </Link>
-
       <NavLink
         className="link"
         to={`/history?locationId=${selectedLocationId}&timestamp=`}

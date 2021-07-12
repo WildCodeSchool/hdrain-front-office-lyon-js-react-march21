@@ -3,17 +3,14 @@ import DateTimePicker from 'react-datetime-picker';
 import { Link, useHistory } from 'react-router-dom';
 import { useLocation } from 'react-router';
 import { LocationContext } from '../contexts/LocationContext';
-import asset from '../assets/sensor.png';
 import API from '../APIClient';
 import Map from '../components/Map';
 import RainMap from '../components/RainMap';
-
 import LocationDropDown from '../components/LocationDropDown';
 
 export default function HistoryPage() {
   const { selectedLocationId, experiment, setExperiment } =
     useContext(LocationContext);
-  const [pathToLog] = useState(asset);
   const [date, setDate] = useState(new Date(2021, 5, 12, 18, 45));
   const [isEnabled, setIsEnabled] = useState(false);
   const location = useLocation();
@@ -80,16 +77,7 @@ export default function HistoryPage() {
           <div className="download-links">
             <Link
               className="download"
-              to={pathToLog}
-              target="_blank"
-              download
-              style={isEnabled ? null : { pointerEvents: 'none' }}
-            >
-              Get GLOBAL Log
-            </Link>
-            <Link
-              className="download"
-              to={pathToLog}
+              to={experiment?.neuralNetworkLog}
               target="_blank"
               download
               style={isEnabled ? null : { pointerEvents: 'none' }}
@@ -98,7 +86,7 @@ export default function HistoryPage() {
             </Link>
             <Link
               className="download"
-              to={pathToLog}
+              to={experiment?.assimilationLog}
               target="_blank"
               download
               style={isEnabled ? null : { pointerEvents: 'none' }}
@@ -107,7 +95,7 @@ export default function HistoryPage() {
             </Link>
             <Link
               className="download"
-              to={pathToLog}
+              to={experiment?.parameters}
               target="_blank"
               download
               style={isEnabled ? null : { pointerEvents: 'none' }}
@@ -116,7 +104,7 @@ export default function HistoryPage() {
             </Link>
             <Link
               className="download"
-              to={pathToLog}
+              to={experiment?.costGraph}
               target="_blank"
               download
               style={isEnabled ? null : { pointerEvents: 'none' }}
