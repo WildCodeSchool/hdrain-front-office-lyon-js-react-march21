@@ -14,7 +14,7 @@ export default function HistoryPage() {
   const { selectedLocationId, experiment, setExperiment } =
     useContext(LocationContext);
   const [pathToLog] = useState(asset);
-  const [date, setDate] = useState(new Date());
+  const [date, setDate] = useState(new Date(2021, 5, 12, 18, 45));
   const [isEnabled, setIsEnabled] = useState(false);
   const location = useLocation();
   const history = useHistory();
@@ -49,10 +49,8 @@ export default function HistoryPage() {
       API.get(
         `locations/${selectedLocationId}/sensors/?timestamp=${formattedDate}`
       )
-        .then((response) => response.data)
-        .then((data) => {
-          setSensorsLocation(data);
-        });
+        .then((response) => setSensorsLocation(response.data))
+        .catch(window.console.error);
     } else {
       setIsEnabled(false);
     }
