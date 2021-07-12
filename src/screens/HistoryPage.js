@@ -7,13 +7,12 @@ import API from '../APIClient';
 import Map from '../components/Map';
 import RainMap from '../components/RainMap';
 import LocationDropDown from '../components/LocationDropDown';
-import displayRelativeTimeFromNow from '../components/dateHelper';
+// import displayRelativeTimeFromNow from '../components/dateHelper';
 
 export default function HistoryPage() {
   const { selectedLocationId, experiment, setExperiment } =
     useContext(LocationContext);
   const [date, setDate] = useState(new Date(2021, 5, 12, 18, 45));
-  const [isEnabled, setIsEnabled] = useState(false);
   const location = useLocation();
   const history = useHistory();
   const [sensorsLocation, setSensorsLocation] = useState([]);
@@ -41,16 +40,13 @@ export default function HistoryPage() {
         .then((res) => {
           setExperiment(res.data);
         })
-        .catch(window.console.error)
-        .finally(setIsEnabled(true));
+        .catch(window.console.error);
 
       API.get(
         `locations/${selectedLocationId}/sensors/?timestamp=${formattedDate}`
       )
         .then((response) => setSensorsLocation(response.data))
         .catch(window.console.error);
-    } else {
-      setIsEnabled(false);
     }
   }, [formattedDate, selectedLocationId]);
 
@@ -66,12 +62,9 @@ export default function HistoryPage() {
           <DateTimePicker onChange={setDate} value={date} />
         </div>
       </div>
-      {isEnabled ? (
+      {parseInt(selectedLocationId, 10) !== 0 &&
+      selectedLocationId !== undefined ? (
         <>
-          <p>
-            Selected experiment was:{' '}
-            {displayRelativeTimeFromNow(new Date(experiment.timestamp))}
-          </p>
           <div className="maps">
             <>{!!Object.entries(experiment).length && <p>call works</p>}</>
             <h3>Sensors map</h3>
@@ -85,7 +78,6 @@ export default function HistoryPage() {
               to={experiment?.neuralNetworkLog}
               target="_blank"
               download
-              style={isEnabled ? null : { pointerEvents: 'none' }}
             >
               Get Neural Network Log
             </Link>
@@ -94,7 +86,6 @@ export default function HistoryPage() {
               to={experiment?.assimilationLog}
               target="_blank"
               download
-              style={isEnabled ? null : { pointerEvents: 'none' }}
             >
               Get Assimilation Log
             </Link>
@@ -103,7 +94,6 @@ export default function HistoryPage() {
               to={experiment?.parameters}
               target="_blank"
               download
-              style={isEnabled ? null : { pointerEvents: 'none' }}
             >
               Get assimilation parameters
             </Link>
@@ -112,7 +102,6 @@ export default function HistoryPage() {
               to={experiment?.costGraph}
               target="_blank"
               download
-              style={isEnabled ? null : { pointerEvents: 'none' }}
             >
               Get assimilation costs
             </Link>
