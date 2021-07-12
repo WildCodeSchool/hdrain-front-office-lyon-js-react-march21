@@ -21,38 +21,26 @@ export default function HomePage() {
       <LocationDropdown />
       <Link
         className="link"
-        to={`/locations/neuralNetwork?locationId=${selectedLocationId}`}
-        style={
-          !selectedLocationId || selectedLocationId === 'None'
-            ? { pointerEvents: 'none' }
-            : null
-        }
+        to={`/neuralNetwork?locationId=${selectedLocationId}`}
+        style={!selectedLocationId ? { pointerEvents: 'none' } : null}
       >
         Go to Neural Network Page
       </Link>
       <Link
         className="link"
-        to={`/locations/assimilation?locationId=${selectedLocationId}`}
-        style={
-          !selectedLocationId || selectedLocationId === 'None'
-            ? { pointerEvents: 'none' }
-            : null
-        }
+        to={`/assimilation?locationId=${selectedLocationId}`}
+        style={!selectedLocationId ? { pointerEvents: 'none' } : null}
       >
         Go to Assimilation Page
       </Link>
       <NavLink
         className="link"
-        to={`/history?locationId=${selectedLocationId}&timestamp=`}
-        style={
-          !selectedLocationId || selectedLocationId === 'None'
-            ? { pointerEvents: 'none' }
-            : null
-        }
+        to={`/history?locationId=${selectedLocationId}`}
+        style={!selectedLocationId ? { pointerEvents: 'none' } : null}
       >
         Go to History Page
       </NavLink>
-      <div>{locations.length > 0 && <Map pins={locations} />}</div>
+      <>{!!locations.length && <Map pins={locations} />}</>
     </>
   );
 }
