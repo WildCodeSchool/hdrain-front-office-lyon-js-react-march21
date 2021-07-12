@@ -15,16 +15,11 @@ export default function NeuralNetworkPage() {
 
   useEffect(() => {
     API.get(`locations/${selectedLocationId}/sensors/`)
-      .then((response) => response.data)
-      .then((data) => {
-        setSensorsLocation(data);
-      });
+      .then((response) => setSensorsLocation(response.data))
+      .catch(window.console.error);
 
     API.get(`/locations/${selectedLocationId}/experiments/`)
-      .then((res) => {
-        setExperiment(res.data);
-        console.log(res.data);
-      })
+      .then((res) => setExperiment(res.data))
       .catch(window.console.error);
   }, [selectedLocationId]);
 

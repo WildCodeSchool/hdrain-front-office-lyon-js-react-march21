@@ -38,16 +38,14 @@ export default function HistoryPage() {
       API.get(
         `/locations/${selectedLocationId}/experiments/?timestamp=${formattedDate}`
       )
-        .then((res) => {
-          setExperiment(res.data);
-        })
+        .then((res) => setExperiment(res.data))
         .catch(window.console.error)
         .finally(setIsEnabled(true));
 
       API.get(
         `locations/${selectedLocationId}/sensors/?timestamp=${formattedDate}`
       )
-        .then((response) => setSensorsLocation(response.data))
+        .then((res) => setSensorsLocation(res.data))
         .catch(window.console.error);
     } else {
       setIsEnabled(false);
