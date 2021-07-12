@@ -2,7 +2,7 @@ const isValidDate = (date) =>
   date &&
   Object.prototype.toString.call(date) === '[object Date]' &&
   !Number.isNaN(date) &&
-  date === 'Invalid Date';
+  date !== 'Invalid Date';
 
 const displayRelativeTime = (
   interval,
