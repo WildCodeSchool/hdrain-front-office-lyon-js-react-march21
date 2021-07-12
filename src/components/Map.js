@@ -24,7 +24,7 @@ export default function Map({
   return (
     <MapContainer
       center={findCenter(pins)}
-      zoom={setZoom(pins)} //
+      zoom={setZoom(pins)}
       scrollWheelZoom={false}
       style={{
         height: '400px',
