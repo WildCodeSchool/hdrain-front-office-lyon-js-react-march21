@@ -27,10 +27,7 @@ export default function HistoryPage() {
   const formattedDate = `${year}-${month}-${day}T${formattedHours}:${roundedMinutes}:00`;
 
   useEffect(() => {
-    if (
-      parseInt(selectedLocationId, 10) !== 0 &&
-      selectedLocationId !== undefined
-    ) {
+    if (!selectedLocationId) {
       history.push(
         `${location.pathname}?locationId=${selectedLocationId}&timestamp=${formattedDate}`
       );
@@ -38,16 +35,14 @@ export default function HistoryPage() {
       API.get(
         `/locations/${selectedLocationId}/experiments/?timestamp=${formattedDate}`
       )
-        .then((res) => {
-          setExperiment(res.data);
-        })
+        .then((res) => setExperiment(res.data))
         .catch(window.console.error)
         .finally(setIsEnabled(true));
 
       API.get(
         `locations/${selectedLocationId}/sensors/?timestamp=${formattedDate}`
       )
-        .then((response) => setSensorsLocation(response.data))
+        .then((res) => setSensorsLocation(res.data))
         .catch(window.console.error);
     } else {
       setIsEnabled(false);

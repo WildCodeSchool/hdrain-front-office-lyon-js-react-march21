@@ -40,21 +40,17 @@ export default function DataAssimilationPage() {
 
   useEffect(() => {
     API.get(`/locations/${selectedLocationId}/experiments/`)
-      .then((res) => {
-        setExperiment(res.data);
-        console.log(res.data);
-      })
+      .then((res) => setExperiment(res.data))
       .catch(window.console.error);
   }, [selectedLocationId]);
 
-  console.log(showParams);
   return (
     <>
       <h2>Data Assimilation</h2>
       <LocationDropDown />
       <p>
         Last experiment:{' '}
-        {displayRelativeTimeFromNow(new Date(experiment.timestamp))}
+        {displayRelativeTimeFromNow(new Date(experiment?.timestamp))}
       </p>
       {showParams ? (
         <>
@@ -71,7 +67,7 @@ export default function DataAssimilationPage() {
         download
         style={!selectedLocationId ? { pointerEvents: 'none' } : null}
       >
-        Download Data Assimilation Logs
+        Get Data Assimilation Logs
       </Link>
       <Link
         to={`/locations/neuralNetwork?locationId=${selectedLocationId}`}
