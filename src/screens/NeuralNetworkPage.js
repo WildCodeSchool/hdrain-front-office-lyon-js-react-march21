@@ -38,22 +38,14 @@ export default function NeuralNetworkPage() {
         to={experiment?.neuralNetworkLog}
         target="_blank"
         download
-        style={
-          !selectedLocationId || selectedLocationId === 'None'
-            ? { pointerEvents: 'none' }
-            : null
-        }
+        style={!selectedLocationId ? { pointerEvents: 'none' } : null}
       >
         Get Neural Network Logs
       </Link>
       <Link
         to={`/locations/assimilation?locationId=${selectedLocationId}`}
         className="link"
-        style={
-          !selectedLocationId || selectedLocationId === 'None'
-            ? { pointerEvents: 'none' }
-            : null
-        }
+        style={!selectedLocationId ? { pointerEvents: 'none' } : null}
       >
         Data Assimilation
       </Link>
