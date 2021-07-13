@@ -23,7 +23,6 @@ export default function Map({
 }) {
   return (
     <>
-      <h3>Sensors Map </h3>
       <MapContainer
         center={findCenter(pins)}
         zoom={setZoom(pins)}

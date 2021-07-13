@@ -39,6 +39,7 @@ export default function NeuralNetworkPage() {
       {Object.entries(experiment).length ? (
         <>
           <p>Last experiment: {relativeDate}</p>
+          <h3>Sensors Map </h3>
           <Map pins={sensorsLocation} />
           <CostGraph />
           <Link
