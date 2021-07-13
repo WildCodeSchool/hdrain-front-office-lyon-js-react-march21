@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { LocationContext } from '../contexts/LocationContext';
 import LocationDropDown from '../components/LocationDropDown';
 // import AssimilationInfos from '../components/AssimilationInfos';
+import CostGraph from '../components/Costgraph';
 import displayRelativeTimeFromNow from '../components/dateHelper';
 import API from '../APIClient';
 
@@ -10,7 +11,6 @@ export default function DataAssimilationPage() {
   const { selectedLocationId, experiment, setExperiment } =
     useContext(LocationContext);
 
-  // eslint-disable-next-line no-unused-vars
   const [assimilationParams, setAssimilationParams] = useState([]);
   const [relativeDate, setRelativeDate] = useState('');
 
@@ -21,6 +21,7 @@ export default function DataAssimilationPage() {
         .catch(window.console.error);
     }
   }, [selectedLocationId]);
+  console.log(typeof assimilationParams);
 
   useEffect(() => {
     if (selectedLocationId) {
@@ -42,7 +43,10 @@ export default function DataAssimilationPage() {
       <h2>Data Assimilation</h2>
       <LocationDropDown />
       <p>Last experiment: {relativeDate}</p>
-      {Object.entries(experiment).length ? <>{experiment?.parameters}</> : null}
+      {Object.entries(experiment).length ? (
+        <>{assimilationParams.parameters}</>
+      ) : null}
+      <CostGraph />
       <Link
         className="download"
         to={experiment?.assimilationLog || ''}
