@@ -2,42 +2,25 @@ import React, { useContext, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { LocationContext } from '../contexts/LocationContext';
 import LocationDropDown from '../components/LocationDropDown';
-import AssimilationInfos from '../components/AssimilationInfos';
+// import AssimilationInfos from '../components/AssimilationInfos';
 import displayRelativeTimeFromNow from '../components/dateHelper';
 import API from '../APIClient';
 
 export default function DataAssimilationPage() {
-  const { selectedLocation, selectedLocationId, experiment, setExperiment } =
+  const { selectedLocationId, experiment, setExperiment } =
     useContext(LocationContext);
 
-  const [showParams, setShowParams] = useState(false);
-  const [locationParams, setLocationParams] = useState(['None']);
+  // eslint-disable-next-line no-unused-vars
+  const [assimilationParams, setAssimilationParams] = useState([]);
   const [relativeDate, setRelativeDate] = useState('');
 
-  const assimilationParams = [
-    {
-      location: 'Abidjan',
-    },
-    {
-      location: 'Antibes',
-    },
-    {
-      location: 'Toulouse',
-    },
-  ];
-
   useEffect(() => {
-    if (!selectedLocation) {
-      setShowParams(false);
-    } else {
-      setLocationParams(
-        assimilationParams.filter(
-          ({ location }) => location === selectedLocation
-        )
-      );
-      setShowParams(true);
+    if (selectedLocationId) {
+      API.get(`/locations/${selectedLocationId}/experiments/`)
+        .then((res) => setAssimilationParams(res.data))
+        .catch(window.console.error);
     }
-  }, [selectedLocation]);
+  }, [selectedLocationId]);
 
   useEffect(() => {
     if (selectedLocationId) {
@@ -59,14 +42,7 @@ export default function DataAssimilationPage() {
       <h2>Data Assimilation</h2>
       <LocationDropDown />
       <p>Last experiment: {relativeDate}</p>
-      {showParams ? (
-        <>
-          <AssimilationInfos
-            assimilationParams={locationParams}
-            show={showParams}
-          />
-        </>
-      ) : null}
+      {Object.entries(experiment).length ? <>{experiment?.parameters}</> : null}
       <Link
         className="download"
         to={experiment?.assimilationLog || ''}
