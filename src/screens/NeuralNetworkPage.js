@@ -4,7 +4,7 @@ import { LocationContext } from '../contexts/LocationContext';
 import API from '../APIClient';
 import LocationDropDown from '../components/LocationDropDown';
 import Map from '../components/Map';
-import RainGraph from '../components/RainGraph';
+import CostGraph from '../components/CostGraph';
 import displayRelativeTimeFromNow from '../components/dateHelper';
 
 export default function NeuralNetworkPage() {
@@ -39,7 +39,7 @@ export default function NeuralNetworkPage() {
       <LocationDropDown />
       <p>Last experiment: {relativeDate}</p>
       <Map pins={sensorsLocation} />
-      <RainGraph />
+      <CostGraph />
       <Link
         className="download"
         to={experiment?.neuralNetworkLog || ''}

@@ -5,32 +5,32 @@ const graphOptions = {
     zoomType: 'xy',
   },
   title: {
-    text: 'Rain Graph for Station XXX',
+    text: 'Cost Graph',
     align: 'center',
   },
-  subtitle: {
-    text: 'Station XXX mode NUV',
-    align: 'center',
-  },
+  // subtitle: {
+  //   text: 'Station XXX mode NUV',
+  //   align: 'center',
+  // },
   xAxis: [
     {
-      categories: [
-        new Date(2021, 5, 15).toLocaleDateString(),
-        new Date(2021, 5, 16).toLocaleDateString(),
-        new Date(2021, 5, 17).toLocaleDateString(),
-        new Date(2021, 5, 18).toLocaleDateString(),
-        new Date(2021, 5, 19).toLocaleDateString(),
-        new Date(2021, 5, 20).toLocaleDateString(),
-        new Date(2021, 5, 21).toLocaleDateString(),
-        new Date(2021, 5, 22).toLocaleDateString(),
-        new Date(2021, 5, 23).toLocaleDateString(),
-        new Date(2021, 5, 24).toLocaleDateString(),
-        new Date(2021, 5, 25).toLocaleDateString(),
-        new Date(2021, 5, 26).toLocaleDateString(),
-      ],
+      // categories: [
+      //   new Date(2021, 5, 15).toLocaleDateString(),
+      //   new Date(2021, 5, 16).toLocaleDateString(),
+      //   new Date(2021, 5, 17).toLocaleDateString(),
+      //   new Date(2021, 5, 18).toLocaleDateString(),
+      //   new Date(2021, 5, 19).toLocaleDateString(),
+      //   new Date(2021, 5, 20).toLocaleDateString(),
+      //   new Date(2021, 5, 21).toLocaleDateString(),
+      //   new Date(2021, 5, 22).toLocaleDateString(),
+      //   new Date(2021, 5, 23).toLocaleDateString(),
+      //   new Date(2021, 5, 24).toLocaleDateString(),
+      //   new Date(2021, 5, 25).toLocaleDateString(),
+      //   new Date(2021, 5, 26).toLocaleDateString(),
+      // ],
       crosshair: true,
       title: {
-        text: 'Date',
+        text: 'Iterations (int + ext)',
       },
     },
   ],
@@ -39,13 +39,13 @@ const graphOptions = {
       // Primary yAxis
       gridLineWidth: 0,
       title: {
-        text: 'Atténuation',
+        text: 'Cost',
         style: {
           color: Highcharts.getOptions().colors[0],
         },
       },
       labels: {
-        format: '{value} dB',
+        format: '{value}',
         style: {
           color: Highcharts.getOptions().colors[0],
         },
@@ -53,14 +53,14 @@ const graphOptions = {
     },
     {
       // Secondary yAxis
-      labels: {
-        format: '{value}',
+      title: {
+        text: 'Gradient decrease',
         style: {
           color: Highcharts.getOptions().colors[5],
         },
       },
-      title: {
-        text: 'Critère de Pluie / Non pluie',
+      labels: {
+        format: '{value}',
         style: {
           color: Highcharts.getOptions().colors[5],
         },
@@ -84,7 +84,7 @@ const graphOptions = {
   },
   series: [
     {
-      name: 'Atténuation',
+      name: 'JoNL',
       type: 'line',
       yAxis: 0,
       data: [
@@ -92,18 +92,45 @@ const graphOptions = {
         95.6, 54.4,
       ],
       tooltip: {
-        valueSuffix: ' dB',
+        valueSuffix: '',
       },
+      color: Highcharts.getOptions().colors[1],
     },
     {
-      name: 'Critère de Pluie',
+      name: 'Normalized Jblin',
+      type: 'line',
+      yAxis: 0,
+      data: [
+        149.9, 171.5, 106.4, 129.2, 44.0, 76.0, 35.6, 48.5, 216.4, 94.1, 95.6,
+        154.4,
+      ],
+      tooltip: {
+        valueSuffix: '',
+      },
+      color: Highcharts.getOptions().colors[2],
+    },
+    {
+      name: 'Jlin',
+      type: 'line',
+      yAxis: 0,
+      data: [
+        149.9, 171.5, 106.4, 129.2, 44.0, 76.0, 35.6, 48.5, 216.4, 94.1, 95.6,
+        154.4,
+      ],
+      tooltip: {
+        valueSuffix: '',
+      },
+      color: Highcharts.getOptions().colors[3],
+    },
+    {
+      name: 'r',
       yAxis: 1,
       type: 'line',
       data: [
         7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6,
       ],
       tooltip: {
-        valueSuffix: ' %',
+        valueSuffix: '',
       },
       color: Highcharts.getOptions().colors[5],
     },
@@ -151,35 +178,3 @@ const graphOptions = {
 };
 
 export default graphOptions;
-
-// export function updateChartOptions(previousOptions) {
-//   return {
-//     ...previousOptions,
-//     xAxis: [
-//       {
-//         categories: time,
-//       },
-//     ],
-//     series: [
-//       {
-//         name: 'Atténuation',
-//         type: 'line',
-//         yAxis: 0,
-//         data: dampening,
-//         tooltip: {
-//           valueSuffix: ' dB',
-//         },
-//       },
-//       {
-//         name: 'Critère de Pluie',
-//         yAxis: 1,
-//         type: 'line',
-//         data: rain,
-//         tooltip: {
-//           valueSuffix: ' %',
-//         },
-//         color: Highcharts.getOptions().colors[5],
-//       },
-//     ],
-//   };
-// }
