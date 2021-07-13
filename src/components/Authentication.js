@@ -1,9 +1,13 @@
 import { useToasts } from 'react-toast-notifications';
 import { useForm } from 'react-hook-form';
+import { useHistory } from 'react-router';
+import qs from 'query-string';
 import API from '../APIClient';
 
 export default function LoginForm() {
   const { addToast } = useToasts();
+
+  const history = useHistory();
   const {
     register,
     handleSubmit,
@@ -16,20 +20,25 @@ export default function LoginForm() {
     },
   });
 
-  const onSubmit = ({ username, password }) => {
-    API.post(`/auth/login`, { username, password })
+  const onSubmit = ({ username, password, stayConnected }) => {
+    API.post(`/auth/login`, { username, password, stayConnected })
       .then(() => {
+        const { redirectUrl } = qs.parse(window.location.search);
+        if (redirectUrl) history.push(redirectUrl);
         addToast('Successfully logged in', {
           appearance: 'success',
           autoDismiss: true,
         });
+        history.push('/home');
+        window.location.reload();
       })
       .catch((err) => {
-        window.console.error(err);
-        addToast('Wrong Credentials', {
-          appearance: 'error',
-          autoDismiss: true,
-        });
+        if (err.response && err.response.status === 401) {
+          addToast('Wrong Credentials', {
+            appearance: 'error',
+            autoDismiss: true,
+          });
+        } else window.console.error(err);
       });
   };
 
@@ -39,7 +48,7 @@ export default function LoginForm() {
       <input
         {...register('username', { required: true })}
         autoComplete="username"
-        placeholder="Enter your email"
+        placeholder="Enter your username"
         type="text"
       />
       {errors.username && (
@@ -78,14 +87,14 @@ export default function LoginForm() {
           This field is required
         </span>
       )}
-      <span className="rememberMe">
+      {/* <span className="rememberMe">
         <input
           type="Checkbox"
           {...register('rememberMe')}
           label="Remember me"
         />
         Remember me
-      </span>
+        </span> */}
       <input type="submit" value="Login" />
     </form>
   );
