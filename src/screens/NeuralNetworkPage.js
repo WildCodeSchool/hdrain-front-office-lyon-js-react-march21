@@ -36,25 +36,27 @@ export default function NeuralNetworkPage() {
     <>
       <h2>Neural Network</h2>
       <LocationDropDown />
-      <p>Last experiment: {relativeDate}</p>
-      <Map pins={sensorsLocation} />
-      <CostGraph />
-      <Link
-        className="download"
-        to={experiment?.neuralNetworkLog || ''}
-        target="_blank"
-        download
-        style={!selectedLocationId ? { pointerEvents: 'none' } : null}
-      >
-        Get Neural Network Logs
-      </Link>
-      <Link
-        to={`/locations/assimilation?locationId=${selectedLocationId}`}
-        className="link"
-        style={!selectedLocationId ? { pointerEvents: 'none' } : null}
-      >
-        Data Assimilation
-      </Link>
+      {Object.entries(experiment).length ? (
+        <>
+          <p>Last experiment: {relativeDate}</p>
+          <Map pins={sensorsLocation} />
+          <CostGraph />
+          <Link
+            className="download"
+            to={experiment?.neuralNetworkLog || ''}
+            target="_blank"
+            download
+          >
+            Get Neural Network Logs
+          </Link>
+          <Link
+            to={`/locations/assimilation?locationId=${selectedLocationId}`}
+            className="link"
+          >
+            Data Assimilation
+          </Link>
+        </>
+      ) : null}
     </>
   );
 }

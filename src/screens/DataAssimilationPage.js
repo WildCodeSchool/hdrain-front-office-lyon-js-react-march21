@@ -43,28 +43,28 @@ export default function DataAssimilationPage() {
     <>
       <h2>Data Assimilation</h2>
       <LocationDropDown />
-      <p>Last experiment: {relativeDate}</p>
       {Object.entries(experiment).length ? (
-        <>{assimilationParams.parameters}</>
+        <>
+          <p>Last experiment: {relativeDate}</p>
+          {assimilationParams.parameters}
+          <CostGraph />
+          <RainMap />
+          <Link
+            className="download"
+            to={experiment?.assimilationLog || ''}
+            target="_blank"
+            download
+          >
+            Get Data Assimilation Logs
+          </Link>
+          <Link
+            to={`/locations/neuralNetwork?locationId=${selectedLocationId}`}
+            className="link"
+          >
+            Neural Network
+          </Link>
+        </>
       ) : null}
-      <CostGraph />
-      <RainMap />
-      <Link
-        className="download"
-        to={experiment?.assimilationLog || ''}
-        target="_blank"
-        download
-        style={!selectedLocationId ? { pointerEvents: 'none' } : null}
-      >
-        Get Data Assimilation Logs
-      </Link>
-      <Link
-        to={`/locations/neuralNetwork?locationId=${selectedLocationId}`}
-        className="link"
-        style={!selectedLocationId ? { pointerEvents: 'none' } : null}
-      >
-        Neural Network
-      </Link>
     </>
   );
 }
