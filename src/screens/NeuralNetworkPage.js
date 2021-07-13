@@ -9,10 +9,9 @@ import displayRelativeTimeFromNow from '../components/dateHelper';
 
 export default function NeuralNetworkPage() {
   const [sensorsLocation, setSensorsLocation] = useState([]);
-  const { selectedLocationId } = useContext(LocationContext);
+  const { selectedLocationId, experiment, setExperiment } =
+    useContext(LocationContext);
   const [relativeDate, setRelativeDate] = useState('');
-
-  const { experiment, setExperiment } = useContext(LocationContext);
 
   useEffect(() => {
     if (selectedLocationId) {
