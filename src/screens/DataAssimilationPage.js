@@ -22,7 +22,6 @@ export default function DataAssimilationPage() {
         .catch(window.console.error);
     }
   }, [selectedLocationId]);
-  console.log(typeof assimilationParams);
 
   useEffect(() => {
     if (selectedLocationId) {
