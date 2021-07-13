@@ -4,6 +4,7 @@ import { LocationContext } from '../contexts/LocationContext';
 import LocationDropDown from '../components/LocationDropDown';
 // import AssimilationInfos from '../components/AssimilationInfos';
 import CostGraph from '../components/Costgraph';
+import RainMap from '../components/RainMap';
 import displayRelativeTimeFromNow from '../components/dateHelper';
 import API from '../APIClient';
 
@@ -47,6 +48,7 @@ export default function DataAssimilationPage() {
         <>{assimilationParams.parameters}</>
       ) : null}
       <CostGraph />
+      <RainMap />
       <Link
         className="download"
         to={experiment?.assimilationLog || ''}

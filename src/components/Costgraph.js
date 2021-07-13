@@ -42,7 +42,7 @@ export default function RainGraph({
 
   return (
     <>
-      <h3>Rain Graph</h3>
+      <h3>Cost Graph</h3>
       <HighchartsReact highcharts={Highcharts} options={chartOptions} />
     </>
   );

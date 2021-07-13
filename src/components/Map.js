@@ -22,34 +22,37 @@ export default function Map({
   ],
 }) {
   return (
-    <MapContainer
-      center={findCenter(pins)}
-      zoom={setZoom(pins)}
-      scrollWheelZoom={false}
-      style={{
-        height: '400px',
-        width: '800px',
-      }}
-    >
-      <TileLayer
-        attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-      />
-      {!!pins.length &&
-        pins.map(({ id, name, sensorNumber, spotName, status, lat, lng }) => (
-          <Marker key={name} icon={selectIcon(status)} position={[lat, lng]}>
-            <Popup>
-              <h4>
-                {name} {spotName}
-              </h4>
-              <p>Sensor id : {id} </p>
-              <p>Sensor # {sensorNumber}</p>
-              <p>Latitude : {lat}</p>
-              <p>Longitude : {lng}</p>
-              <p>status : {status}</p>
-            </Popup>
-          </Marker>
-        ))}
-    </MapContainer>
+    <>
+      <h3>Sensors Map </h3>
+      <MapContainer
+        center={findCenter(pins)}
+        zoom={setZoom(pins)}
+        scrollWheelZoom={false}
+        style={{
+          height: '400px',
+          width: '800px',
+        }}
+      >
+        <TileLayer
+          attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+        />
+        {!!pins.length &&
+          pins.map(({ id, name, sensorNumber, spotName, status, lat, lng }) => (
+            <Marker key={name} icon={selectIcon(status)} position={[lat, lng]}>
+              <Popup>
+                <h4>
+                  {name} {spotName}
+                </h4>
+                <p>Sensor id : {id} </p>
+                <p>Sensor # {sensorNumber}</p>
+                <p>Latitude : {lat}</p>
+                <p>Longitude : {lng}</p>
+                <p>status : {status}</p>
+              </Popup>
+            </Marker>
+          ))}
+      </MapContainer>
+    </>
   );
 }

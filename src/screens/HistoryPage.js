@@ -69,9 +69,7 @@ export default function HistoryPage() {
         <>
           <p>Selected experiment was: {relativeDate}</p>
           <div className="maps">
-            <h3>Sensors map</h3>
             <Map pins={sensorsLocation} />
-            <h3>Rain map</h3>
             <RainMap />
           </div>
           <div className="download-links">
