@@ -12,6 +12,7 @@ export default function DataAssimilationPage() {
 
   const [showParams, setShowParams] = useState(false);
   const [locationParams, setLocationParams] = useState(['None']);
+  const [relativeDate, setRelativeDate] = useState('');
 
   const assimilationParams = [
     {
@@ -39,23 +40,25 @@ export default function DataAssimilationPage() {
   }, [selectedLocation]);
 
   useEffect(() => {
-    API.get(`/locations/${selectedLocationId}/experiments/`)
-      .then((res) => {
-        setExperiment(res.data);
-        console.log(res.data);
-      })
-      .catch(window.console.error);
+    if (selectedLocationId) {
+      API.get(`/locations/${selectedLocationId}/experiments/`)
+        .then((res) => setExperiment(res.data))
+        .then(() => {
+          if (experiment.timestamp) {
+            setRelativeDate(
+              displayRelativeTimeFromNow(new Date(experiment?.timestamp))
+            );
+          }
+        })
+        .catch(window.console.error);
+    }
   }, [selectedLocationId]);
 
-  console.log(showParams);
   return (
     <>
       <h2>Data Assimilation</h2>
       <LocationDropDown />
-      <p>
-        Last experiment:{' '}
-        {displayRelativeTimeFromNow(new Date(experiment.timestamp))}
-      </p>
+      <p>Last experiment: {relativeDate}</p>
       {showParams ? (
         <>
           <AssimilationInfos
@@ -66,12 +69,12 @@ export default function DataAssimilationPage() {
       ) : null}
       <Link
         className="download"
-        to={experiment?.assimilationLog}
+        to={experiment?.assimilationLog || ''}
         target="_blank"
         download
         style={!selectedLocationId ? { pointerEvents: 'none' } : null}
       >
-        Download Data Assimilation Logs
+        Get Data Assimilation Logs
       </Link>
       <Link
         to={`/locations/neuralNetwork?locationId=${selectedLocationId}`}

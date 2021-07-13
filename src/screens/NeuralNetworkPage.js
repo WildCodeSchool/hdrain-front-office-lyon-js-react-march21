@@ -10,37 +10,39 @@ import displayRelativeTimeFromNow from '../components/dateHelper';
 export default function NeuralNetworkPage() {
   const [sensorsLocation, setSensorsLocation] = useState([]);
   const { selectedLocationId } = useContext(LocationContext);
+  const [relativeDate, setRelativeDate] = useState('');
 
   const { experiment, setExperiment } = useContext(LocationContext);
 
   useEffect(() => {
-    API.get(`locations/${selectedLocationId}/sensors/`)
-      .then((response) => response.data)
-      .then((data) => {
-        setSensorsLocation(data);
-      });
+    if (selectedLocationId) {
+      API.get(`locations/${selectedLocationId}/sensors/`)
+        .then((response) => setSensorsLocation(response.data))
+        .catch(window.console.error);
 
-    API.get(`/locations/${selectedLocationId}/experiments/`)
-      .then((res) => {
-        setExperiment(res.data);
-        console.log(res.data);
-      })
-      .catch(window.console.error);
+      API.get(`/locations/${selectedLocationId}/experiments/`)
+        .then((res) => setExperiment(res.data))
+        .then(() => {
+          if (experiment.timestamp) {
+            setRelativeDate(
+              displayRelativeTimeFromNow(new Date(experiment?.timestamp))
+            );
+          }
+        })
+        .catch(window.console.error);
+    }
   }, [selectedLocationId]);
 
   return (
     <>
       <h2>Neural Network</h2>
       <LocationDropDown />
-      <p>
-        Last experiment:{' '}
-        {displayRelativeTimeFromNow(new Date(experiment.timestamp))}
-      </p>
+      <p>Last experiment: {relativeDate}</p>
       <Map pins={sensorsLocation} />
       <RainGraph />
       <Link
         className="download"
-        to={experiment?.neuralNetworkLog}
+        to={experiment?.neuralNetworkLog || ''}
         target="_blank"
         download
         style={!selectedLocationId ? { pointerEvents: 'none' } : null}

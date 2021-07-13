@@ -7,7 +7,13 @@ import API from '../APIClient';
 import Map from '../components/Map';
 import RainMap from '../components/RainMap';
 import LocationDropDown from '../components/LocationDropDown';
-// import displayRelativeTimeFromNow from '../components/dateHelper';
+import displayRelativeTimeFromNow from '../components/dateHelper';
+
+const formatDate = (date) => {
+  // Round to 5 minutes
+  const coeff = 1000 * 60 * 5;
+  return new Date(Math.round(date.getTime() / coeff) * coeff).toISOString();
+};
 
 export default function HistoryPage() {
   const { selectedLocationId, experiment, setExperiment } =
@@ -16,20 +22,12 @@ export default function HistoryPage() {
   const location = useLocation();
   const history = useHistory();
   const [sensorsLocation, setSensorsLocation] = useState([]);
-  const coeff = 1000 * 60 * 5;
-  const year = date.getFullYear();
-  const month = `${date.getMonth() + 1}`.padStart(2, '0');
-  const day = `0${date.getDate()}`.slice(-2);
-  const formattedHours = `0${date.getHours()}`.slice(-2);
-  const rounded = new Date(Math.round(date.getTime() / coeff) * coeff);
-  const roundedMinutes = `0${rounded.getMinutes()}`.slice(-2);
-  const formattedDate = `${year}-${month}-${day}T${formattedHours}:${roundedMinutes}:00`;
+  const [relativeDate, setRelativeDate] = useState('');
+
+  const formattedDate = formatDate(date);
 
   useEffect(() => {
-    if (
-      parseInt(selectedLocationId, 10) !== 0 &&
-      selectedLocationId !== undefined
-    ) {
+    if (selectedLocationId) {
       history.push(
         `${location.pathname}?locationId=${selectedLocationId}&timestamp=${formattedDate}`
       );
@@ -37,15 +35,20 @@ export default function HistoryPage() {
       API.get(
         `/locations/${selectedLocationId}/experiments/?timestamp=${formattedDate}`
       )
-        .then((res) => {
-          setExperiment(res.data);
+        .then((res) => setExperiment(res.data))
+        .then(() => {
+          if (experiment.timestamp) {
+            setRelativeDate(
+              displayRelativeTimeFromNow(new Date(experiment?.timestamp))
+            );
+          }
         })
         .catch(window.console.error);
 
       API.get(
         `locations/${selectedLocationId}/sensors/?timestamp=${formattedDate}`
       )
-        .then((response) => setSensorsLocation(response.data))
+        .then((res) => setSensorsLocation(res.data))
         .catch(window.console.error);
     }
   }, [formattedDate, selectedLocationId]);
@@ -62,11 +65,10 @@ export default function HistoryPage() {
           <DateTimePicker onChange={setDate} value={date} />
         </div>
       </div>
-      {parseInt(selectedLocationId, 10) !== 0 &&
-      selectedLocationId !== undefined ? (
+      {Object.entries(experiment).length ? (
         <>
+          <p>Selected experiment was: {relativeDate}</p>
           <div className="maps">
-            <>{!!Object.entries(experiment).length && <p>call works</p>}</>
             <h3>Sensors map</h3>
             <Map pins={sensorsLocation} />
             <h3>Rain map</h3>
