@@ -14,20 +14,6 @@ const graphOptions = {
   // },
   xAxis: [
     {
-      // categories: [
-      //   new Date(2021, 5, 15).toLocaleDateString(),
-      //   new Date(2021, 5, 16).toLocaleDateString(),
-      //   new Date(2021, 5, 17).toLocaleDateString(),
-      //   new Date(2021, 5, 18).toLocaleDateString(),
-      //   new Date(2021, 5, 19).toLocaleDateString(),
-      //   new Date(2021, 5, 20).toLocaleDateString(),
-      //   new Date(2021, 5, 21).toLocaleDateString(),
-      //   new Date(2021, 5, 22).toLocaleDateString(),
-      //   new Date(2021, 5, 23).toLocaleDateString(),
-      //   new Date(2021, 5, 24).toLocaleDateString(),
-      //   new Date(2021, 5, 25).toLocaleDateString(),
-      //   new Date(2021, 5, 26).toLocaleDateString(),
-      // ],
       crosshair: true,
       title: {
         text: 'Iterations (int + ext)',
@@ -50,21 +36,23 @@ const graphOptions = {
           color: Highcharts.getOptions().colors[0],
         },
       },
+      type: 'logarithmic',
     },
     {
       // Secondary yAxis
       title: {
         text: 'Gradient decrease',
         style: {
-          color: Highcharts.getOptions().colors[5],
+          color: Highcharts.getOptions().colors[1],
         },
       },
       labels: {
         format: '{value}',
         style: {
-          color: Highcharts.getOptions().colors[5],
+          color: Highcharts.getOptions().colors[1],
         },
       },
+      type: 'logarithmic',
       opposite: true,
     },
   ],
@@ -94,7 +82,7 @@ const graphOptions = {
       tooltip: {
         valueSuffix: '',
       },
-      color: Highcharts.getOptions().colors[1],
+      color: Highcharts.getOptions().colors[5],
     },
     {
       name: 'Normalized Jblin',
@@ -107,7 +95,7 @@ const graphOptions = {
       tooltip: {
         valueSuffix: '',
       },
-      color: Highcharts.getOptions().colors[2],
+      color: Highcharts.getOptions().colors[0],
     },
     {
       name: 'Jlin',
@@ -120,7 +108,8 @@ const graphOptions = {
       tooltip: {
         valueSuffix: '',
       },
-      color: Highcharts.getOptions().colors[3],
+      color: Highcharts.getOptions().colors[2],
+      dashStyle: 'shortdash',
     },
     {
       name: 'r',
@@ -132,7 +121,7 @@ const graphOptions = {
       tooltip: {
         valueSuffix: '',
       },
-      color: Highcharts.getOptions().colors[5],
+      color: Highcharts.getOptions().colors[1],
     },
   ],
   responsive: {
