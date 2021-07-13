@@ -77,7 +77,7 @@ export default function DataAssimilationPage() {
         Get Data Assimilation Logs
       </Link>
       <Link
-        to={`/locations/neuralNetwork?locationId=${selectedLocationId}`}
+        to={`/neuralNetwork?locationId=${selectedLocationId}`}
         className="link"
         style={!selectedLocationId ? { pointerEvents: 'none' } : null}
       >

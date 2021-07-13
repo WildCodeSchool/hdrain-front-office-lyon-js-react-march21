@@ -50,7 +50,7 @@ export default function NeuralNetworkPage() {
         Get Neural Network Logs
       </Link>
       <Link
-        to={`/locations/assimilation?locationId=${selectedLocationId}`}
+        to={`/assimilation?locationId=${selectedLocationId}`}
         className="link"
         style={!selectedLocationId ? { pointerEvents: 'none' } : null}
       >

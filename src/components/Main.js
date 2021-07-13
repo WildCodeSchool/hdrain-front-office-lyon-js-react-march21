@@ -10,10 +10,8 @@ export default function Main() {
     <main>
       <LocationContextProvider>
         <Switch>
-          <Route exact path="/" component={HomePage} />
           <Route exact path="/home" component={HomePage} />
           <Route exact path="/history" component={HistoryPage} />
-          {/* <Route exact path="/logIn" component={LogInPage} /> */}
           <Route exact path="/neuralNetwork" component={NeuralNetworkPage} />
           <Route exact path="/assimilation" component={DataAssimilationPage} />
         </Switch>
