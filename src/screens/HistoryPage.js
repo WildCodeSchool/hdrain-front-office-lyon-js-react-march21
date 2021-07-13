@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from 'react';
 import DateTimePicker from 'react-datetime-picker';
 import { Link, useHistory } from 'react-router-dom';
 import { useLocation } from 'react-router';
+import { useToasts } from 'react-toast-notifications';
 import { LocationContext } from '../contexts/LocationContext';
 import asset from '../assets/sensor.png';
 import API from '../APIClient';
@@ -14,6 +15,9 @@ export default function HistoryPage() {
   const { selectedLocationId, experiment, setExperiment } =
     useContext(LocationContext);
   const [pathToLog] = useState(asset);
+  const [isLoading, setIsLoading] = useState(false);
+  const { addToast } = useToasts();
+
   const [date, setDate] = useState(new Date());
   const [isEnabled, setIsEnabled] = useState(false);
   const location = useLocation();
@@ -123,6 +127,28 @@ export default function HistoryPage() {
           </div>
         </>
       ) : null}
+      <button
+        type="button"
+        id="btn"
+        name="btn"
+        className="btn download"
+        onClick={() => {
+          setIsLoading(true);
+          API.get('/sync')
+            .then((res) => {
+              addToast(res.data, {
+                appearance: 'info',
+                autoDismiss: true,
+              });
+            })
+            .finally(() => {
+              setIsLoading(false);
+            });
+        }}
+        style={isLoading ? { pointerEvents: 'none' } : null}
+      >
+        Sync
+      </button>
     </>
   );
 }
