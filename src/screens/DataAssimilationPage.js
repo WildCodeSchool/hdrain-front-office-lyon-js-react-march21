@@ -36,8 +36,7 @@ export default function DataAssimilationPage() {
         .catch(window.console.error);
     }
   }, [selectedLocationId]);
-  console.log(setRelativeDate);
-  console.log(displayRelativeTimeFromNow);
+
   return (
     <>
       <h2>Data Assimilation</h2>

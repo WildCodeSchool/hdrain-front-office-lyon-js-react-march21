@@ -30,8 +30,7 @@ export default function NeuralNetworkPage() {
         .catch(window.console.error);
     }
   }, [selectedLocationId]);
-  console.log(setRelativeDate);
-  console.log(displayRelativeTimeFromNow);
+
   return (
     <>
       <h2>Neural Network</h2>
