@@ -4,12 +4,11 @@ import { LocationContext } from '../contexts/LocationContext';
 import API from '../APIClient';
 import LocationDropDown from '../components/LocationDropDown';
 import Map from '../components/Map';
-import CostGraph from '../components/CostGraph';
 import displayRelativeTimeFromNow from '../components/dateHelper';
 
 export default function NeuralNetworkPage() {
   const [sensorsLocation, setSensorsLocation] = useState([]);
-  const { selectedLocationId, experiment, setExperiment } =
+  const { selectedLocationId, experiment, setExperiment, locationName } =
     useContext(LocationContext);
   const [relativeDate, setRelativeDate] = useState('');
 
@@ -40,9 +39,8 @@ export default function NeuralNetworkPage() {
       {Object.entries(experiment).length ? (
         <>
           <p>Last experiment: {relativeDate}</p>
-          <h3>Sensors Map </h3>
+          <h3>Sensors Map - {locationName} </h3>
           <Map pins={sensorsLocation} />
-          <CostGraph />
           <Link
             className="download"
             to={experiment?.neuralNetworkLog || ''}
