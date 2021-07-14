@@ -1,6 +1,7 @@
 import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
+import { LocationContext } from '../contexts/LocationContext';
 import graphOptions from './graphHelper';
 
 export default function CostGraph({
@@ -10,6 +11,7 @@ export default function CostGraph({
   inputR = [39, 38, 37, 36, 35, 34, 33, 32],
 }) {
   const [chartOptions, setChartOptions] = useState(graphOptions);
+  const { locationName } = useContext(LocationContext);
 
   const setChartData = (JoNL, Jblin, Jlin, r) =>
     setChartOptions((previousOptions) => ({
@@ -31,7 +33,7 @@ export default function CostGraph({
 
   return (
     <>
-      <h3>Cost Graph</h3>
+      <h3>Costs Graph - {locationName}</h3>
       <HighchartsReact highcharts={Highcharts} options={chartOptions} />
     </>
   );

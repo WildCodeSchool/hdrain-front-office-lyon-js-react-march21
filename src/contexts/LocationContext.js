@@ -35,6 +35,12 @@ export const LocationContextProvider = ({ children }) => {
     history.push(`${location.pathname}?locationId=${id}`);
   };
 
+  const locationFilteredbyId = locationList.filter(
+    (locationSite) =>
+      locationSite.locationId === parseInt(selectedLocationId, 10)
+  );
+  const locationName = locationFilteredbyId.map((id) => id.locationName);
+
   return (
     <LocationContext.Provider
       value={{
@@ -44,6 +50,7 @@ export const LocationContextProvider = ({ children }) => {
         setLocationId,
         experiment,
         setExperiment,
+        locationName,
       }}
     >
       {children}

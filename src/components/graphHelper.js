@@ -5,7 +5,7 @@ const graphOptions = {
     zoomType: 'xy',
   },
   title: {
-    text: 'Cost Graph',
+    text: 'Costs Graph',
     align: 'center',
   },
   // subtitle: {
