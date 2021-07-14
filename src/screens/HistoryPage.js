@@ -52,8 +52,7 @@ export default function HistoryPage() {
         .catch(window.console.error);
     }
   }, [formattedDate, selectedLocationId]);
-  console.log(setRelativeDate);
-  console.log(displayRelativeTimeFromNow);
+
   return (
     <>
       <h2>History</h2>
@@ -63,7 +62,13 @@ export default function HistoryPage() {
         </div>
         <div className="datePicker">
           <p>Select a timestamp</p>
-          <DateTimePicker onChange={setDate} value={date} />
+          <DateTimePicker
+            onChange={setDate}
+            value={date}
+            disabled={
+              !selectedLocationId || parseInt(selectedLocationId, 10) === 0
+            }
+          />
         </div>
       </div>
       {Object.entries(experiment).length ? (
