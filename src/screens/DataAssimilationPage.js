@@ -60,7 +60,7 @@ export default function DataAssimilationPage() {
             to={`/neuralNetwork?locationId=${selectedLocationId}`}
             className="link"
           >
-            Neural Network
+            Go to Neural Network
           </Link>
         </>
       ) : null}

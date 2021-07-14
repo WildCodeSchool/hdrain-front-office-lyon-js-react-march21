@@ -53,7 +53,7 @@ export default function NeuralNetworkPage() {
             to={`/assimilation?locationId=${selectedLocationId}`}
             className="link"
           >
-            Data Assimilation
+            Go to πData Assimilation
           </Link>
         </>
       ) : null}
