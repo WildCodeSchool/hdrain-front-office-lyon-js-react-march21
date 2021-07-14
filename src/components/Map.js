@@ -40,12 +40,11 @@ export default function Map({
           <Marker key={name} icon={selectIcon(status)} position={[lat, lng]}>
             <Popup>
               <h4>
-                {name} {spotName.toUpperCase()}
+                {name} {spotName}
               </h4>
               <p>Sensor # {sensorNumber}</p>
               <p>Latitude : {lat}</p>
               <p>Longitude : {lng}</p>
-              <p>status : {status}</p>
             </Popup>
           </Marker>
         ))}
