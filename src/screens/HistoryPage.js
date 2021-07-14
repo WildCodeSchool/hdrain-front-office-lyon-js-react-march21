@@ -113,6 +113,18 @@ export default function HistoryPage() {
               Get assimilation costs
             </Link>
           </div>
+          <Link
+            to={`/neuralNetwork?locationId=${selectedLocationId}`}
+            className="link"
+          >
+            Go to Neural Network
+          </Link>
+          <Link
+            to={`/assimilation?locationId=${selectedLocationId}`}
+            className="link"
+          >
+            Go to Data Assimilation
+          </Link>
         </>
       ) : null}
     </>
