@@ -52,7 +52,8 @@ export default function HistoryPage() {
         .catch(window.console.error);
     }
   }, [formattedDate, selectedLocationId]);
-
+  console.log(setRelativeDate);
+  console.log(displayRelativeTimeFromNow);
   return (
     <>
       <h2>History</h2>

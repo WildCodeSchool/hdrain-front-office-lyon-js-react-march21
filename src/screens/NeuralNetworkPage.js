@@ -31,7 +31,8 @@ export default function NeuralNetworkPage() {
         .catch(window.console.error);
     }
   }, [selectedLocationId]);
-
+  console.log(setRelativeDate);
+  console.log(displayRelativeTimeFromNow);
   return (
     <>
       <h2>Neural Network</h2>
@@ -51,7 +52,7 @@ export default function NeuralNetworkPage() {
             Get Neural Network Logs
           </Link>
           <Link
-            to={`/locations/assimilation?locationId=${selectedLocationId}`}
+            to={`/assimilation?locationId=${selectedLocationId}`}
             className="link"
           >
             Data Assimilation
