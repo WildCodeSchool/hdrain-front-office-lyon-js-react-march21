@@ -32,12 +32,12 @@ export default function MenuNav({ auth = true }) {
             </NavLink>
           </li>
           <li className="navItem">
-            <NavLink className="navLink" exact to="/locations/neuralNetwork">
+            <NavLink className="navLink" exact to="/neuralNetwork">
               Neural Network
             </NavLink>
           </li>
           <li className="navItem">
-            <NavLink className="navLink" exact to="/locations/assimilation">
+            <NavLink className="navLink" exact to="/assimilation">
               Data Assimilation
             </NavLink>
           </li>

@@ -32,6 +32,11 @@ select::-ms-expand {
   display: none;
 }
 
+ul,
+li {
+  display: block;
+}
+
 /* ================
   Global variables
   ================*/
@@ -221,6 +226,10 @@ Components
   box-shadow: 0 5px 0 purple;
 }
 
+.leaflet-container {
+  margin-bottom: 1rem;
+}
+
 .leaflet-div-icon {
   background: #00000000;
   border: none;
@@ -236,7 +245,8 @@ Components
 }
 
 .navItem {
-  padding: 1rem;
+  display: grid;
+  place-items: center;
 }
 
 .navItem:hover {
@@ -248,6 +258,8 @@ Components
 }
 
 .navLink {
+  display: block;
+  padding: 1rem;
   font-size: 1rem;
   text-decoration: none;
   font-weight: 600;
@@ -289,6 +301,10 @@ select {
 .select:hover::after {
   color: var(--hdr-color);
   background-color: var(--accent-color);
+}
+
+.datePicker {
+  z-index: 500;
 }
 
 .react-datetime-picker {
@@ -414,8 +430,7 @@ a {
   text-align: center;
   font-family: Arial;
   color: gray;
-  display: block;
-  /* margin: 15px auto; */
+  display: inline-block;
   text-decoration: none;
   transition: all 0.3s ease;
   font-size: 12px;

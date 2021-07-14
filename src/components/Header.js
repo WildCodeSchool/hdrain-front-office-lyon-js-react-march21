@@ -16,10 +16,10 @@ export default function Header() {
   useEffect(async () => {
     try {
       const res = await API.get('/currentUser');
-      if (!res.data.username) return setAuth(false);
-      return setAuth(true);
+      if (!res.data.username) setAuth(false);
+      else setAuth(true);
     } catch (err) {
-      return console.log('The user is not connected');
+      window.console.error('Connection failed ', err);
     }
   }, []);
 
@@ -54,16 +54,12 @@ export default function Header() {
                 </NavLink>
               </li>
               <li className="navItem">
-                <NavLink
-                  className="navLink"
-                  exact
-                  to="/locations/neuralNetwork"
-                >
+                <NavLink className="navLink" exact to="/neuralNetwork">
                   Neural Network
                 </NavLink>
               </li>
               <li className="navItem">
-                <NavLink className="navLink" exact to="/locations/assimilation">
+                <NavLink className="navLink" exact to="/assimilation">
                   Data Assimilation
                 </NavLink>
               </li>
