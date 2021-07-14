@@ -33,7 +33,7 @@ export default function CostGraph({
 
   return (
     <>
-      <h3>Costs Graph - {locationName}</h3>
+      <h3>Costs Graph {locationName}</h3>
       <HighchartsReact highcharts={Highcharts} options={chartOptions} />
     </>
   );

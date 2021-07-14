@@ -16,7 +16,7 @@ const formatDate = (date) => {
 };
 
 export default function HistoryPage() {
-  const { selectedLocationId, experiment, setExperiment } =
+  const { selectedLocationId, experiment, setExperiment, locationName } =
     useContext(LocationContext);
   const [date, setDate] = useState(new Date(2021, 5, 12, 18, 45));
   const location = useLocation();
@@ -70,7 +70,7 @@ export default function HistoryPage() {
         <>
           <p>Selected experiment was: {relativeDate}</p>
           <div className="maps">
-            <h3>Sensors Map </h3>
+            <h3>Sensors Map {locationName}</h3>
             <Map pins={sensorsLocation} />
             <RainMap />
           </div>

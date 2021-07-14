@@ -2,10 +2,10 @@ import { useContext } from 'react';
 import { LocationContext } from '../contexts/LocationContext';
 
 const RainMap = ({ size = 400, borderColor = '' }) => {
-  const { experiment } = useContext(LocationContext);
+  const { experiment, locationName } = useContext(LocationContext);
   return (
     <>
-      <h3>Rain Map</h3>
+      <h3>Rain Map {locationName}</h3>
       <img
         style={{
           width: `${size}px`,
