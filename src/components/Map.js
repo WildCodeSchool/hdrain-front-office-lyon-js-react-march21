@@ -36,13 +36,12 @@ export default function Map({
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
       {!!pins.length &&
-        pins.map(({ id, name, sensorNumber, spotName, status, lat, lng }) => (
+        pins.map(({ name, sensorNumber, spotName, status, lat, lng }) => (
           <Marker key={name} icon={selectIcon(status)} position={[lat, lng]}>
             <Popup>
               <h4>
-                {name} {spotName}
+                {name} {spotName.toUpperCase()}
               </h4>
-              <p>Sensor id : {id} </p>
               <p>Sensor # {sensorNumber}</p>
               <p>Latitude : {lat}</p>
               <p>Longitude : {lng}</p>
