@@ -45,6 +45,6 @@ const findCenter = (pins) => {
   ];
 };
 
-const setZoom = (pins) => (pins.length <= 1 ? 2 : 14);
+const setZoom = (pins) => (pins[0]?.status ? 10 : 2);
 
 export { selectIcon, findCenter, setZoom };
