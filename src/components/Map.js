@@ -1,6 +1,9 @@
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import { selectIcon, findCenter, setZoom } from './markerHelper';
 
+const capitalizeFirstLetter = (string) =>
+  string.charAt(0).toUpperCase() + string.slice(1);
+
 export default function Map({
   pins = [
     {
@@ -22,30 +25,33 @@ export default function Map({
   ],
 }) {
   return (
-    <MapContainer
-      center={findCenter(pins)}
-      zoom={setZoom(pins)}
-      scrollWheelZoom={false}
-      style={{
-        height: '400px',
-        width: '800px',
-      }}
-    >
-      <TileLayer
-        attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-      />
-      {!!pins.length &&
-        pins.map(({ name, sensorNumber, spotName, status, lat, lng }) => (
-          <Marker key={name} icon={selectIcon(status)} position={[lat, lng]}>
-            <Popup>
-              <h4>{spotName ? spotName.toUpperCase() : name}</h4>
-              {sensorNumber ? <p>Sensor # {sensorNumber}</p> : null}
-              <p>Latitude : {lat}</p>
-              <p>Longitude : {lng}</p>
-            </Popup>
-          </Marker>
-        ))}
-    </MapContainer>
+    <>
+      {!!pins.length && (
+        <MapContainer
+          center={findCenter(pins)}
+          zoom={setZoom(pins)}
+          style={{
+            height: '400px',
+            width: '800px',
+          }}
+        >
+          <TileLayer
+            attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          />
+
+          {pins.map(({ name, sensorNumber, spotName, status, lat, lng }) => (
+            <Marker key={name} icon={selectIcon(status)} position={[lat, lng]}>
+              <Popup>
+                <h4>{spotName ? capitalizeFirstLetter(spotName) : name}</h4>
+                {sensorNumber ? <p>Sensor # {sensorNumber}</p> : null}
+                <p>Latitude : {lat}</p>
+                <p>Longitude : {lng}</p>
+              </Popup>
+            </Marker>
+          ))}
+        </MapContainer>
+      )}
+    </>
   );
 }
