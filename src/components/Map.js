@@ -39,9 +39,7 @@ export default function Map({
         pins.map(({ name, sensorNumber, spotName, status, lat, lng }) => (
           <Marker key={name} icon={selectIcon(status)} position={[lat, lng]}>
             <Popup>
-              <h4>
-                {name} {spotName}
-              </h4>
+              <h4>{spotName ? spotName.toUpperCase() : name}</h4>
               {sensorNumber ? <p>Sensor # {sensorNumber}</p> : null}
               <p>Latitude : {lat}</p>
               <p>Longitude : {lng}</p>
