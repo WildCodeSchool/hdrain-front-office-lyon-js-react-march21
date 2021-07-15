@@ -7,10 +7,7 @@ const graphOptions = {
   title: {
     text: null,
   },
-  // subtitle: {
-  //   text: 'Station XXX mode NUV',
-  //   align: 'center',
-  // },
+
   xAxis: [
     {
       crosshair: true,
