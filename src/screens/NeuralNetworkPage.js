@@ -49,13 +49,14 @@ export default function NeuralNetworkPage() {
           <p>Last experiment: {relativeDate}</p>
           <h3>Sensors Map {locationName} </h3>
           <Map pins={sensorsLocation} />
-          <Link
+          <a
             className="download"
-            to={experiment?.neuralNetworkLog || ''}
+            href={experiment?.neuralNetworkLog || ''}
             target="_blank"
+            rel="noreferrer"
           >
             Get Neural Network Logs
-          </Link>
+          </a>
           <Link
             to={`/assimilation?locationId=${selectedLocationId}`}
             className="link"
