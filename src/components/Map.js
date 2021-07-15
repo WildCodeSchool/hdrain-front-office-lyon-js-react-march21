@@ -42,7 +42,7 @@ export default function Map({
               <h4>
                 {name} {spotName}
               </h4>
-              <p>Sensor # {sensorNumber}</p>
+              {sensorNumber ? <p>Sensor # {sensorNumber}</p> : null}
               <p>Latitude : {lat}</p>
               <p>Longitude : {lng}</p>
             </Popup>
