@@ -1,5 +1,5 @@
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
-import { selectIcon, findCenter, setZoom } from './markerHelper';
+import { selectIcon, findCenter, setZoom } from '../utilities/markerHelper';
 
 const capitalizeFirstLetter = (string) =>
   string.charAt(0).toUpperCase() + string.slice(1);

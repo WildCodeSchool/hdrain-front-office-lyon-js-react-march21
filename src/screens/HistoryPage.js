@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import { useContext, useEffect, useState } from 'react';
 import DateTimePicker from 'react-datetime-picker';
 import { Link, useHistory } from 'react-router-dom';
@@ -7,7 +8,8 @@ import API from '../APIClient';
 import Map from '../components/Map';
 import RainMap from '../components/RainMap';
 import LocationDropDown from '../components/LocationDropDown';
-import displayRelativeTimeFromNow from '../components/dateHelper';
+import displayRelativeTimeFromNow from '../utilities/dateHelper';
+import createURL from '../utilities/createURL';
 
 const formatDate = (date) => {
   // Round to 5 minutes
@@ -16,15 +18,13 @@ const formatDate = (date) => {
 };
 
 export default function HistoryPage() {
-  const { selectedLocationId, experiment, setExperiment } =
+  const { selectedLocationId, experiment, setExperiment, locationName } =
     useContext(LocationContext);
   const [date, setDate] = useState(new Date(2021, 5, 12, 18, 45));
-  const [isEnabled, setIsEnabled] = useState(false);
   const location = useLocation();
   const history = useHistory();
   const [sensorsLocation, setSensorsLocation] = useState([]);
   const [relativeDate, setRelativeDate] = useState('');
-
   const formattedDate = formatDate(date);
 
   useEffect(() => {
@@ -36,7 +36,18 @@ export default function HistoryPage() {
       API.get(
         `/locations/${selectedLocationId}/experiments/?timestamp=${formattedDate}`
       )
-        .then((res) => setExperiment(res.data))
+        .then(({ data }) => {
+          const augmentedExperiment = {
+            ...data,
+            url: {
+              neuralNetworkLog: createURL(data.neuralNetworkLog),
+              costGraph: createURL(data.costGraph),
+              parameters: createURL(data.parameters),
+              assimilationLog: createURL(data.assimilationLog),
+            },
+          };
+          setExperiment(augmentedExperiment);
+        })
         .then(() => {
           if (experiment.timestamp) {
             setRelativeDate(
@@ -44,18 +55,23 @@ export default function HistoryPage() {
             );
           }
         })
-        .catch(window.console.error)
-        .finally(setIsEnabled(true));
+        .catch(window.console.error);
 
       API.get(
         `locations/${selectedLocationId}/sensors/?timestamp=${formattedDate}`
       )
         .then((res) => setSensorsLocation(res.data))
         .catch(window.console.error);
-    } else {
-      setIsEnabled(false);
     }
   }, [formattedDate, selectedLocationId]);
+
+  useEffect(() => {
+    if (experiment.timestamp) {
+      setRelativeDate(
+        displayRelativeTimeFromNow(new Date(experiment.timestamp))
+      );
+    }
+  }, [experiment]);
 
   return (
     <>
@@ -66,56 +82,69 @@ export default function HistoryPage() {
         </div>
         <div className="datePicker">
           <p>Select a timestamp</p>
-          <DateTimePicker onChange={setDate} value={date} />
+          <DateTimePicker
+            onChange={setDate}
+            value={date}
+            disabled={
+              !selectedLocationId || parseInt(selectedLocationId, 10) === 0
+            }
+          />
         </div>
       </div>
-      {Object.entries(experiment).length ? (
+      {locationName.length ? (
         <>
           <p>Selected experiment was: {relativeDate}</p>
           <div className="maps">
-            <h3>Sensors map</h3>
+            <h3>Sensors Map {locationName}</h3>
             <Map pins={sensorsLocation} />
-            <h3>Rain map</h3>
             <RainMap />
           </div>
           <div className="download-links">
-            <Link
+            <a
               className="download"
-              to={experiment?.neuralNetworkLog}
               target="_blank"
-              download
-              style={isEnabled ? null : { pointerEvents: 'none' }}
+              rel="noreferrer"
+              href={experiment?.url?.neuralNetworkLog}
             >
               Get Neural Network Log
-            </Link>
-            <Link
+            </a>
+            <a
               className="download"
-              to={experiment?.assimilationLog}
               target="_blank"
-              download
-              style={isEnabled ? null : { pointerEvents: 'none' }}
+              rel="noreferrer"
+              href={experiment?.url?.assimilationLog}
             >
               Get Assimilation Log
-            </Link>
-            <Link
+            </a>
+            <a
               className="download"
-              to={experiment?.parameters}
+              href={experiment?.url?.parameters}
               target="_blank"
-              download
-              style={isEnabled ? null : { pointerEvents: 'none' }}
+              rel="noreferrer"
             >
               Get assimilation parameters
-            </Link>
-            <Link
+            </a>
+            <a
               className="download"
-              to={experiment?.costGraph}
+              href={experiment?.url?.costGraph}
               target="_blank"
-              download
-              style={isEnabled ? null : { pointerEvents: 'none' }}
+              rel="noreferrer"
             >
               Get assimilation costs
-            </Link>
+            </a>
           </div>
+          <Link
+            to={`/neuralNetwork?locationId=${selectedLocationId}`}
+            className="link"
+          >
+            Go to Neural Network
+          </Link>
+          <Link
+            to={`/assimilation?locationId=${selectedLocationId}`}
+            className="link"
+          >
+            Go to Data Assimilation
+          </Link>
         </>
       ) : null}
     </>

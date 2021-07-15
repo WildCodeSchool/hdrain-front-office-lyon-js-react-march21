@@ -31,7 +31,7 @@ export default function HomePage() {
         to={`/assimilation?locationId=${selectedLocationId}`}
         style={!selectedLocationId ? { pointerEvents: 'none' } : null}
       >
-        Go to Assimilation Page
+        Go to Data Assimilation Page
       </Link>
       <NavLink
         className="link"

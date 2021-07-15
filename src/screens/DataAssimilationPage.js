@@ -2,47 +2,37 @@ import React, { useContext, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { LocationContext } from '../contexts/LocationContext';
 import LocationDropDown from '../components/LocationDropDown';
-import AssimilationInfos from '../components/AssimilationInfos';
-import displayRelativeTimeFromNow from '../components/dateHelper';
+import CostGraph from '../components/CostGraph';
+import RainMap from '../components/RainMap';
+import displayRelativeTimeFromNow from '../utilities/dateHelper';
 import API from '../APIClient';
+import createURL from '../utilities/createURL';
 
 export default function DataAssimilationPage() {
-  const { selectedLocation, selectedLocationId, experiment, setExperiment } =
+  const { selectedLocationId, experiment, setExperiment, locationName } =
     useContext(LocationContext);
-
-  const [showParams, setShowParams] = useState(false);
-  const [locationParams, setLocationParams] = useState(['None']);
+  const [assimilationParams, setAssimilationParams] = useState([]);
   const [relativeDate, setRelativeDate] = useState('');
-
-  const assimilationParams = [
-    {
-      location: 'Abidjan',
-    },
-    {
-      location: 'Antibes',
-    },
-    {
-      location: 'Toulouse',
-    },
-  ];
-
-  useEffect(() => {
-    if (!selectedLocation) {
-      setShowParams(false);
-    } else {
-      setLocationParams(
-        assimilationParams.filter(
-          ({ location }) => location === selectedLocation
-        )
-      );
-      setShowParams(true);
-    }
-  }, [selectedLocation]);
 
   useEffect(() => {
     if (selectedLocationId) {
       API.get(`/locations/${selectedLocationId}/experiments/`)
-        .then((res) => setExperiment(res.data))
+        .then((res) => setAssimilationParams(res.data))
+        .catch(window.console.error);
+    }
+  }, [selectedLocationId]);
+
+  useEffect(() => {
+    if (selectedLocationId) {
+      API.get(`/locations/${selectedLocationId}/experiments/`)
+        .then((res) =>
+          setExperiment({
+            ...res.data,
+            url: {
+              assimilationLog: createURL(res.data.assimilationLog),
+            },
+          })
+        )
         .then(() => {
           if (experiment.timestamp) {
             setRelativeDate(
@@ -54,35 +44,40 @@ export default function DataAssimilationPage() {
     }
   }, [selectedLocationId]);
 
+  useEffect(() => {
+    if (experiment.timestamp) {
+      setRelativeDate(
+        displayRelativeTimeFromNow(new Date(experiment.timestamp))
+      );
+    }
+  }, [experiment]);
+
   return (
     <>
       <h2>Data Assimilation</h2>
       <LocationDropDown />
-      <p>Last experiment: {relativeDate}</p>
-      {showParams ? (
+      {locationName.length ? (
         <>
-          <AssimilationInfos
-            assimilationParams={locationParams}
-            show={showParams}
-          />
+          <p>Last experiment: {relativeDate}</p>
+          {assimilationParams.parameters}
+          <CostGraph />
+          <RainMap />
+          <a
+            className="download"
+            href={experiment?.url?.assimilationLog || ''}
+            target="_blank"
+            rel="noreferrer"
+          >
+            Get Data Assimilation Logs
+          </a>
+          <Link
+            to={`/neuralNetwork?locationId=${selectedLocationId}`}
+            className="link"
+          >
+            Go to Neural Network
+          </Link>
         </>
       ) : null}
-      <Link
-        className="download"
-        to={experiment?.assimilationLog || ''}
-        target="_blank"
-        download
-        style={!selectedLocationId ? { pointerEvents: 'none' } : null}
-      >
-        Get Data Assimilation Logs
-      </Link>
-      <Link
-        to={`/neuralNetwork?locationId=${selectedLocationId}`}
-        className="link"
-        style={!selectedLocationId ? { pointerEvents: 'none' } : null}
-      >
-        Neural Network
-      </Link>
     </>
   );
 }
