@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import { useContext, useEffect, useState } from 'react';
 import DateTimePicker from 'react-datetime-picker';
 import { Link, useHistory } from 'react-router-dom';
@@ -8,6 +9,7 @@ import Map from '../components/Map';
 import RainMap from '../components/RainMap';
 import LocationDropDown from '../components/LocationDropDown';
 import displayRelativeTimeFromNow from '../components/dateHelper';
+import createURL from '../utilities/createURL';
 
 const formatDate = (date) => {
   // Round to 5 minutes
@@ -34,7 +36,18 @@ export default function HistoryPage() {
       API.get(
         `/locations/${selectedLocationId}/experiments/?timestamp=${formattedDate}`
       )
-        .then((res) => setExperiment(res.data))
+        .then(({ data }) => {
+          const augmentedExperiment = {
+            ...data,
+            url: {
+              neuralNetwork: createURL(data.neuralNetwork),
+              costGraph: createURL(data.costGraph),
+              parameters: createURL(data.parameters),
+              assimilationLog: createURL(data.assimilationLog),
+            },
+          };
+          setExperiment(augmentedExperiment);
+        })
         .then(() => {
           if (experiment.timestamp) {
             setRelativeDate(
@@ -87,38 +100,36 @@ export default function HistoryPage() {
             <RainMap />
           </div>
           <div className="download-links">
-            <Link
+            <a
               className="download"
-              to={experiment?.neuralNetworkLog}
               target="_blank"
-              download
+              rel="noreferrer"
+              href={experiment?.url?.neuralNetwork}
             >
               Get Neural Network Log
-            </Link>
-            <Link
+            </a>
+            <a
               className="download"
-              to={experiment?.assimilationLog}
               target="_blank"
-              download
+              rel="noreferrer"
+              href={experiment?.url?.assimilationLog}
             >
               Get Assimilation Log
-            </Link>
-            <Link
+            </a>
+            <a
               className="download"
-              to={experiment?.parameters}
-              target="_blank"
-              download
+              to={experiment?.url?.parameters}
+              href="_blank"
             >
               Get assimilation parameters
-            </Link>
-            <Link
+            </a>
+            <a
               className="download"
-              to={experiment?.costGraph}
-              target="_blank"
-              download
+              to={experiment?.url?.costGraph}
+              href="_blank"
             >
               Get assimilation costs
-            </Link>
+            </a>
           </div>
           <Link
             to={`/neuralNetwork?locationId=${selectedLocationId}`}

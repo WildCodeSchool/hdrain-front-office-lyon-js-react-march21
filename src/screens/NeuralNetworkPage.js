@@ -5,6 +5,7 @@ import API from '../APIClient';
 import LocationDropDown from '../components/LocationDropDown';
 import Map from '../components/Map';
 import displayRelativeTimeFromNow from '../components/dateHelper';
+import createURL from '../utilities/createURL';
 
 export default function NeuralNetworkPage() {
   const [sensorsLocation, setSensorsLocation] = useState([]);
@@ -19,7 +20,14 @@ export default function NeuralNetworkPage() {
         .catch(window.console.error);
 
       API.get(`/locations/${selectedLocationId}/experiments/`)
-        .then((res) => setExperiment(res.data))
+        .then((res) =>
+          setExperiment({
+            ...res.data,
+            url: {
+              neuralNetworkLog: createURL(res.data.neuralNetworkLog),
+            },
+          })
+        )
         .catch(window.console.error);
     }
   }, [selectedLocationId]);

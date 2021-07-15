@@ -6,6 +6,7 @@ import CostGraph from '../components/CostGraph';
 import RainMap from '../components/RainMap';
 import displayRelativeTimeFromNow from '../components/dateHelper';
 import API from '../APIClient';
+import createURL from '../utilities/createURL';
 
 export default function DataAssimilationPage() {
   const { selectedLocationId, experiment, setExperiment, locationName } =
@@ -24,7 +25,14 @@ export default function DataAssimilationPage() {
   useEffect(() => {
     if (selectedLocationId) {
       API.get(`/locations/${selectedLocationId}/experiments/`)
-        .then((res) => setExperiment(res.data))
+        .then((res) =>
+          setExperiment({
+            ...res.data,
+            url: {
+              assimilationLog: createURL(res.data.assimilationLog),
+            },
+          })
+        )
         .then(() => {
           if (experiment.timestamp) {
             setRelativeDate(
@@ -54,14 +62,14 @@ export default function DataAssimilationPage() {
           {assimilationParams.parameters}
           <CostGraph />
           <RainMap />
-          <Link
+          <a
             className="download"
-            to={experiment?.assimilationLog || ''}
+            href={experiment?.url?.assimilationLog || ''}
             target="_blank"
-            download
+            rel="noreferrer"
           >
             Get Data Assimilation Logs
-          </Link>
+          </a>
           <Link
             to={`/neuralNetwork?locationId=${selectedLocationId}`}
             className="link"
