@@ -118,15 +118,17 @@ export default function HistoryPage() {
             </a>
             <a
               className="download"
-              to={experiment?.url?.parameters}
-              href="_blank"
+              href={experiment?.url?.parameters}
+              target="_blank"
+              rel="noreferrer"
             >
               Get assimilation parameters
             </a>
             <a
               className="download"
-              to={experiment?.url?.costGraph}
-              href="_blank"
+              href={experiment?.url?.costGraph}
+              target="_blank"
+              rel="noreferrer"
             >
               Get assimilation costs
             </a>

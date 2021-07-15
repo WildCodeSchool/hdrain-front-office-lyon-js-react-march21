@@ -53,7 +53,6 @@ export default function NeuralNetworkPage() {
             className="download"
             to={experiment?.neuralNetworkLog || ''}
             target="_blank"
-            download
           >
             Get Neural Network Logs
           </Link>
