@@ -10,11 +10,8 @@ import API from '../APIClient';
 export default function DataAssimilationPage() {
   const { selectedLocationId, experiment, setExperiment, locationName } =
     useContext(LocationContext);
-
   const [assimilationParams, setAssimilationParams] = useState([]);
   const [relativeDate, setRelativeDate] = useState('');
-  console.log(experiment);
-  console.log(relativeDate);
 
   useEffect(() => {
     if (selectedLocationId) {
