@@ -11,8 +11,6 @@ export default function NeuralNetworkPage() {
   const { selectedLocationId, experiment, setExperiment, locationName } =
     useContext(LocationContext);
   const [relativeDate, setRelativeDate] = useState('');
-  // console.log(experiment);
-  // console.log(relativeDate);
 
   useEffect(() => {
     if (selectedLocationId) {
