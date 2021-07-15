@@ -39,6 +39,14 @@ export default function DataAssimilationPage() {
     }
   }, [selectedLocationId]);
 
+  useEffect(() => {
+    if (experiment.timestamp) {
+      setRelativeDate(
+        displayRelativeTimeFromNow(new Date(experiment.timestamp))
+      );
+    }
+  }, [experiment]);
+
   return (
     <>
       <h2>Data Assimilation</h2>

@@ -11,28 +11,28 @@ export default function NeuralNetworkPage() {
   const { selectedLocationId, experiment, setExperiment, locationName } =
     useContext(LocationContext);
   const [relativeDate, setRelativeDate] = useState('');
-  console.log(experiment);
-  console.log(relativeDate);
-  console.log(locationName);
+  // console.log(experiment);
+  // console.log(relativeDate);
 
   useEffect(() => {
     if (selectedLocationId) {
       API.get(`locations/${selectedLocationId}/sensors/`)
-        .then((response) => setSensorsLocation(response.data))
+        .then((res) => setSensorsLocation(res.data))
         .catch(window.console.error);
 
       API.get(`/locations/${selectedLocationId}/experiments/`)
         .then((res) => setExperiment(res.data))
-        .then(() => {
-          if (experiment.timestamp) {
-            setRelativeDate(
-              displayRelativeTimeFromNow(new Date(experiment?.timestamp))
-            );
-          }
-        })
         .catch(window.console.error);
     }
   }, [selectedLocationId]);
+
+  useEffect(() => {
+    if (experiment.timestamp) {
+      setRelativeDate(
+        displayRelativeTimeFromNow(new Date(experiment.timestamp))
+      );
+    }
+  }, [experiment]);
 
   return (
     <>

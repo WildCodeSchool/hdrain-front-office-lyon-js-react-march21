@@ -23,10 +23,7 @@ export default function HistoryPage() {
   const history = useHistory();
   const [sensorsLocation, setSensorsLocation] = useState([]);
   const [relativeDate, setRelativeDate] = useState('');
-
   const formattedDate = formatDate(date);
-  console.log(experiment);
-  console.log(relativeDate);
 
   useEffect(() => {
     if (selectedLocationId) {
@@ -54,6 +51,14 @@ export default function HistoryPage() {
         .catch(window.console.error);
     }
   }, [formattedDate, selectedLocationId]);
+
+  useEffect(() => {
+    if (experiment.timestamp) {
+      setRelativeDate(
+        displayRelativeTimeFromNow(new Date(experiment.timestamp))
+      );
+    }
+  }, [experiment]);
 
   return (
     <>
