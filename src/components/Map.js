@@ -24,11 +24,11 @@ export default function Map({
   return (
     <MapContainer
       center={findCenter(pins)}
-      zoom={setZoom(pins)} //
+      zoom={setZoom(pins)}
       scrollWheelZoom={false}
       style={{
         height: '400px',
-        width: '600px',
+        width: '800px',
       }}
     >
       <TileLayer

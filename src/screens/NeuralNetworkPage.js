@@ -1,55 +1,58 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
-import asset from '../assets/sensor.png';
 import { LocationContext } from '../contexts/LocationContext';
 import API from '../APIClient';
 import LocationDropDown from '../components/LocationDropDown';
 import Map from '../components/Map';
-import RainGraph from '../components/RainGraph';
+import CostGraph from '../components/CostGraph';
+import displayRelativeTimeFromNow from '../components/dateHelper';
 
 export default function NeuralNetworkPage() {
   const [sensorsLocation, setSensorsLocation] = useState([]);
   const { selectedLocationId } = useContext(LocationContext);
+  const [relativeDate, setRelativeDate] = useState('');
+
+  const { experiment, setExperiment } = useContext(LocationContext);
 
   useEffect(() => {
-    if (selectedLocationId && !!selectedLocationId) {
+    if (selectedLocationId) {
       API.get(`locations/${selectedLocationId}/sensors/`)
-        .then((response) => response.data)
-        .then((data) => {
-          setSensorsLocation(data);
-        });
+        .then((response) => setSensorsLocation(response.data))
+        .catch(window.console.error);
+
+      API.get(`/locations/${selectedLocationId}/experiments/`)
+        .then((res) => setExperiment(res.data))
+        .then(() => {
+          if (experiment.timestamp) {
+            setRelativeDate(
+              displayRelativeTimeFromNow(new Date(experiment?.timestamp))
+            );
+          }
+        })
+        .catch(window.console.error);
     }
   }, [selectedLocationId]);
-
-  const [pathToLog] = useState(asset);
 
   return (
     <>
       <h2>Neural Network</h2>
       <LocationDropDown />
+      <p>Last experiment: {relativeDate}</p>
       <Map pins={sensorsLocation} />
-      <RainGraph />
+      <CostGraph />
       <Link
         className="download"
-        to={pathToLog}
+        to={experiment?.neuralNetworkLog || ''}
         target="_blank"
         download
-        style={
-          !selectedLocationId || selectedLocationId === 'None'
-            ? { pointerEvents: 'none' }
-            : null
-        }
+        style={!selectedLocationId ? { pointerEvents: 'none' } : null}
       >
-        Download Neural Network Logs
+        Get Neural Network Logs
       </Link>
       <Link
-        to={`/locations/assimilation?locationId=${selectedLocationId}`}
+        to={`/assimilation?locationId=${selectedLocationId}`}
         className="link"
-        style={
-          !selectedLocationId || selectedLocationId === 'None'
-            ? { pointerEvents: 'none' }
-            : null
-        }
+        style={!selectedLocationId ? { pointerEvents: 'none' } : null}
       >
         Data Assimilation
       </Link>

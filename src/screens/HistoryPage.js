@@ -3,30 +3,29 @@ import DateTimePicker from 'react-datetime-picker';
 import { Link, useHistory } from 'react-router-dom';
 import { useLocation } from 'react-router';
 import { LocationContext } from '../contexts/LocationContext';
-import asset from '../assets/sensor.png';
 import API from '../APIClient';
 import Map from '../components/Map';
 import RainMap from '../components/RainMap';
-
 import LocationDropDown from '../components/LocationDropDown';
+import displayRelativeTimeFromNow from '../components/dateHelper';
+
+const formatDate = (date) => {
+  // Round to 5 minutes
+  const coeff = 1000 * 60 * 5;
+  return new Date(Math.round(date.getTime() / coeff) * coeff).toISOString();
+};
 
 export default function HistoryPage() {
   const { selectedLocationId, experiment, setExperiment } =
     useContext(LocationContext);
-  const [pathToLog] = useState(asset);
-  const [date, setDate] = useState(new Date());
+  const [date, setDate] = useState(new Date(2021, 5, 12, 18, 45));
   const [isEnabled, setIsEnabled] = useState(false);
   const location = useLocation();
   const history = useHistory();
   const [sensorsLocation, setSensorsLocation] = useState([]);
-  const coeff = 1000 * 60 * 5;
-  const year = date.getFullYear();
-  const month = `${date.getMonth() + 1}`.padStart(2, '0');
-  const day = `0${date.getDate()}`.slice(-2);
-  const formattedHours = `0${date.getHours()}`.slice(-2);
-  const rounded = new Date(Math.round(date.getTime() / coeff) * coeff);
-  const roundedMinutes = `0${rounded.getMinutes()}`.slice(-2);
-  const formattedDate = `${year}-${month}-${day}T${formattedHours}:${roundedMinutes}:00`;
+  const [relativeDate, setRelativeDate] = useState('');
+
+  const formattedDate = formatDate(date);
 
   useEffect(() => {
     if (selectedLocationId) {
@@ -37,8 +36,13 @@ export default function HistoryPage() {
       API.get(
         `/locations/${selectedLocationId}/experiments/?timestamp=${formattedDate}`
       )
-        .then((res) => {
-          setExperiment(res.data);
+        .then((res) => setExperiment(res.data))
+        .then(() => {
+          if (experiment.timestamp) {
+            setRelativeDate(
+              displayRelativeTimeFromNow(new Date(experiment?.timestamp))
+            );
+          }
         })
         .catch(window.console.error)
         .finally(setIsEnabled(true));
@@ -46,7 +50,7 @@ export default function HistoryPage() {
       API.get(
         `locations/${selectedLocationId}/sensors/?timestamp=${formattedDate}`
       )
-        .then((response) => setSensorsLocation(response.data))
+        .then((res) => setSensorsLocation(res.data))
         .catch(window.console.error);
     } else {
       setIsEnabled(false);
@@ -65,10 +69,10 @@ export default function HistoryPage() {
           <DateTimePicker onChange={setDate} value={date} />
         </div>
       </div>
-      {isEnabled ? (
+      {Object.entries(experiment).length ? (
         <>
+          <p>Selected experiment was: {relativeDate}</p>
           <div className="maps">
-            <>{!!Object.entries(experiment).length && <p>call works</p>}</>
             <h3>Sensors map</h3>
             <Map pins={sensorsLocation} />
             <h3>Rain map</h3>
@@ -77,16 +81,7 @@ export default function HistoryPage() {
           <div className="download-links">
             <Link
               className="download"
-              to={pathToLog}
-              target="_blank"
-              download
-              style={isEnabled ? null : { pointerEvents: 'none' }}
-            >
-              Get GLOBAL Log
-            </Link>
-            <Link
-              className="download"
-              to={pathToLog}
+              to={experiment?.neuralNetworkLog}
               target="_blank"
               download
               style={isEnabled ? null : { pointerEvents: 'none' }}
@@ -95,7 +90,7 @@ export default function HistoryPage() {
             </Link>
             <Link
               className="download"
-              to={pathToLog}
+              to={experiment?.assimilationLog}
               target="_blank"
               download
               style={isEnabled ? null : { pointerEvents: 'none' }}
@@ -104,7 +99,7 @@ export default function HistoryPage() {
             </Link>
             <Link
               className="download"
-              to={pathToLog}
+              to={experiment?.parameters}
               target="_blank"
               download
               style={isEnabled ? null : { pointerEvents: 'none' }}
@@ -113,7 +108,7 @@ export default function HistoryPage() {
             </Link>
             <Link
               className="download"
-              to={pathToLog}
+              to={experiment?.costGraph}
               target="_blank"
               download
               style={isEnabled ? null : { pointerEvents: 'none' }}
