@@ -4,7 +4,7 @@ import { LocationContext } from '../contexts/LocationContext';
 import API from '../APIClient';
 import LocationDropDown from '../components/LocationDropDown';
 import Map from '../components/Map';
-import displayRelativeTimeFromNow from '../components/dateHelper';
+import displayRelativeTimeFromNow from '../utilities/dateHelper';
 import createURL from '../utilities/createURL';
 
 export default function NeuralNetworkPage() {

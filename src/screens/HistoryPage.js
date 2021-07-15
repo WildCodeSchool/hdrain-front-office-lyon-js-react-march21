@@ -8,7 +8,7 @@ import API from '../APIClient';
 import Map from '../components/Map';
 import RainMap from '../components/RainMap';
 import LocationDropDown from '../components/LocationDropDown';
-import displayRelativeTimeFromNow from '../components/dateHelper';
+import displayRelativeTimeFromNow from '../utilities/dateHelper';
 import createURL from '../utilities/createURL';
 
 const formatDate = (date) => {

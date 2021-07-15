@@ -4,7 +4,7 @@ import { LocationContext } from '../contexts/LocationContext';
 import LocationDropDown from '../components/LocationDropDown';
 import CostGraph from '../components/CostGraph';
 import RainMap from '../components/RainMap';
-import displayRelativeTimeFromNow from '../components/dateHelper';
+import displayRelativeTimeFromNow from '../utilities/dateHelper';
 import API from '../APIClient';
 import createURL from '../utilities/createURL';
 

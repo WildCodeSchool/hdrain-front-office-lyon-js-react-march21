@@ -2,7 +2,7 @@ import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
 import { useEffect, useState, useContext } from 'react';
 import { LocationContext } from '../contexts/LocationContext';
-import graphOptions from './graphHelper';
+import graphOptions from '../utilities/graphHelper';
 
 export default function CostGraph({
   inputJoNL = [1, 2, 3, 4, 5, 6, 7, 8],
