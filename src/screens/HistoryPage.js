@@ -40,7 +40,7 @@ export default function HistoryPage() {
           const augmentedExperiment = {
             ...data,
             url: {
-              neuralNetwork: createURL(data.neuralNetwork),
+              neuralNetworkLog: createURL(data.neuralNetworkLog),
               costGraph: createURL(data.costGraph),
               parameters: createURL(data.parameters),
               assimilationLog: createURL(data.assimilationLog),
@@ -104,7 +104,7 @@ export default function HistoryPage() {
               className="download"
               target="_blank"
               rel="noreferrer"
-              href={experiment?.url?.neuralNetwork}
+              href={experiment?.url?.neuralNetworkLog}
             >
               Get Neural Network Log
             </a>

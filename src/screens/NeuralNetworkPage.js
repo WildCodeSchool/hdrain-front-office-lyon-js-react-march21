@@ -51,7 +51,7 @@ export default function NeuralNetworkPage() {
           <Map pins={sensorsLocation} />
           <a
             className="download"
-            href={experiment?.neuralNetworkLog || ''}
+            href={experiment?.url?.neuralNetworkLog}
             target="_blank"
             rel="noreferrer"
           >
