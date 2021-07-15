@@ -5,13 +5,9 @@ const graphOptions = {
     zoomType: 'xy',
   },
   title: {
-    text: 'Cost Graph',
-    align: 'center',
+    text: null,
   },
-  // subtitle: {
-  //   text: 'Station XXX mode NUV',
-  //   align: 'center',
-  // },
+
   xAxis: [
     {
       crosshair: true,
@@ -60,15 +56,14 @@ const graphOptions = {
     shared: true,
   },
   legend: {
-    layout: 'vertical',
-    align: 'left',
-    x: 80,
+    // align: 'right',
     verticalAlign: 'top',
-    y: 55,
-    floating: true,
-    backgroundColor:
-      Highcharts.defaultOptions.legend.backgroundColor || // theme
-      'rgba(255,255,255,0.25)',
+    // x: 80,
+    // y: 55,
+    // floating: true,
+    // backgroundColor:
+    //   Highcharts.defaultOptions.legend.backgroundColor || // theme
+    //   'rgba(255,255,255,0.25)',
   },
   series: [
     {
