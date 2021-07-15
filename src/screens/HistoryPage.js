@@ -3,6 +3,7 @@ import { useContext, useEffect, useState } from 'react';
 import DateTimePicker from 'react-datetime-picker';
 import { Link, useHistory } from 'react-router-dom';
 import { useLocation } from 'react-router';
+import { useToasts } from 'react-toast-notifications';
 import { LocationContext } from '../contexts/LocationContext';
 import API from '../APIClient';
 import Map from '../components/Map';
@@ -20,6 +21,9 @@ const formatDate = (date) => {
 export default function HistoryPage() {
   const { selectedLocationId, experiment, setExperiment, locationName } =
     useContext(LocationContext);
+  const [isLoading, setIsLoading] = useState(false);
+  const { addToast } = useToasts();
+
   const [date, setDate] = useState(new Date(2021, 5, 12, 18, 45));
   const location = useLocation();
   const history = useHistory();
@@ -147,6 +151,43 @@ export default function HistoryPage() {
           </Link>
         </>
       ) : null}
+      <button
+        type="button"
+        id="btn"
+        name="btn"
+        className="btn sync"
+        onClick={() => {
+          setIsLoading(true);
+          API.get('/sync')
+            .then((res) => {
+              addToast(res.data, {
+                appearance: 'info',
+                autoDismiss: true,
+              });
+            })
+            .finally(() => {
+              setIsLoading(false);
+            });
+        }}
+        style={isLoading ? { pointerEvents: 'none' } : null}
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          className="feather feather-refresh-cw"
+        >
+          <polyline points="23 4 23 10 17 10" />
+          <polyline points="1 20 1 14 7 14" />
+          <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15" />
+        </svg>
+      </button>
     </>
   );
 }
