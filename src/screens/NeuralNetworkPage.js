@@ -11,6 +11,9 @@ export default function NeuralNetworkPage() {
   const { selectedLocationId, experiment, setExperiment, locationName } =
     useContext(LocationContext);
   const [relativeDate, setRelativeDate] = useState('');
+  console.log(experiment);
+  console.log(relativeDate);
+  console.log(locationName);
 
   useEffect(() => {
     if (selectedLocationId) {
@@ -35,7 +38,7 @@ export default function NeuralNetworkPage() {
     <>
       <h2>Neural Network</h2>
       <LocationDropDown />
-      {Object.entries(experiment).length ? (
+      {locationName.length ? (
         <>
           <p>Last experiment: {relativeDate}</p>
           <h3>Sensors Map {locationName} </h3>

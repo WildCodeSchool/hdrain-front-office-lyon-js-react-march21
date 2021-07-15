@@ -25,6 +25,8 @@ export default function HistoryPage() {
   const [relativeDate, setRelativeDate] = useState('');
 
   const formattedDate = formatDate(date);
+  console.log(experiment);
+  console.log(relativeDate);
 
   useEffect(() => {
     if (selectedLocationId) {
@@ -71,7 +73,7 @@ export default function HistoryPage() {
           />
         </div>
       </div>
-      {Object.entries(experiment).length ? (
+      {locationName.length ? (
         <>
           <p>Selected experiment was: {relativeDate}</p>
           <div className="maps">

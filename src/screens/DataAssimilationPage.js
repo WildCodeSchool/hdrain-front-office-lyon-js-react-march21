@@ -8,11 +8,13 @@ import displayRelativeTimeFromNow from '../components/dateHelper';
 import API from '../APIClient';
 
 export default function DataAssimilationPage() {
-  const { selectedLocationId, experiment, setExperiment } =
+  const { selectedLocationId, experiment, setExperiment, locationName } =
     useContext(LocationContext);
 
   const [assimilationParams, setAssimilationParams] = useState([]);
   const [relativeDate, setRelativeDate] = useState('');
+  console.log(experiment);
+  console.log(relativeDate);
 
   useEffect(() => {
     if (selectedLocationId) {
@@ -41,7 +43,7 @@ export default function DataAssimilationPage() {
     <>
       <h2>Data Assimilation</h2>
       <LocationDropDown />
-      {Object.entries(experiment).length ? (
+      {locationName.length ? (
         <>
           <p>Last experiment: {relativeDate}</p>
           {assimilationParams.parameters}
