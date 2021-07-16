@@ -11,16 +11,8 @@ import createURL from '../utilities/createURL';
 export default function DataAssimilationPage() {
   const { selectedLocationId, experiment, setExperiment, locationName } =
     useContext(LocationContext);
-  const [assimilationParams, setAssimilationParams] = useState([]);
-  const [relativeDate, setRelativeDate] = useState('');
 
-  useEffect(() => {
-    if (selectedLocationId) {
-      API.get(`/locations/${selectedLocationId}/experiments/`)
-        .then((res) => setAssimilationParams(res.data))
-        .catch(window.console.error);
-    }
-  }, [selectedLocationId]);
+  const [relativeDate, setRelativeDate] = useState('');
 
   useEffect(() => {
     if (selectedLocationId) {
@@ -59,7 +51,7 @@ export default function DataAssimilationPage() {
       {locationName.length ? (
         <>
           <p>Last experiment: {relativeDate}</p>
-          {assimilationParams.parameters}
+          {experiment.parameters}
           <CostGraph />
           <RainMap />
           <a
