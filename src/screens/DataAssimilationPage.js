@@ -2,7 +2,6 @@ import React, { useContext, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { LocationContext } from '../contexts/LocationContext';
 import LocationDropDown from '../components/LocationDropDown';
-import CostGraph from '../components/CostGraph';
 import RainMap from '../components/RainMap';
 import displayRelativeTimeFromNow from '../utilities/dateHelper';
 import API from '../APIClient';
@@ -59,8 +58,27 @@ export default function DataAssimilationPage() {
       {locationName.length ? (
         <>
           <p>Last experiment: {relativeDate}</p>
-          {assimilationParams.parameters}
-          <CostGraph />
+          {!!assimilationParams.parameters && (
+            <>
+              <h3>Assimilation Parameters</h3>
+              <p>{assimilationParams.parameters}</p>
+            </>
+          )}
+          {/* <CostGraph /> */}
+          {
+            <>
+              <h3>Cost Graph {locationName}</h3>
+              <img
+                style={{
+                  width: `300px`,
+                  height: `300px`,
+                }}
+                className="costGraph"
+                src={experiment?.costGraph}
+                alt="costGraph"
+              />
+            </>
+          }
           <RainMap />
           <a
             className="download"

@@ -13,10 +13,7 @@ const RainMap = ({ size = 400, borderColor = '' }) => {
           border: borderColor ? `5px solid ${borderColor}` : 'none',
         }}
         className="rainMap"
-        src={
-          experiment?.rainGraph ||
-          'https://via.placeholder.com/600x400?text=Rain Graph'
-        }
+        src={experiment?.rainMap}
         alt="rainMap"
       />
     </>
