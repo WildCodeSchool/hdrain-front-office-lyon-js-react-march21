@@ -1,58 +1,70 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
-import asset from '../assets/sensor.png';
 import { LocationContext } from '../contexts/LocationContext';
 import API from '../APIClient';
 import LocationDropDown from '../components/LocationDropDown';
 import Map from '../components/Map';
-import RainGraph from '../components/RainGraph';
+import displayRelativeTimeFromNow from '../utilities/dateHelper';
+import createURL from '../utilities/createURL';
 
 export default function NeuralNetworkPage() {
   const [sensorsLocation, setSensorsLocation] = useState([]);
-  const { selectedLocationId } = useContext(LocationContext);
+  const { selectedLocationId, experiment, setExperiment, locationName } =
+    useContext(LocationContext);
+  const [relativeDate, setRelativeDate] = useState('');
 
   useEffect(() => {
-    if (selectedLocationId && !!selectedLocationId) {
+    if (selectedLocationId) {
       API.get(`locations/${selectedLocationId}/sensors/`)
-        .then((response) => response.data)
-        .then((data) => {
-          setSensorsLocation(data);
-        });
+        .then((res) => setSensorsLocation(res.data))
+        .catch(window.console.error);
+
+      API.get(`/locations/${selectedLocationId}/experiments/`)
+        .then((res) =>
+          setExperiment({
+            ...res.data,
+            url: {
+              neuralNetworkLog: createURL(res.data.neuralNetworkLog),
+            },
+          })
+        )
+        .catch(window.console.error);
     }
   }, [selectedLocationId]);
 
-  const [pathToLog] = useState(asset);
+  useEffect(() => {
+    if (experiment.timestamp) {
+      setRelativeDate(
+        displayRelativeTimeFromNow(new Date(experiment.timestamp))
+      );
+    }
+  }, [experiment]);
 
   return (
     <>
       <h2>Neural Network</h2>
       <LocationDropDown />
-      <Map pins={sensorsLocation} />
-      <RainGraph />
-      <Link
-        className="download"
-        to={pathToLog}
-        target="_blank"
-        download
-        style={
-          !selectedLocationId || selectedLocationId === 'None'
-            ? { pointerEvents: 'none' }
-            : null
-        }
-      >
-        Download Neural Network Logs
-      </Link>
-      <Link
-        to={`/locations/assimilation?locationId=${selectedLocationId}`}
-        className="link"
-        style={
-          !selectedLocationId || selectedLocationId === 'None'
-            ? { pointerEvents: 'none' }
-            : null
-        }
-      >
-        Data Assimilation
-      </Link>
+      {locationName.length ? (
+        <>
+          <p>Last experiment: {relativeDate}</p>
+          <h3>Sensors Map {locationName} </h3>
+          <Map pins={sensorsLocation} />
+          <a
+            className="download"
+            href={experiment?.url?.neuralNetworkLog}
+            target="_blank"
+            rel="noreferrer"
+          >
+            Get Neural Network Logs
+          </a>
+          <Link
+            to={`/assimilation?locationId=${selectedLocationId}`}
+            className="link"
+          >
+            Go to Data Assimilation
+          </Link>
+        </>
+      ) : null}
     </>
   );
 }

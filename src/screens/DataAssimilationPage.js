@@ -1,104 +1,83 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-
 import { LocationContext } from '../contexts/LocationContext';
-import asset from '../assets/sensor.png';
 import LocationDropDown from '../components/LocationDropDown';
-import AssimilationInfos from '../components/AssimilationInfos';
+import CostGraph from '../components/CostGraph';
+import RainMap from '../components/RainMap';
+import displayRelativeTimeFromNow from '../utilities/dateHelper';
+import API from '../APIClient';
+import createURL from '../utilities/createURL';
 
 export default function DataAssimilationPage() {
-  const { selectedLocation, selectedLocationId } = useContext(LocationContext);
-
-  const [pathToLog] = useState(asset);
-  const [showParams, setShowParams] = useState(false);
-  const [locationParams, setLocationParams] = useState(['None']);
-
-  const assimilationParams = [
-    {
-      location: 'Abidjan',
-      NX: 120,
-      NY: 300,
-      theta: 0.9,
-    },
-    {
-      location: 'Antibes',
-      NX: 180,
-      NY: 192,
-      theta: 0.5,
-    },
-    {
-      location: 'Toulouse',
-      NX: 150,
-      NY: 250,
-      theta: 0.8,
-    },
-  ];
+  const { selectedLocationId, experiment, setExperiment, locationName } =
+    useContext(LocationContext);
+  const [assimilationParams, setAssimilationParams] = useState([]);
+  const [relativeDate, setRelativeDate] = useState('');
 
   useEffect(() => {
-    if (selectedLocation === 'None') {
-      setShowParams(false);
-    } else {
-      setLocationParams(
-        assimilationParams.filter(
-          ({ location }) => location === selectedLocation
-        )
-      );
-      setShowParams(true);
+    if (selectedLocationId) {
+      API.get(`/locations/${selectedLocationId}/experiments/`)
+        .then((res) => setAssimilationParams(res.data))
+        .catch(window.console.error);
     }
-  }, [selectedLocation]);
+  }, [selectedLocationId]);
+
+  useEffect(() => {
+    if (selectedLocationId) {
+      API.get(`/locations/${selectedLocationId}/experiments/`)
+        .then((res) =>
+          setExperiment({
+            ...res.data,
+            url: {
+              assimilationLog: createURL(res.data.assimilationLog),
+            },
+          })
+        )
+        .then(() => {
+          if (experiment.timestamp) {
+            setRelativeDate(
+              displayRelativeTimeFromNow(new Date(experiment?.timestamp))
+            );
+          }
+        })
+        .catch(window.console.error);
+    }
+  }, [selectedLocationId]);
+
+  useEffect(() => {
+    if (experiment.timestamp) {
+      setRelativeDate(
+        displayRelativeTimeFromNow(new Date(experiment.timestamp))
+      );
+    }
+  }, [experiment]);
 
   return (
     <>
       <h2>Data Assimilation</h2>
       <LocationDropDown />
-      {showParams ? (
+      {locationName.length ? (
         <>
-          <AssimilationInfos
-            assimilationParams={locationParams}
-            show={showParams}
-          />
+          <p>Last experiment: {relativeDate}</p>
+          {assimilationParams.parameters}
+          <CostGraph />
+          <RainMap />
+          <a
+            className="download"
+            href={experiment?.url?.assimilationLog || ''}
+            target="_blank"
+            rel="noreferrer"
+          >
+            Get Data Assimilation Logs
+          </a>
+          <Link
+            to={`/neuralNetwork?locationId=${selectedLocationId}`}
+            className="link"
+          >
+            Go to Neural Network
+          </Link>
         </>
-      ) : (
-        ''
-      )}
-      <br />
-      <Link
-        className="download"
-        to={pathToLog}
-        target="_blank"
-        download
-        style={
-          !selectedLocationId || selectedLocationId === 'None'
-            ? { pointerEvents: 'none' }
-            : null
-        }
-      >
-        Download Global Log
-      </Link>
-      <Link
-        className="download"
-        to={pathToLog}
-        target="_blank"
-        download
-        style={
-          !selectedLocationId || selectedLocationId === 'None'
-            ? { pointerEvents: 'none' }
-            : null
-        }
-      >
-        Download Data Assimilation Logs
-      </Link>
-      <Link
-        to={`/locations/neuralNetwork?locationId=${selectedLocationId}`}
-        className="link"
-        style={
-          !selectedLocationId || selectedLocationId === 'None'
-            ? { pointerEvents: 'none' }
-            : null
-        }
-      >
-        Neural Network
-      </Link>
+      ) : null}
     </>
   );
 }
