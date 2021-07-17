@@ -64,19 +64,22 @@ export default function DataAssimilationPage() {
               <p>{assimilationParams.parameters}</p>
             </>
           )}
-          {/* <CostGraph /> */}
           {
             <>
               <h3>Cost Graph {locationName}</h3>
-              <img
-                style={{
-                  width: `300px`,
-                  height: `300px`,
-                }}
-                className="costGraph"
-                src={experiment?.costGraph}
-                alt="costGraph"
-              />
+              {experiment?.costGraph ? (
+                <img
+                  style={{
+                    width: `300px`,
+                    height: `300px`,
+                  }}
+                  className="costGraph"
+                  src={experiment?.costGraph}
+                  alt="costGraph"
+                />
+              ) : (
+                <p>No cost graph available</p>
+              )}
             </>
           }
           <RainMap />

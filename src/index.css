@@ -456,3 +456,27 @@ a:hover {
   box-shadow: 0px 3px var(--accent-color);
   margin-bottom: 1em;
 }
+
+/* Style Broken Images */
+img {
+  font-family: 'Helvetica';
+  font-weight: 300;
+  line-height: 2;
+  text-align: center;
+  width: 100%;
+  height: auto;
+  display: block;
+  position: relative;
+}
+
+img:before {
+  content: 'No content present';
+  display: block;
+  margin-bottom: 1rem;
+}
+
+img:after {
+  content: '(url: ' attr(src) ')';
+  display: block;
+  font-size: 12px;
+}

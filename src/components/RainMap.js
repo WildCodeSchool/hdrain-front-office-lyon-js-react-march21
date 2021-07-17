@@ -6,16 +6,20 @@ const RainMap = ({ size = 400, borderColor = '' }) => {
   return (
     <>
       <h3>Rain Map {locationName}</h3>
-      <img
-        style={{
-          width: `${size}px`,
-          height: `${size}px`,
-          border: borderColor ? `5px solid ${borderColor}` : 'none',
-        }}
-        className="rainMap"
-        src={experiment?.rainMap}
-        alt="rainMap"
-      />
+      {experiment?.rainMap ? (
+        <img
+          style={{
+            width: `${size}px`,
+            height: `${size}px`,
+            border: borderColor ? `5px solid ${borderColor}` : 'none',
+          }}
+          className="rainMap"
+          src={experiment?.rainMap}
+          alt="rainMap"
+        />
+      ) : (
+        <p>No rain map available</p>
+      )}
     </>
   );
 };
