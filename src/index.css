@@ -480,3 +480,8 @@ img:after {
   display: block;
   font-size: 12px;
 }
+
+/* Hide clock */
+.react-datetime-picker__clock {
+  display: none;
+}
