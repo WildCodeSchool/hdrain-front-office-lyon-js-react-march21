@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { NavLink, useHistory } from 'react-router-dom';
 import { useToasts } from 'react-toast-notifications';
 import logo from '../assets/logo_HDRain.png';
-import Authentification from './Authentication';
+import LoginForm from './LoginForm';
 import CurrentUser from '../contexts/currentUserContext';
 
 import API from '../APIClient';
@@ -87,7 +87,7 @@ export default function Header() {
               <h1 className="site-title">HD Rain Monitoring Tool</h1>
             </div>
           </header>
-          <Authentification />
+          <LoginForm />
         </>
       )}
     </CurrentUser.Provider>
