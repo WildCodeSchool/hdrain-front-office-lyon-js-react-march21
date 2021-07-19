@@ -1,5 +1,6 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+
 import { LocationContext } from '../contexts/LocationContext';
 import LocationDropDown from '../components/LocationDropDown';
 import CostGraph from '../components/CostGraph';
@@ -17,7 +18,9 @@ export default function DataAssimilationPage() {
   useEffect(() => {
     if (selectedLocationId) {
       API.get(`/locations/${selectedLocationId}/experiments/`)
-        .then((res) => setAssimilationParams(res.data))
+        .then((res) => {
+          setAssimilationParams(res.data);
+        })
         .catch(window.console.error);
     }
   }, [selectedLocationId]);
@@ -59,7 +62,12 @@ export default function DataAssimilationPage() {
       {locationName.length ? (
         <>
           <p>Last experiment: {relativeDate}</p>
-          {assimilationParams.parameters}
+          <div className="paramContainer">
+            <pre className="paramContainerText">
+              {assimilationParams.parameters}
+            </pre>
+          </div>
+          {}
           <CostGraph />
           <RainMap />
           <a
