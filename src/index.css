@@ -457,15 +457,13 @@ a:hover {
   margin-bottom: 1em;
 }
 
-.paramContainer {
-  margin: 20px;
-  border: 1px solid gray;
-  padding: 8px;
-  background-color: var(--hdr-color);
-  border-radius: 5px;
+.parametersContainer {
+  margin: 2rem;
+  border: 0.15rem solid rgba(128, 128, 128, 0.918);
+  padding: 0.8rem;
+  border-radius: 0.5rem;
 }
 
-.paramContainerText {
-  font-size: 15px;
-  color: var(--text-secondary);
+.parameters {
+  font-size: 0.9rem;
 }
