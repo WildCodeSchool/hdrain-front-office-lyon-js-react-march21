@@ -59,7 +59,9 @@ export default function DataAssimilationPage() {
       {locationName.length ? (
         <>
           <p>Last experiment: {relativeDate}</p>
-          {assimilationParams.parameters}
+          <div className="parametersContainer">
+            <pre className="parameters">{assimilationParams.parameters}</pre>
+          </div>
           <CostGraph />
           <RainMap />
           <a
