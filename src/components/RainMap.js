@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import { LocationContext } from '../contexts/LocationContext';
 
-const RainMap = ({ size = 400, borderColor = '' }) => {
+const RainMap = ({ width = 500, height = 500 }) => {
   const { experiment, locationName } = useContext(LocationContext);
   return (
     <>
@@ -9,9 +9,8 @@ const RainMap = ({ size = 400, borderColor = '' }) => {
       {experiment?.rainMap ? (
         <img
           style={{
-            width: `${size}px`,
-            height: `${size}px`,
-            border: borderColor ? `5px solid ${borderColor}` : 'none',
+            width: `${width}px`,
+            height: `${height}px`,
           }}
           className="rainMap"
           src={experiment?.rainMap}
