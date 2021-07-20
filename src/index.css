@@ -485,3 +485,14 @@ img:after {
 .react-datetime-picker__clock {
   display: none;
 }
+
+.parametersContainer {
+  margin: 2rem;
+  border: 0.15rem solid rgba(128, 128, 128, 0.918);
+  padding: 0.8rem;
+  border-radius: 0.5rem;
+}
+
+.parameters {
+  font-size: 0.9rem;
+}

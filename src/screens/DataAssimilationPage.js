@@ -61,7 +61,11 @@ export default function DataAssimilationPage() {
           {!!assimilationParams.parameters && (
             <>
               <h3>Assimilation Parameters</h3>
-              <p>{assimilationParams.parameters}</p>
+              <div className="parametersContainer">
+                <pre className="parameters">
+                  {assimilationParams.parameters}
+                </pre>
+              </div>
             </>
           )}
           {
