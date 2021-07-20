@@ -462,6 +462,8 @@ a:hover {
   border: 0.15rem solid rgba(128, 128, 128, 0.918);
   padding: 0.8rem;
   border-radius: 0.5rem;
+  max-height: 30rem;
+  overflow-y: auto;
 }
 
 .parameters {
