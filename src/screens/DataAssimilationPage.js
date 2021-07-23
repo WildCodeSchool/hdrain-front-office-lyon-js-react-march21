@@ -55,7 +55,7 @@ export default function DataAssimilationPage() {
     <>
       <h2>Data Assimilation</h2>
       <LocationDropDown />
-      {locationName.length ? (
+      {locationName.length && experiment?.timestamp ? (
         <>
           <p>Last experiment: {relativeDate}</p>
           {!!assimilationParams.parameters && (
