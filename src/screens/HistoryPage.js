@@ -130,7 +130,7 @@ export default function HistoryPage() {
             </a>
             <a
               className="download"
-              href={experiment?.url?.costGraph}
+              href={experiment?.costGraph}
               target="_blank"
               rel="noreferrer"
             >
