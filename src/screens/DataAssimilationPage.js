@@ -73,10 +73,6 @@ export default function DataAssimilationPage() {
               <h3>Cost Graph {locationName}</h3>
               {experiment?.costGraph ? (
                 <img
-                  style={{
-                    width: `300px`,
-                    height: `300px`,
-                  }}
                   className="costGraph"
                   src={experiment?.costGraph}
                   alt="costGraph"

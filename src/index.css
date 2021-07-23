@@ -80,6 +80,7 @@ h3 {
   display: flex;
   justify-content: center;
   margin-top: 3rem;
+  font-size: 2rem;
 }
 
 button {
@@ -490,11 +491,23 @@ img:after {
   margin: 2rem;
   border: 0.15rem solid rgba(128, 128, 128, 0.918);
   padding: 0.8rem;
-  border-radius: 0.5rem;
+  border-radius: 0.5rem 0rem 0rem 0.5rem;
   max-height: 30rem;
+  width: 750px;
   overflow-y: auto;
 }
 
 .parameters {
   font-size: 0.9rem;
+}
+
+.costGraph {
+  width: 750px;
+
+  border-radius: 0.2rem;
+}
+
+.rainMap {
+  width: 750px;
+  border-radius: 0.2rem;
 }
