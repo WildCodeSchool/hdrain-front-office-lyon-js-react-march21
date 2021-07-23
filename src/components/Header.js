@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { NavLink, useHistory } from 'react-router-dom';
 import { useToasts } from 'react-toast-notifications';
 import logo from '../assets/logo_HDRain.png';
-import Authentification from './Authentication';
+import LoginForm from './LoginForm';
 import CurrentUser from '../contexts/currentUserContext';
 
 import API from '../APIClient';
@@ -35,12 +35,12 @@ export default function Header() {
 
   return (
     <CurrentUser.Provider value={auth}>
-      {auth ? (
-        <header>
-          <div className="upper-header">
-            <img className="nav-logo" src={logo} alt="HD RAIN" />
-            <h1 className="site-title">HD Rain Monitoring Tool</h1>
-          </div>
+      <header>
+        <div className="upper-header">
+          <img className="nav-logo" src={logo} alt="HD RAIN" />
+          <h1 className="site-title">HD Rain Monitoring Tool</h1>
+        </div>
+        {auth ? (
           <nav className="navBar">
             <ul className="navList">
               <li className="navItem">
@@ -78,18 +78,9 @@ export default function Header() {
               </li>
             </ul>
           </nav>
-        </header>
-      ) : (
-        <>
-          <header>
-            <div className="upper-header">
-              <img className="nav-logo" src={logo} alt="HD RAIN" />
-              <h1 className="site-title">HD Rain Monitoring Tool</h1>
-            </div>
-          </header>
-          <Authentification />
-        </>
-      )}
+        ) : null}
+      </header>
+      {auth ? null : <LoginForm />}
     </CurrentUser.Provider>
   );
 }

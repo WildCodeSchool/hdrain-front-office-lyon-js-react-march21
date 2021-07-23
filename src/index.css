@@ -457,6 +457,35 @@ a:hover {
   margin-bottom: 1em;
 }
 
+/* Style Broken Images */
+img {
+  font-family: 'Helvetica';
+  font-weight: 300;
+  line-height: 2;
+  text-align: center;
+  width: 100%;
+  height: auto;
+  display: block;
+  position: relative;
+}
+
+img:before {
+  content: 'No content present';
+  display: block;
+  margin-bottom: 1rem;
+}
+
+img:after {
+  content: '(url: ' attr(src) ')';
+  display: block;
+  font-size: 12px;
+}
+
+/* Hide clock */
+.react-datetime-picker__clock {
+  display: none;
+}
+
 .parametersContainer {
   margin: 2rem;
   border: 0.15rem solid rgba(128, 128, 128, 0.918);
