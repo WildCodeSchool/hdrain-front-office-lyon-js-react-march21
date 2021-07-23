@@ -18,7 +18,7 @@ const RainMap = ({ size = 400, borderColor = '' }) => {
           alt="rainMap"
         />
       ) : (
-        <p>No rain map available</p>
+        <p>No rain map available for {experiment?.timestamp}</p>
       )}
     </>
   );
