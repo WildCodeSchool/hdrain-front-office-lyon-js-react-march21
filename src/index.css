@@ -73,13 +73,15 @@ h2 {
   display: block;
   margin-left: auto;
   margin-right: auto;
+  font-size: 2.5rem;
 }
 
 h3 {
   color: var(--btn-secondary-color);
   display: flex;
   justify-content: center;
-  margin-top: 3rem;
+  margin-top: 1rem;
+  font-size: 2rem;
 }
 
 button {
@@ -455,4 +457,58 @@ a:hover {
   color: white;
   box-shadow: 0px 3px var(--accent-color);
   margin-bottom: 1em;
+}
+
+/* Style Broken Images */
+img {
+  font-family: 'Helvetica';
+  font-weight: 300;
+  line-height: 2;
+  text-align: center;
+  width: 100%;
+  height: auto;
+  display: block;
+  position: relative;
+}
+
+img:before {
+  content: 'No content present';
+  display: block;
+  margin-bottom: 1rem;
+}
+
+img:after {
+  content: '(url: ' attr(src) ')';
+  display: block;
+  font-size: 12px;
+}
+
+/* Hide clock */
+.react-datetime-picker__clock {
+  display: none;
+}
+
+.parametersContainer {
+  margin: 2rem;
+  border: 0.15rem solid rgba(128, 128, 128, 0.918);
+  padding: 0.8rem;
+  border-radius: 0.5rem 0rem 0rem 0.5rem;
+  max-height: 30rem;
+  width: 750px;
+  overflow-y: auto;
+}
+
+.parameters {
+  font-size: 0.9rem;
+}
+
+.costGraph {
+  width: 750px;
+
+  border-radius: 0.2rem;
+}
+
+.rainMap {
+  width: 750px;
+  border-radius: 0.2rem;
 }
