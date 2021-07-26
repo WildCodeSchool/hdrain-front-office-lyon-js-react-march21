@@ -42,6 +42,9 @@ export const LocationContextProvider = ({ children }) => {
     )
     .map((id) => `- ${id.locationName}`);
 
+  const a = locationList[selectedLocationId];
+
+  console.log(a);
   return (
     <LocationContext.Provider
       value={{

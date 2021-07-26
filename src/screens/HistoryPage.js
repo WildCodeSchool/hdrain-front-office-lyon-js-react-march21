@@ -97,7 +97,10 @@ export default function HistoryPage() {
       </div>
       {locationName.length ? (
         <>
-          <p>Selected experiment was: {relativeDate}</p>
+          <p>
+            Selected experiment was: {relativeDate} -{' '}
+            {new Date(experiment.timestamp).toLocaleString('fr-FR')}
+          </p>
           <div className="maps">
             <h3>Sensors Map {locationName}</h3>
             <Map pins={sensorsLocation} />
