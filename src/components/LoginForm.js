@@ -33,7 +33,7 @@ export default function LoginForm() {
         window.location.reload();
       })
       .catch((err) => {
-        if (err.response && err.response.status === 401) {
+        if (err.response.status === 401) {
           addToast('Wrong Credentials', {
             appearance: 'error',
             autoDismiss: true,
@@ -87,7 +87,6 @@ export default function LoginForm() {
           This field is required
         </span>
       )}
-
       <input type="submit" value="Login" />
     </form>
   );
