@@ -20,8 +20,8 @@ export default function LoginForm() {
     },
   });
 
-  const onSubmit = ({ username, password, stayConnected }) => {
-    API.post(`/auth/login`, { username, password, stayConnected })
+  const onSubmit = ({ username, password }) => {
+    API.post(`/auth/login`, { username, password })
       .then(() => {
         const { redirectUrl } = qs.parse(window.location.search);
         if (redirectUrl) history.push(redirectUrl);
