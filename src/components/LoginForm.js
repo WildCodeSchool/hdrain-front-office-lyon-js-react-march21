@@ -20,22 +20,20 @@ export default function LoginForm() {
     },
   });
 
-  const onSubmit = ({ username, password }) => {
-    API.post(`/auth/login`, { username, password })
+  const onSubmit = ({ username, password, stayConnected }) => {
+    API.post(`/auth/login`, { username, password, stayConnected })
       .then(() => {
         const { redirectUrl } = qs.parse(window.location.search);
         if (redirectUrl) history.push(redirectUrl);
-        else {
-          history.push('/home');
-          window.location.reload();
-        }
         addToast('Successfully logged in', {
           appearance: 'success',
           autoDismiss: true,
         });
+        history.push('/home');
+        window.location.reload();
       })
       .catch((err) => {
-        if (err.response.status === 401) {
+        if (err.response && err.response.status === 401) {
           addToast('Wrong Credentials', {
             appearance: 'error',
             autoDismiss: true,
@@ -89,6 +87,7 @@ export default function LoginForm() {
           This field is required
         </span>
       )}
+
       <input type="submit" value="Login" />
     </form>
   );
