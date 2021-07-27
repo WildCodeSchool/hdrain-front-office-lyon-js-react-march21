@@ -57,7 +57,10 @@ export default function DataAssimilationPage() {
       <LocationDropDown />
       {locationName.length && experiment?.timestamp ? (
         <>
-          <p>Last experiment: {relativeDate}</p>
+          <p>
+            Last experiment: {relativeDate} -{' '}
+            {new Date(experiment.timestamp).toLocaleString('fr-FR')}
+          </p>
           {!!assimilationParams.parameters && (
             <>
               <h3>Assimilation Parameters</h3>

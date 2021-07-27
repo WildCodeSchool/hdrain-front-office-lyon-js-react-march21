@@ -41,7 +41,6 @@ export const LocationContextProvider = ({ children }) => {
         locationSite.locationId === parseInt(selectedLocationId, 10)
     )
     .map((id) => `- ${id.locationName}`);
-
   return (
     <LocationContext.Provider
       value={{

@@ -46,7 +46,10 @@ export default function NeuralNetworkPage() {
       <LocationDropDown />
       {locationName.length ? (
         <>
-          <p>Last experiment: {relativeDate}</p>
+          <p>
+            Last experiment: {relativeDate} -{' '}
+            {new Date(experiment.timestamp).toLocaleString('fr-FR')}
+          </p>
           <h3>Sensors Map {locationName} </h3>
           <Map pins={sensorsLocation} />
           <a

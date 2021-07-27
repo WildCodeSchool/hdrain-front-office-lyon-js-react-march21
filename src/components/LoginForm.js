@@ -24,11 +24,12 @@ export default function LoginForm() {
     API.post(`/auth/login`, { username, password })
       .then(() => {
         const { redirectUrl } = qs.parse(window.location.search);
-        if (redirectUrl) history.push(redirectUrl);
-        else {
+        if (redirectUrl) {
+          history.push(redirectUrl);
+        } else {
           history.push('/home');
-          window.location.reload();
         }
+        window.location.reload();
         addToast('Successfully logged in', {
           appearance: 'success',
           autoDismiss: true,
